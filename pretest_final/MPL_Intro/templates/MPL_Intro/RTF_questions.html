@@ -1,0 +1,221 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<style>
+table {
+  width: 100%;
+}
+th.pic1, th.pic2 {
+  width: 15%
+}
+th.option2 {
+  width: 15%
+}
+th.option1 {
+  width: 30%
+}
+th.num{
+  width: 5%
+}
+th.choice{
+  width: 15%
+}
+.boxed {
+  background-color: #DCDCDC ;
+  padding: 3px;
+}
+</style>
+</head>
+<body>
+
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Erster Teil der Umfrage - Anwendung: Duschkopf-Feedback{% endblock %}
+
+{% block content %}
+<div class="boxed">
+  <p align="left"><b>Erinnerung:</b> "Duschkopf-Feedback" ist eine Zusatzfunktion für Ihren Duschkopf.
+    Ihr Duschkopf wird in unterschiedlichen Farben leuchten, je nachdem wie viele Liter Wasser Sie bereits verbraucht haben.
+  </p>
+
+  <p>Bitte stellen Sie sich bei jeder der 15 Situationen unten vor, sie stünden tatsächlich vor dieser Entscheidung.</p>
+</div>
+
+<p> </p>
+
+<p align="left">Wie entscheiden Sie sich in den folgenden 15 Situationen? Wählen Sie die linke oder die rechte Option aus. </p>
+
+
+<table border=1 frame=void rules=rows>
+     <colgroup>
+         <col width="20%">
+         <col width="20%">
+         <col width="5%">
+         <col width="10%">
+         <col width="5%">
+         <col width="10%">
+         <col width="20%">
+         <col width="20%">
+     </colgroup>
+     {% for amount in player.left_side_amounts_RTF %}
+         <tr>
+           <td>
+             {% if amount == 0 %}
+             <div>
+                 <img style="display:block;" width="70%" src="{% static "images/0_2.png" %}" />
+             </div>
+             {% elif amount == 5 %}
+             <div>
+                  <img style="display:block;" width="70%" src="{% static "images/5.png" %}" />
+             </div>
+            {% elif amount == 10 %}
+             <div>
+                  <img style="display:block;" width="70%" src="{% static "images/10.png" %}" />
+              </div>
+            {% elif amount == 11 %}
+             <div>
+                   <img style="display:block;" width="70%" src="{% static "images/11.png" %}" />
+              </div>
+            {% elif amount == 12 %}
+             <div>
+                   <img style="display:block;" width="70%" src="{% static "images/12.png" %}" />
+              </div>
+            {% elif amount == 13 %}
+             <div>
+                   <img style="display:block;" width="70%" src="{% static "images/13.png" %}" />
+              </div>
+             {% elif amount == 14 %}
+             <div>
+                   <img style="display:block;" width="70%" src="{% static "images/14.png" %}" />
+               </div>
+             {% elif amount == 15 %}
+             <div>
+                    <img style="display:block;" width="70%" src="{% static "images/15_2.png" %}" />
+               </div>
+             {% elif amount == 16 %}
+             <div>
+                    <img style="display:block;" width="70%" src="{% static "images/16.png" %}" />
+               </div>
+             {% elif amount == 17 %}
+             <div>
+                    <img style="display:block;" width="70%" src="{% static "images/17.png" %}" />
+               </div>
+              {% elif amount == 18 %}
+              <div>
+                    <img style="display:block;" width="70%" src="{% static "images/18.png" %}" />
+                </div>
+              {% elif amount == 19 %}
+             <div>
+                     <img style="display:block;" width="70%" src="{% static "images/19.png" %}" />
+                </div>
+              {% elif amount == 20 %}
+             <div>
+                     <img style="display:block;" width="70%" src="{% static "images/20.png" %}" />
+                </div>
+              {% elif amount == 25 %}
+             <div>
+                     <img style="display:block;" width="70%" src="{% static "images/25.png" %}" />
+                </div>
+               {% elif amount == 30 %}
+             <div>
+                     <img style="display:block;" width="70%" src="{% static "images/30_2.png" %}" />
+                 </div>
+             {% else%}
+             <div>
+                 <img style="display:block;" width="70%" src="{% static "images/rcash.png" %}" />
+             </div>
+              {% endif %}
+           </td>
+            <td align="left">
+               Ein Monat Duschkopf-Feedback PLUS {{ amount }}
+            </td>
+            <td align="center">
+              <input type="radio"
+                     name="{{ amount|json }}"
+                     value="left" data-amount="{{ amount|json }}"
+                     required> &nbsp;&nbsp;
+              </td>
+              <td align="center"> <b>ODER</b>
+              </td>
+              <td align="center">
+                 <input type="radio"
+                        value="right"
+                        name="{{ amount|json }}"
+                        required>&nbsp;&nbsp;
+              </td>
+              <td align="left" style="vertical-align:middle">
+                  {{ player.right_side_amount_RTF }}</td>
+              <td><img style="display:block;" width="70%" src="{% static "images/rcash.png" %}"/></td>
+              <td></td>
+         </tr>
+     {% endfor %}
+ </table>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+ <p> {% formfield player.comm_4_RTF %}</p>
+
+ {{ form.errors }}
+ <input type="hidden" name="switching_point_RTF" id="id_switching_point_RTF"
+        value="9999">
+
+
+{% next_button %}
+
+<p></p>
+
+{% endblock %}
+
+
+{% block scripts %}
+ <script>
+     $(document).ready(function () {
+
+         $('input[type=radio]').change(
+             function () {
+                 var clickedRadio = this;
+                 var afterClickedRadio = false;
+
+
+                 var radios = document.querySelectorAll('input[type=radio]');
+                 for (i = 0; i < radios.length; ++i) {
+                     var radio = radios[i];
+                     if (radio === clickedRadio) {
+                         afterClickedRadio = true;
+                         continue;
+                     }
+                     if (!afterClickedRadio && clickedRadio.value === 'right' && radio.value === 'right') {
+                         radio.checked = true;
+                     }
+                     if (afterClickedRadio && clickedRadio.value === 'left' && radio.value === 'left') {
+                         radio.checked = true;
+                     }
+                 }
+             }
+         );
+
+         $('.otree-btn-next').click(function () {
+             var radios = document.querySelectorAll('input[type=radio]');
+
+
+             for (i = 0; i < radios.length; ++i) {
+                 var radio = radios[i];
+                 if (radio.value === 'left' && radio.checked) {
+                     $('#id_switching_point_RTF').val(radio.dataset.amount);
+                     break;
+                 } else {
+                     $('#id_switching_point_RTF').val(9999);
+                 }
+             }
+         });
+      });
+ </script>
+{% endblock %}
+
+</body>
+</html>

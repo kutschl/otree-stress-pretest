@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+Willkommen
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Vielen Dank, dass Sie an dieser Umfrage teilnehmen.
+    Die Umfrage wird ungefähr eine halbe Stunde Ihrer Zeit in Anspruch nehmen.
+    Wenn Sie die Umfrage beendet haben, werden Ihnen <b>{{Constants.participation_fee}}</b> als Aufwandsentschädigung überwiesen.
+    Um die Überweisung ausführen zu können, benötigen wir die folgenden Informationen von Ihnen.
+    Diese Informationen werden <b>nur für die Abwicklung der Zahlung</b> verwendet
+    und vor der Datenauswertung von dem restlichen Datensatz getrennt.
+</p>
+
+<p>
+    <label for="VORNAME">{{form.VORNAME.label}}</label>
+    <input type="text" class="form-control" name="VORNAME" id="VORNAME"/>
+</p>
+
+<p>
+    <label for="NACHNAME">{{form.NACHNAME.label}}</label>
+    <input type="text" class="form-control" name="NACHNAME" id="NACHNAME"/>
+</p>
+
+<p>
+    <label for="STRASSE">{{form.STRASSE.label}}</label>
+    <input type="text" class="form-control" name="STRASSE" id="STRASSE"/>
+</p>
+
+<p>
+    <label for="PLZ">{{form.PLZ.label}}</label>
+    <input type="number" class="form-control" name="PLZ" id="PLZ"/>
+</p>
+
+<p>
+    <label for="STADT">{{form.STADT.label}}</label>
+    <input type="text" class="form-control" name="STADT" id="STADT"/>
+</p>
+
+<p>
+    <label for="EMAIL">{{form.EMAIL.label}}</label>
+    <input type="email" class="form-control" name="EMAIL" id="EMAIL"/>
+</p>
+
+<p>
+    <label for="IBAN">{{form.IBAN.label}}</label>
+    <input type="text" class="form-control" name="IBAN" id="IBAN"/>
+    {{ formfield_errors 'IBAN' }}
+</p>
+
+<p>
+    <label for="BIC">{{form.BIC.label}}</label>
+    <input type="text" class="form-control" name="BIC" id="BIC"/>
+    {{ formfield_errors 'BIC' }}
+</p>
+
+{% next_button %}
+{% endblock %}
+

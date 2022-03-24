@@ -1,0 +1,71 @@
+<style>
+.outer {
+  width: 800px;
+  margin: 0 auto;
+  background-color: white;
+}
+.boxed {
+  background-color: #DCDCDC ;
+  border: 1px solid black;
+  padding: 20px;
+}
+</style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Year', 'Sie', 'Vergleichsgruppe'],
+      ['1',  40,      38],
+      ['2',  39,      35],
+      ['3',  35,       35],
+    ]);
+
+    var options = {
+      title: 'Durchschnittlicher Wasserverbrauch pro Dusche im Monat X',
+      legend: { position: 'bottom' },
+      vAxis: { baseline: 15, title: 'Wasserverbrauch in Litern' },
+      hAxis: { title: 'Woche im Monat X' }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+    chart.draw(data, options);
+  }
+</script>
+
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Erster Teil der Umfrage - Anwendung: Wöchentliche Vergleichsberichte{% endblock %}
+
+{% block content %}
+<p align="left">
+  Bitte stellen Sie sich nun vor, Sie würden, abhängig von Ihren Antworten zu den folgenden Fragen, im kommenden Monat wöchentliche Berichte zu Ihrem Wasserverbrauch beim Duschen erhalten.</p>
+<p align=left>  Diese Berichte enthalten Informationen zu Ihrem durchschnittlichen Wasserverbrauch pro Dusche sowie Durchschnittswerte von anderen Teilnehmern zum Vergleich. Die Berichte werden Ihnen automatisch per E-Mail zugeschickt.</p>
+<p align="left">Beispiel: </p>
+
+
+<div class="outer">
+  <div class="boxed">
+    <p align="left"><b>Ihr Wasserverbrauch letzte Woche im Vergleich:</b></p>
+
+    <p align="left">Letzte Woche haben Sie durchschnittlich 35 Liter pro Dusche verbraucht.<br>
+      Der Durchschnittsverbrauch von 9 anderen zufällig ausgewählten Studienteilnehmern betrug 35 Liter.
+    Im folgenden Graphen sehen Sie, wie sich Ihr Durchschnittsverbrauch und der Durchschnittsverbrauch Ihrer Vergleichsgruppe seit Beginn des Monats X entwickelt haben:</p>
+    <div id="curve_chart" style="width: 560px; height: 320px"></div>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    <p align="left"> <b>Verglichen mit 9 anderen Studienteilnehmern erreichen Sie den fünften Platz:</b></p>
+    <img width="50%" src="{% static "images/ranking_5crop.jpg" %}" alt="" border="0" style="width:50%;"></img>
+    <p align="left">Vier dieser Teilnehmer hatten einen geringeren durchschnittlichen Wasserverbrauch pro Dusche als Sie. Fünf dieser Teilnehmer hatten einen höheren durchschnittlichen Wasserverbrauch.</p>
+  </div>
+</div>
+<p></p>
+
+{% formfields %}
+
+{% next_button %}
+
+{% endblock %}

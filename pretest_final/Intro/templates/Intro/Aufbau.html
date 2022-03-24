@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Aufbau{% endblock %}
+
+{% block content %}
+
+<p>
+  In dieser Umfrage treffen Sie verschiedene Entscheidungen, die über die Höhe Ihrer Aufwandsentschädigung bestimmen werden.
+  Eine der Entscheidungen wird zufällig zur Auszahlung ausgewählt.
+  Sie erhalten die Aufwandsentschädigung nur, <b>wenn Sie die komplette Umfrage ausfüllen</b>.
+  Sie werden dazu <b>ungefähr 30 Minuten</b> brauchen.
+  Bitte bearbeiten Sie diese Umfrage am Computer.
+  Eine Teilnahme mit mobilen Geräten wie Smartphones oder Tablets ist nicht möglich.
+</p>
+
+<p>
+  Die Auswertung der Umfrage erfolgt pseudonymisiert.
+  Das heißt, Ihre Antworten auf die folgenden Fragen werden vollkommen getrennt von Ihren persönlichen Informationen ausgewertet.
+  Bitte antworten Sie daher so präzise wie möglich.
+</p>
+
+
+{% next_button %}
+
+{% endblock %}
+

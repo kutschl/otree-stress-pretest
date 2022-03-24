@@ -1,0 +1,9 @@
+def default_value(sender, instance, using, **kwargs):
+    if not instance.WTP15:
+        instance.WTP15 = instance.WTP15_initial()
+pre_save.connect(default_value, sender=BasePlayer)
+
+def save(self, *args, **kwargs):
+    if not self.WTP15:
+        self.WTP15 = self.WTP15_initial()
+super(Player, self).save()
