@@ -1,0 +1,64 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.boxed {
+  background-color: #DCDCDC ;
+  padding: 3px;
+}
+</style>
+</head>
+<body>
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Erster Teil der Umfrage - Anwendung: Duschkopf-Feedback{% endblock %}
+
+
+{% block content %}
+
+<p align="left">
+  Um festzustellen, wie viel Ihnen das Duschkopf-Feedback wert wäre, bitten wir Sie auf der folgenden Seite 15 Fragen zu beantworten.
+  In jeder Frage entscheiden Sie sich zwischen zwei Optionen:
+  <ul>
+   <li>Die Option links beinhaltet immer einen Monat Duschkopf-Feedback, zusammen
+  mit einem Gutschein variierender Höhe. Stellen Sie sich den Gutschein als einen Gutschein bei einem Laden Ihrer Wahl vor.</li>
+  <li>Die Option rechts beinhaltet immer einen Gutschein im Wert von 15 Euro. Stellen Sie sich den Gutschein als einen Gutschein bei einem Laden Ihrer Wahl vor.</li>
+</ul>
+<b>Bitte stellen Sie sich bei jeder Frage vor, dass die Entscheidung, die sie treffen sollen, tatsächlich realisiert wird.</b></p>
+
+  <p>&nbsp;</p>
+
+<div class="boxed">
+<p align="left">  <b>Beispiel 1</b>:
+  Angenommen, Sie entscheiden sich in der folgenden Situation für die Option rechts. </p>
+<img src="{% static "images/RTF_d_ex1.PNG" %}" alt="" border="0" style="width:100%;"></img>
+<p align="left">In diesem Fall stellen Sie sich vor, Sie erhalten automatisch einen Gutschein im Wert von <b>15 Euro</b> am Ende der Studie.
+</div>
+
+<p align="left"></p>
+<div class="boxed">
+<p align="left">  <b>Beispiel 2</b>:
+  Angenommen, Sie entscheiden sich bei der gleichen Situation stattdessen für die Option links. </p>
+<img src="{% static "images/RTF_d_ex2.PNG" %}" alt="" border="0" style="width:100%;"></img>
+<p align="left">In diesem Fall stellen Sie sich vor, Sie erhalten automatisch einen Gutschein im Wert von <b>15 Euro</b> am Ende der Studie. Außerdem
+  stellen Sie sich vor, wir schalten automatisch die beschriebene <b>Feedback-Funktion</b> Ihres Duschkopfs während des gesamten
+  Folgemonats frei.
+</div>
+
+
+<p></p>
+<p align="left"><b>Bitte behalten Sie diese Vorstellung im Kopf, während Sie die folgenden Fragen beantworten!</b></p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+{% formfields %}
+
+{% next_button %}
+
+{% endblock %}
+</body>
+</html>

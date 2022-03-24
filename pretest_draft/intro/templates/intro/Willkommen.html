@@ -1,0 +1,35 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<style>
+</style>
+</head>
+<body>
+
+
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Willkommen!{% endblock %}
+
+{% block content %}
+<p>Vielen Dank, dass Sie an dieser Umfrage teilnehmen.
+Die Umfrage wird ungefähr eine halbe Stunde Ihrer Zeit in Anspruch nehmen.
+Wenn Sie die Umfrage beendet haben, werden Ihnen <b>6 Euro</b> als Aufwandsentschädigung überwiesen.
+Um die Überweisung ausführen zu können, benötigen wir die folgenden Informationen von Ihnen.
+Diese Informationen werden <b>nur für die Abwicklung der Zahlung</b> verwendet
+und vor der Datenauswertung von dem restlichen Datensatz getrennt.
+</p>
+
+
+{% formfields %}
+
+
+{% next_button %}
+
+
+{% endblock %}
+</body>
+<html>

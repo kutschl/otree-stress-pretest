@@ -1,0 +1,30 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html>
+<head>
+<meta  charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<style>
+</style>
+</head>
+<body>
+
+
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Willkommen!{% endblock %}
+
+{% block content %}
+
+ <p>Herzlich willkommen zur Online-Studie des BonnEconLab. Bitte beachten Sie, dass Sie an dieser Studie nur einmal teilnehmen dürfen. Außerdem dürfen Sie nur teilnehmen, wenn Sie sich in unserer Teilnahmedatenbank für diese Studie angemeldet haben.</p>
+
+
+{% formfields %}
+
+
+{% next_button %}
+
+
+{% endblock %}
+</body>
+<html>
