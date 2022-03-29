@@ -1,0 +1,18 @@
+GAME
+- Autofill Tabelle
+- Generator für Tabelle
+- Option B Werte
+- Loss & Gain Domain Tabellen
+- Payoff Funktion
+- Bitte blicken sie auf "Weiter"
+
+INTRO
+- Generatoren für einzelne Seiten
+- Texte
+- Telefonnummer Anna
+- Bitte blicken sie auf "Weiter"
+
+OUTRO
+- Generatoren für einzelne Seiten
+- Texte
+- Bitte blicken sie auf "Weiter"

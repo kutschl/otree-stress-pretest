@@ -1,0 +1,54 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Beschreibung der kommenden Entscheidungen{% endblock %}
+
+{% block content %}
+
+<p>
+  Wir zeigen Ihnen gleich nacheinander 50 Tabellen mit jeweils 21 Zeilen.
+  In jeder Zeile treffen Sie eine Entscheidung zwischen Option A und Option B.
+</p>
+
+<div class="border border-dark alert">
+  <p style="margin-bottom: 0.5rem">
+    Ihre Entscheidungen bestimmen den <b>variable Teil Ihrer Auszahlung:</b>
+  </p>
+  <ol style="margin-bottom: 0.25rem">
+    <li style="margin-bottom: 0.5rem">
+      Zunächst wird eine der 50 Tabellen zufällig vom Computer ausgewählt.
+    </li>
+    <li style="margin-bottom: 0.5rem">
+      In der ausgewählten Tabelle wird eine der 20 Zeilen zufällig ausgewählt.
+      Die Entscheidung, die Sie dort getroffen haben, wird tatsächlich umgesetzt:
+    </li>
+    <ul style="margin-bottom: 0.5rem">
+      <li style="margin-bottom: 0.125rem">
+        Haben Sie in dieser Zeile Option A gewählt, wird Option A umgesetzt.
+      </li>
+      <li>
+        Haben Sie in dieser Zeile Option B gewählt, wird Option B umgesetzt.
+      </li>
+    </ul>
+    <li>
+      Sie erhalten so eine bestimmte Anzahl an Punkten.
+      Diese werden zu der Rate 10 Punkte = 1 Euro konvertiert.
+      Der entsprechende Euro-Betrag wird dem fixen Teil Ihrer Auszahlung hinzugefügt.
+    </li>
+  </ol>
+</div>
+
+<p>
+  Es liegt daher in Ihrem Interesse, jede Entscheidung sorgfältig zu treffen.
+</p>
+
+<p>
+  Bitte klicken Sie auf <i>Weiter</i>, um zunächst zu einigen Beispiel-Aufgaben zu gelangen.
+</p>
+
+
+
+{% next_button %}
+
+{% endblock %}
+

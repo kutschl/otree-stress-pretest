@@ -2,13 +2,18 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-        name='Test_Intro',
+        name='Intro',
         app_sequence=['Intro'],
         num_demo_participants=1,
     ),
     dict(
-        name='Test_MPL_Intro',
-        app_sequence=['MPL_Intro'],
+        name='GainDomain',
+        app_sequence=['GainDomain'],
+        num_demo_participants=1,
+    ),
+    dict(
+        name='Outro',
+        app_sequence=['Outro'],
         num_demo_participants=1,
     ),
 ]

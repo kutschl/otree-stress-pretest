@@ -20,11 +20,11 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
-    participation_fee = Currency(6)
+    participation_fee = Currency(4)
 
     contact = {
-        'email': "",
-        'phone': ""
+        'email': "schulzetilling@uni-bonn.de",
+        'phone': "0123456789"
     }
 
     Alphabet = [
@@ -78,38 +78,3 @@ class Player(BasePlayer):
     def BIC_error_message(self, value):
         if re.match('([a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?)', value) is None:
             return "Der von Ihnen eingegebene BIC-Code ist ungültig."
-
-    # DEMOGRAPHISCHE ANGABEN
-    ALTER = models.IntegerField(
-        label="Alter"
-    )
-
-    JOB = models.IntegerField(
-        widget=widgets.RadioSelect,
-        choices=[
-            [0, 'Student/Studentin'],
-            [1, 'Berufstätig'],
-            [2, 'Keines zutreffend'],
-        ],
-        label="Was beschreibt Ihre berufliche Situation am Besten?"
-    )
-
-    GENDER = models.IntegerField(
-        widget=widgets.RadioSelect,
-        choices=[
-            [0, 'Männlich'],
-            [1, 'Weiblich'],
-            [2, 'Divers'],
-            [3, 'Keine Angabe'],
-        ],
-        label="Mit welchem Geschlecht identifizieren sie sich?"
-    )
-
-    ERWACHSENE = models.IntegerField(
-        label="Anzahl der Erwachsenen in Ihrem Haushalt"
-    )
-
-    KINDER = models.IntegerField(
-        label="Anzahl der Kinder in Ihrem Haushalt"
-    )
-

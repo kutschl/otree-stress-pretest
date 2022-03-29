@@ -5,20 +5,29 @@
 
 {% block content %}
 
-<p>
-  In dieser Umfrage treffen Sie verschiedene Entscheidungen, die über die Höhe Ihrer Aufwandsentschädigung bestimmen werden.
-  Eine der Entscheidungen wird zufällig zur Auszahlung ausgewählt.
-  Sie erhalten die Aufwandsentschädigung nur, <b>wenn Sie die komplette Umfrage ausfüllen</b>.
-  Sie werden dazu <b>ungefähr 30 Minuten</b> brauchen.
-  Bitte bearbeiten Sie diese Umfrage am Computer.
-  Eine Teilnahme mit mobilen Geräten wie Smartphones oder Tablets ist nicht möglich.
-</p>
+
+<div>
+  <p>
+    Ihre Aufwandsentschädigung für Ihre Teilnahme besteht aus zwei Teilen:
+  </p>
+  <ul>
+    <li style="margin-bottom: 0.125rem">
+      Fixer Teil:
+      {{Constants.participation_fee}} garantierte Aufwandsentschädigung
+    </li>
+    <li>
+      Variabler Teil:
+      Ein weiterer Betrag zwischen XX und YY Euro, der von Ihren Entscheidungen in dieser Studie und einer zufälligen Auslosung abhängt.
+    </li>
+  </ul>
+</div>
 
 <p>
-  Die Auswertung der Umfrage erfolgt pseudonymisiert.
+  Die Auswertung der Umfrage erfolgt pseudoynymisiert.
   Das heißt, Ihre Antworten auf die folgenden Fragen werden vollkommen getrennt von Ihren persönlichen Informationen ausgewertet.
   Bitte antworten Sie daher so präzise wie möglich.
 </p>
+
 
 
 {% next_button %}
