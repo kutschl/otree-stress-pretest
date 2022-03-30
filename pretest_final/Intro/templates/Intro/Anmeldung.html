@@ -1,63 +1,59 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}
-Willkommen
-{% endblock %}
+{% block title %}Pers&ouml;nliche Informationen{% endblock %}
 
 {% block content %}
 
+
 <p>
+    
     Vielen Dank, dass Sie an dieser Umfrage teilnehmen.
-    Die Umfrage wird ungefähr eine halbe Stunde Ihrer Zeit in Anspruch nehmen.
-    Wenn Sie die Umfrage beendet haben, wird Ihnen eine Aufwandsentschädigung überwiesen.
-    Um die Überweisung ausführen zu können, benötigen wir die folgenden Informationen von Ihnen.
-    Diese Informationen werden <b>nur für die Abwicklung der Zahlung</b> verwendet
+    Die Umfrage wird ungef&auml;hr eine halbe Stunde Ihrer Zeit in Anspruch nehmen.
+    Wenn Sie die Umfrage beendet haben, wird Ihnen eine Aufwandsentsch&auml;digung &uuml;berwiesen.
+    Um die &Uuml;berweisung ausf&uuml;hren zu k&ouml;nnen, ben&ouml;tigen wir die folgenden Informationen von Ihnen.
+    Diese Informationen werden <b> nur f&uuml;r die Abwicklung der Zahlung </b> verwendet
     und vor der Datenauswertung von dem restlichen Datensatz getrennt.
+
 </p>
 
 <p>
-    <label for="VORNAME">{{form.VORNAME.label}}</label>
-    <input type="text" class="form-control" name="VORNAME" id="VORNAME"/>
+    <label for="VORNAME">{{form.VORNAME.label}}</label><input type="text" class="form-control" name="VORNAME" id="VORNAME"/>
 </p>
 
 <p>
-    <label for="NACHNAME">{{form.NACHNAME.label}}</label>
-    <input type="text" class="form-control" name="NACHNAME" id="NACHNAME"/>
+    <label for="NACHNAME">{{form.NACHNAME.label}}</label><input type="text" class="form-control" name="NACHNAME" id="NACHNAME"/>
 </p>
 
 <p>
-    <label for="STRASSE">{{form.STRASSE.label}}</label>
-    <input type="text" class="form-control" name="STRASSE" id="STRASSE"/>
+    <label for="STRASSE">{{form.STRASSE.label}}</label><input type="text" class="form-control" name="STRASSE" id="STRASSE"/>
 </p>
 
 <p>
-    <label for="PLZ">{{form.PLZ.label}}</label>
-    <input type="number" class="form-control" name="PLZ" id="PLZ"/>
+    <label for="PLZ">{{form.PLZ.label}}</label><input type="number" class="form-control" name="PLZ" id="PLZ"/>
 </p>
 
 <p>
-    <label for="STADT">{{form.STADT.label}}</label>
-    <input type="text" class="form-control" name="STADT" id="STADT"/>
+    <label for="STADT">{{form.STADT.label}}</label><input type="text" class="form-control" name="STADT" id="STADT"/>
 </p>
 
 <p>
-    <label for="EMAIL">{{form.EMAIL.label}}</label>
-    <input type="email" class="form-control" name="EMAIL" id="EMAIL"/>
+    <label for="EMAIL">{{form.EMAIL.label}}</label><input type="email" class="form-control" name="EMAIL" id="EMAIL"/>
 </p>
 
 <p>
-    <label for="IBAN">{{form.IBAN.label}}</label>
-    <input type="text" class="form-control" name="IBAN" id="IBAN"/>
-    {{ formfield_errors 'IBAN' }}
+    <label for="IBAN">{{form.IBAN.label}}</label><input type="text" class="form-control" name="IBAN" id="IBAN"/>
 </p>
 
 <p>
-    <label for="BIC">{{form.BIC.label}}</label>
-    <input type="text" class="form-control" name="BIC" id="BIC"/>
-    {{ formfield_errors 'BIC' }}
+    <label for="BIC">{{form.BIC.label}}</label><input type="text" class="form-control" name="BIC" id="BIC"/>
 </p>
+
+<p>
+    Bitte klicken Sie nun auf <em>Weiter</em>, um fortzufahren.
+</p>
+
 
 {% next_button %}
-{% endblock %}
 
+{% endblock %}

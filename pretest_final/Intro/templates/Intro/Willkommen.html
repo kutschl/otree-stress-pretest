@@ -5,27 +5,43 @@
 
 {% block content %}
 
+
 <p>
- Herzlich willkommen zur Online-Studie des BonnEconLab.
- Bitte beachten Sie, dass Sie an dieser Studie nur einmal teilnehmen dürfen.
- Außerdem dürfen Sie nur teilnehmen, wenn Sie sich in unserer Teilnahmedatenbank für diese Studie angemeldet haben.
+    
+    Herzlich Willkommen zur Online-Studie des BonnEconLab.
+    Bitte beachten Sie, dass Sie an dieser Studie nur einmal teilnehmen d&uuml;rfen.
+    Au&szlig;erdem d&uuml;rfen Sie nur teilnehmen, wenn Sie sich in unserer Teilnahmedatenbank f&uuml;r diese Studie angemeldet haben.
+
 </p>
 
 <p>
- Sie erhalten die Aufwandsentschädigung nur, wenn Sie die komplette Umfrage ausfüllen.
- Sie werden dazu ungefähr 30 Minuten brauchen.
- Bitte bearbeiten Sie diese Umfrage am Computer.
- Eine Teilnahme mit mobilen Geräten wie Smartphones oder Tablets ist nicht möglich.
+    
+    Sie erhalten die Aufwandsentsch&auml;digung nur, wenn Sie die komplette Umfrage ausf&uuml;llen.
+    Sie werden dazu ungef&auml;hr 30 Minuten brauchen. Bitte bearbeiten Sie diese Umfrage am Computer.
+    Eine Teilnahme mit mobilen Ger&auml;ten wie Smartphones oder Tablets ist nicht m&ouml;glich.
+
 </p>
 
 <p>
- Sollten Sie während des Experiments Fragen haben, können Sie jederzeit die Experimentleiterin kontaktieren unter
- <a href="tel:{{Constants.contact.phone}}">{{Constants.contact.phone}}</a>
- und per E-Mail:
- <a href="mailto:{{Constants.contact.email}}">{{Constants.contact.email}}</a>
+    
+     Sollten Sie w&auml;hrend des Experiments Fragen haben, k&ouml;nnen Sie jederzeit die Experimentleiterin kontaktieren:
+     
 </p>
 
-{% formfields %}
+<ul>
+    <li>
+        per Telefonnummer: <a href="tel:{{Constants.contact.phone}}">{{Constants.contact.phone}}</a>
+    </li>
+    <li>
+        per E-Mail: <a href="mailto:{{Constants.contact.email}}">{{Constants.contact.email}}</a>
+    </li>
+</ul>
+
+<p>
+    Bitte klicken Sie nun auf <em>Weiter</em>, um fortzufahren.
+</p>
+
 
 {% next_button %}
+
 {% endblock %}

@@ -36,17 +36,17 @@ def getChoiceLabels(values):
 
 def getA(key):
     return {
-        'p1': str("{:.2f}".format(a_values['p'][key])) + str('%'),
-        'p2': str("{:.2f}".format(1-a_values['p'][key])) + str('%'),
-        'x1': str("{:.2f}".format(a_values['x1'][key])) + str(' €'),
-        'x2': str("{:.2f}".format(a_values['x2'][key])) + str(' €')
+        'p1': str("{0:.0%}".format(a_values['p'][key])),
+        'p2': str("{0:.0%}".format(1-a_values['p'][key])),
+        'x1': str("{:.2f}".format(a_values['x1'][key])) + str(' Punkte'),
+        'x2': str("{:.2f}".format(a_values['x2'][key])) + str(' Punkte')
     }
 
 
 def getB(key):
     output = []
     for i in np.arange(b_values[key][0], b_values[key][1], b_values[key][2]):
-        output.append(str("{:.2f}".format(i)) + str(' €'))
+        output.append(str("{:.2f}".format(i)) + str(' Punkte'))
     return output
 
 

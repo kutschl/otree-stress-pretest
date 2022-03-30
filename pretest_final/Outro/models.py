@@ -20,12 +20,13 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
-    participation_fee = Currency(4)
+    fix_payoff = Currency(4)
 
     contact = {
         'email': "schulzetilling@uni-bonn.de",
         'phone': "0123456789"
     }
+
 
 class Subsession(BaseSubsession):
     pass
@@ -39,7 +40,7 @@ class Player(BasePlayer):
 
     # DEMOGRAPHISCHE ANGABEN
     ALTER = models.IntegerField(
-        label="Alter"
+        label="Bitte geben Sie Ihr Alter an."
     )
 
     JOB = models.IntegerField(
@@ -60,7 +61,7 @@ class Player(BasePlayer):
             [2, 'Divers'],
             [3, 'Keine Angabe'],
         ],
-        label="Mit welchem Geschlecht identifizieren sie sich?"
+        label="Mit welchem Geschlecht identifizieren Sie sich?"
     )
 
     ERWACHSENE = models.IntegerField(

@@ -1,18 +1,17 @@
-GAME
-- Autofill Tabelle
+GAME_DOMAIN
+- neue werte von "lotterien.xlsx" übertragen
+- B Werte optimieren -> lese b werte aus a werten
+- Tabelle: Autofill
 - Generator für Tabelle
-- Option B Werte
-- Loss & Gain Domain Tabellen
 - Payoff Funktion
-- Bitte blicken sie auf "Weiter"
+
+GAME_LOSS
+- analog zu GAME_DOMAIN
 
 INTRO
-- Generatoren für einzelne Seiten
-- Texte
+- Wording: Experimentstart
+- Generatoren: Gewinnbsp, Verlustbsp
 - Telefonnummer Anna
-- Bitte blicken sie auf "Weiter"
 
 OUTRO
-- Generatoren für einzelne Seiten
-- Texte
-- Bitte blicken sie auf "Weiter"
+- Zugriff auf INTRO models.py für contact etc.
