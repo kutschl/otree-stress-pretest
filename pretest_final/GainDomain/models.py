@@ -6,22 +6,13 @@ from otree.api import (
 import random
 
 doc = ""
-
-# Werte für Option A: [p, x1, x2]
-a_values = {
+lotteries = {
     'p': [0.05, 0.05, 0.05, 0.05, 0.1, 0.1, 0.1, 0.25, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.75, 0.75, 0.75, 0.9, 0.9, 0.9, 0.95, 0.95, 0.95],
     'x1': [20, 40, 50, 150, 10, 20, 50, 20, 40, 50, 10, 20, 40, 50, 50, 150, 20, 40, 50, 10, 20, 50, 20, 40, 50],
-    'x2': [0, 10, 20, 50, 0, 10, 0, 0, 10, 20, 0, 10, 10, 0, 20, 0, 0, 10, 20, 0, 10, 0, 0, 10, 20]
-}
-
-
-# Werte für Option B: [start, end, step]
-b_values = {
-    10: [10, -0.5, -0.5],
-    20: [20, -1, -1],
-    40: [40, 9, -1.5],
-    50: [50, 19, -1.5],
-    150: [150, 45, -5]
+    'x2': [0, 10, 20, 50, 0, 10, 0, 0, 10, 20, 0, 10, 10, 0, 20, 0, 0, 10, 20, 0, 10, 0, 0, 10, 20],
+    'b_start': [20, 40, 50, 150, 10, 20, 50, 20, 40, 50, 10, 20, 40, 50, 50, 150, 20, 40, 50, 10, 20, 50, 20, 40, 50],
+    'b_end': [0, 10, 20, 50, 0, 10, 0, 0, 10, 20, 0, 10, 10, 0, 20, 0, 0, 10, 20, 0, 10, 0, 0, 10, 20],
+    'b_step': [1, 1.5, 1.5, 5, 0.5, 0.5, 2.5, 1, 1.5, 1.5, 0.5, 0.5, 1.5, 2.5, 1.5, 7.5, 1, 1.5, 1.5, 0.5, 0.5, 2.5, 1, 1.5, 1.5]
 }
 
 
@@ -36,31 +27,31 @@ def getChoiceLabels(values):
 
 def getA(key):
     return {
-        'p1': str("{0:.0%}".format(a_values['p'][key])),
-        'p2': str("{0:.0%}".format(1-a_values['p'][key])),
-        'x1': str("{:.2f}".format(a_values['x1'][key])) + str(' Punkte'),
-        'x2': str("{:.2f}".format(a_values['x2'][key])) + str(' Punkte')
+        'p1': str("{0:.0%}".format(lotteries['p'][key])),
+        'p2': str("{0:.0%}".format(1-lotteries['p'][key])),
+        'x1': str("{:.2f}".format(lotteries['x1'][key])) + str(' Punkte'),
+        'x2': str("{:.2f}".format(lotteries['x2'][key])) + str(' Punkte')
     }
 
 
 def getB(key):
     output = []
-    for i in np.arange(b_values[key][0], b_values[key][1], b_values[key][2]):
+    for i in np.arange(lotteries['b_start'][key], lotteries['b_end'][key] - lotteries['b_step'][key], (-1)*lotteries['b_step'][key]):
         output.append(str("{:.2f}".format(i)) + str(' Punkte'))
     return output
 
 
-def getDecision(key: int, decisions: int, key_b: int):
+def getDecision(key: int):
     return {
         'Number': key,
-        'Numbering': getNumbering(decisions).tolist(),
+        'Numbering': getNumbering(21).tolist(),
         'A': getA(key - 1),
-        'B': getB(key_b),
+        'B': getB(key - 1),
         'Choice': [
             [1, 'A'],
             [2, 'B']
         ],
-        'ChoiceLabels': getChoiceLabels(getB(key_b)),
+        'ChoiceLabels': getChoiceLabels(getB(key - 1)),
         'Task': None,
         'Widget': widgets.RadioSelectHorizontal
     }
@@ -80,9 +71,10 @@ class Constants(BaseConstants):
     num_rounds = 1
 
     decisions_per_round = 21
+    tables = len(lotteries['p'])
 
     forms = {
-        'D1': getDecision(1, decisions_per_round, 50)
+        'D1': getDecision(16)
     }
 
 
