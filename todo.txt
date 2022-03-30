@@ -1,16 +1,16 @@
 GAME_DOMAIN
-- asc-werte von lotteries übertragen: https://datatofish.com/read_excel/
-- Tabelle: Autofill
-- Generator für Tabelle
-- Payoff Funktion
+- ascending autofill umkehren
 
 GAME_LOSS
-- analog zu GAME_DOMAIN
+- Einführungsscreen
+- analog zu GAME_DOMAIN, Endowment in den Header
 
 INTRO
 - Wording: Experimentstart
 - Generatoren: Gewinnbsp, Verlustbsp
 - Telefonnummer Anna
+- anzahl tabellen anpassen über länge von excel file
 
 OUTRO
 - Zugriff auf INTRO models.py für contact etc.
+- Payoff Funktion

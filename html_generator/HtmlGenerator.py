@@ -19,6 +19,22 @@ def paragraph(content) -> str:
 """
 
 
+def script(content) -> str:
+    return f"""
+<script>
+{content}
+</script>
+"""
+
+
+def style(content) -> str:
+    return f"""
+<style>
+{content}
+</style>
+"""
+
+
 # type = ["mail", "phone"]
 def link(type:str, url: str, content: str) -> str:
     if type is str('mail'):
