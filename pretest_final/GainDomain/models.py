@@ -1,19 +1,34 @@
 import numpy as np
+import pandas as pd
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
-import random
 
 doc = ""
-lotteries = {
-    'p': [0.05, 0.05, 0.05, 0.05, 0.1, 0.1, 0.1, 0.25, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.75, 0.75, 0.75, 0.9, 0.9, 0.9, 0.95, 0.95, 0.95],
-    'x1': [20, 40, 50, 150, 10, 20, 50, 20, 40, 50, 10, 20, 40, 50, 50, 150, 20, 40, 50, 10, 20, 50, 20, 40, 50],
-    'x2': [0, 10, 20, 50, 0, 10, 0, 0, 10, 20, 0, 10, 10, 0, 20, 0, 0, 10, 20, 0, 10, 0, 0, 10, 20],
-    'b_start': [20, 40, 50, 150, 10, 20, 50, 20, 40, 50, 10, 20, 40, 50, 50, 150, 20, 40, 50, 10, 20, 50, 20, 40, 50],
-    'b_end': [0, 10, 20, 50, 0, 10, 0, 0, 10, 20, 0, 10, 10, 0, 20, 0, 0, 10, 20, 0, 10, 0, 0, 10, 20],
-    'b_step': [1, 1.5, 1.5, 5, 0.5, 0.5, 2.5, 1, 1.5, 1.5, 0.5, 0.5, 1.5, 2.5, 1.5, 7.5, 1, 1.5, 1.5, 0.5, 0.5, 2.5, 1, 1.5, 1.5]
-}
+
+
+def loadLotteries(url: str, name: str):
+    f1 = pd.read_excel(url, sheet_name=f'{name}_desc')
+    f2 = pd.read_excel(url, sheet_name=f'{name}_asc')
+    data = {}
+
+    if f1.columns.tolist() != f2.columns.tolist():
+        return None
+
+    else:
+        cols = f1.columns.tolist()
+        cols.remove('asc')
+        for col in cols:
+            data[col] = []
+            for f1row in np.arange(0, len(f1), 1):
+                data[col].append(f1[col].loc[f1row])
+            for f2row in np.arange(0, len(f2), 1):
+                data[col].append(f2[col].loc[f2row])
+        return data
+
+
+lotteries = loadLotteries('_static/data/lotteries.xls', 'gain')
 
 
 def getNumbering(end):
@@ -74,7 +89,7 @@ class Constants(BaseConstants):
     tables = len(lotteries['p'])
 
     forms = {
-        'D1': getDecision(16)
+        'D1': getDecision(1)
     }
 
 

@@ -2,7 +2,7 @@ from html_generator import HtmlGenerator as html
 
 # INITS
 title = 'Willkommen'
-filename = '../templates/Intro/Willkommen.html'
+filename = '../templates/Intro/Willkommen2.html'
 code = ''
 
 
