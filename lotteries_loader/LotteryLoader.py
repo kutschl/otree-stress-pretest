@@ -3,22 +3,19 @@ import pandas as pd
 import random as rd
 
 
-def loadLotteries(url: str):
-    f1 = pd.read_excel(url, sheet_name='gain')
-    f2 = pd.read_excel(url, sheet_name='loss')
-    d = {}
-
-    if f1.columns.tolist() != f2.columns.tolist():
-        return None
-    else:
-        cols = f1.columns.tolist()
-        for col in cols:
-            d[col] = []
-            for f1row in np.arange(0, len(f1), 1):
-                d[col].append(f1[col].loc[f1row])
-            for f2row in np.arange(0, len(f2), 1):
-                d[col].append(f2[col].loc[f2row])
-        return d
+def loadLotteries(url: str, sheet: str):
+    f = pd.read_excel(url, sheet_name=f'{sheet}')
+    d = {
+        'type': []
+    }
+    cols = f.columns.tolist()
+    for col in cols:
+        d[col] = []
+        for row in np.arange(0, len(f), 1):
+            d[col].append(f[col].loc[row])
+    for row in np.arange(0, len(f), 1):
+        d['type'].append(sheet)
+    return d
 
 
 def separateLotteries(d: dict) -> list[dict]:

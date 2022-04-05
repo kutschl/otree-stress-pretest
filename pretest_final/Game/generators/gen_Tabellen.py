@@ -2,16 +2,21 @@ from html_generator import HtmlGenerator as html
 from lotteries_loader import LotteryLoader as lot
 import numpy as np
 
-data = lot.loadLotteries(
-    'C:/Users/Lukas/OneDrive/Arbeit (offen)/otree Stress Pretest/pretest_final/_static/data/lotteries.xls')
+data_gain = lot.loadLotteries(
+    'C:/Users/Lukas/OneDrive/Arbeit (offen)/otree Stress Pretest/pretest_final/_static/data/lotteries.xls', 'GAIN'
+)
+data_loss = lot.loadLotteries(
+    'C:/Users/Lukas/OneDrive/Arbeit (offen)/otree Stress Pretest/pretest_final/_static/data/lotteries.xls', 'LOSS'
+)
 
 javascript_autofill = open('gen_Tabelle_autofill.js').read()
 css_table = open('gen_Tabelle_table.css').read()
 
-decisions_per_table = 21
-tables_per_block = len(data[list(data.keys())[0]])
+
+tables_per_block = len(data_gain[list(data_gain.keys())[0]]) + len(data_loss[list(data_loss.keys())[0]])
 blocks = 2
 tables = blocks * tables_per_block
+decisions_per_table = 21
 
 
 # CODE: pages.py.Tabelle{i}(Page)

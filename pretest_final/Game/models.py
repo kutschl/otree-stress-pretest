@@ -12,7 +12,9 @@ doc = ""
 def loadLotteries(url: str):
     f1 = pd.read_excel(url, sheet_name='gain')
     f2 = pd.read_excel(url, sheet_name='loss')
-    d = {}
+    d = {
+        'type': []
+    }
 
     if f1.columns.tolist() != f2.columns.tolist():
         return None
@@ -24,6 +26,10 @@ def loadLotteries(url: str):
                 d[col].append(f1[col].loc[f1row])
             for f2row in np.arange(0, len(f2), 1):
                 d[col].append(f2[col].loc[f2row])
+        for f1row in np.arange(0, len(f1), 1):
+            d['type'].append('GAIN')
+        for f2row in np.arange(0, len(f2), 1):
+            d['type'].append('LOSS')
         return d
 
 
