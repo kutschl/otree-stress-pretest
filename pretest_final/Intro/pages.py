@@ -54,11 +54,11 @@ class Experimentstart(Page):
 page_sequence = [
     Willkommen,
     # Anmeldung,
-    # Aufbau,
-    # Beschreibung,
-    # Beispielaufgaben,
-    # Gewinnbeispiel,
-    # Verlustbeispiel,
+    Aufbau,
+    Beschreibung,
+    Beispielaufgaben,
+    Gewinnbeispiel,
+    Verlustbeispiel,
     Auszahlung,
     Experimentstart
 ]

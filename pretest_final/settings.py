@@ -7,8 +7,8 @@ SESSION_CONFIGS = [
         num_demo_participants=1,
     ),
     dict(
-        name='GainDomain',
-        app_sequence=['GainDomain'],
+        name='Game',
+        app_sequence=['Game'],
         num_demo_participants=1,
     ),
     dict(
