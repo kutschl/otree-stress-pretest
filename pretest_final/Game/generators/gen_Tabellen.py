@@ -26,20 +26,35 @@ def codePagesTabellePage():
     code = ''
     sequence = ''
     for block in np.arange(1, blocks+1, 1):
-        for table in np.arange(1, tables_per_block + 1, 1):
-            sequence = sequence + f'Block{block}Tabelle{table}, '
+        for gain_table in np.arange(1, gain_tables_per_block + 1, 1):
+            sequence = sequence + f'B{block}_GAIN{gain_table}, '
             model = "player"
             fields = ''
             for decision in np.arange(1, decisions_per_table + 1, 1):
-                fields = fields + f"'B{block}_T{table}_D{decision}', "
+                fields = fields + f"'B{block}_GAIN{gain_table}_D{decision}', "
             form_model = f"form_model = '{model}'"
             form_fields = f"form_fields = [{fields}]"
             page = f"""
-            class Block{block}Tabelle{table}(Page):
+            class B{block}_GAIN{gain_table}(Page):
                 {form_model}
                 {form_fields}
                 
             """
+            code = code + page
+        for loss_table in np.arange(1, loss_tables_per_block + 1, 1):
+            sequence = sequence + f'B{block}_LOSS{loss_table}, '
+            model = "player"
+            fields = ''
+            for decision in np.arange(1, decisions_per_table + 1, 1):
+                fields = fields + f"'B{block}_LOSS{loss_table}_D{decision}', "
+            form_model = f"form_model = '{model}'"
+            form_fields = f"form_fields = [{fields}]"
+            page = f"""
+                class B{block}_LOSS{loss_table}(Page):
+                    {form_model}
+                    {form_fields}
+                    
+                """
             code = code + page
     page_sequence = f'page_sequence = [{sequence}]'
     code = code + page_sequence
@@ -52,7 +67,8 @@ def codeModelsConstantsForms():
     code = ''
     for block in np.arange(1, blocks + 1, 1):
         for gain_table in np.arange(1, gain_tables_per_block + 1, 1):
-            code = code + f"'B{block}_GAIN{gain_table}': getTable({block}, {gain_table}, 'GAIN')\n"
+            code = code + f"'B{block}_GAIN{gain_table}': getTable({block}, {gain_table}, 'GAIN'),\n"
+        code = code + '\n\n'
         for loss_table in np.arange(1, gain_tables_per_block + 1, 1):
             code = code + f"'B{block}_LOSS{loss_table}': getTable({block}, {loss_table}, 'LOSS'),\n"
         code = code + '\n\n'
@@ -79,10 +95,10 @@ def codeModelsPlayerIntegerFields():
 
 
 # CODE: template/Tabelle{i}.html/dtable_b3_rows
-def codeB3RowsHtml(block, table):
+def codeB3RowsHtml(b, t, a):
     code = ''
     for decision in np.arange(1, decisions_per_table + 1, 1):
-        code = code + f'<tr class="dtable-b3-tr"><td>A</td><td>{{%form.B{block}_T{table}_D{decision}.0%}}</td><td>{{%form.B{block}_T{table}_D{decision}.1%}}</td><td>B</td></tr>\n'
+        code = code + f'<tr class="dtable-b3-tr"><td>A</td><td>{{%form.B{b}_{a}{t}_D{decision}.0%}}</td><td>{{%form.B{b}_{a}{t}_D{decision}.1%}}</td><td>B</td></tr>\n'
     return code
 
 
@@ -147,7 +163,7 @@ def codeTabelleHtml(b, t, a):
     </table>
     """
 
-    dtable_b3_rows = codeB3RowsHtml(b, t)
+    dtable_b3_rows = codeB3RowsHtml(b, t, a)
 
     dtable_b3 = f"""
     <!--Tabelle B3: Entscheidung-->
