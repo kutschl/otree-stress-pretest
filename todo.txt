@@ -1,16 +1,9 @@
-GAME_DOMAIN
-- ascending autofill umkehren
-
-GAME_LOSS
-- Einführungsscreen
-- analog zu GAME_DOMAIN, Endowment in den Header
-
-INTRO
-- Wording: Experimentstart
-- Generatoren: Gewinnbsp, Verlustbsp
-- Telefonnummer Anna
-- anzahl tabellen anpassen über länge von excel file
-
-OUTRO
-- Zugriff auf INTRO models.py für contact etc.
-- Payoff Funktion
+- Annas Telefonnummer (siehe Wording)
+- IQ Test (random order)
+- Verständnisfragen (https://www.otreehub.com/projects/back-button/)
+- Payoff Funktion (random decision, 50% loss, 50% gain)
+- oTree Version checken
+- Screen - Block1 - IQ Test - Screen - Block 2
+- Zeiten messen (load_page -> first_click, first_click -> next_button)
+- Unterscheidung von Loss, Gain bei Excel Tabelle
+- 15 Euro und 225 Punkte
