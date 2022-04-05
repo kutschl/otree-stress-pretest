@@ -1,19 +1,18 @@
 OFFEN
-- Annas Telefonnummer
+- Wording: Annas Telefonnummer
+- Wording: 15 Euro, Umrechnung 1 Euro = 15 Punkte, Startpunktzahl: 225
 - IQ Test (random order)
 - Verständnisfragen (https://www.otreehub.com/projects/back-button/)
-
 - oTree Version checken
 - Screen - Block1 - IQ Test - Screen - Block 2
 - Zeiten messen (load_page -> first_click, first_click -> next_button, https://otree.readthedocs.io/en/latest/templates.html#passing-data-from-python-to-javascript-js-vars)
-- wording: 15 Euro und 225 Punkte
 - Bots randomisieren in Antworten bei Tabellen
-- Bots Intro Pass
-- Bots PostGame Easy
-
+- Screen für setPayoff Function -> Hauptexperiment beendet, bitte beantworten Sie noch die folgenden Fragen.
 
 DONE
 X Unterscheidung von Loss, Gain bei Excel Tabelle
 X Payoff Screen
 X Payoff Funktion
 X Bots Outro Pass
+X Bots Intro Pass
+X Bots PostGame Easy
