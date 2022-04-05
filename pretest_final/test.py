@@ -1,25 +1,24 @@
-import numpy as np
-import pandas as pd
+import random as rd
 
 
-def load(url: str, name: str):
-    f1 = pd.read_excel(url, sheet_name=f'{name}_desc')
-    f2 = pd.read_excel(url, sheet_name=f'{name}_asc')
-    data = {}
 
-    if f1.columns.tolist() != f2.columns.tolist():
-        return None
 
-    else:
-        cols = f1.columns.tolist()
-        cols.remove('asc')
-        for col in cols:
-            data[col] = []
-            for f1row in np.arange(0, len(f1), 1):
-                data[col].append(f1[col].loc[f1row])
-            for f2row in np.arange(0, len(f2), 1):
-                data[col].append(f2[col].loc[f2row])
-        return data
 
+class Player:
+    def xxx(self):
+        rd_typ = rd.choice(['GAIN', 'LOSS'])
+        rd_block = 2
+        rd_table = 2
+        rd_decision = 2
+        # player_decision = globals()[f"{self}.B{rd_block}_{rd_typ}{rd_table}_D{rd_decision}"]
+        print(2)
+        print(self.__class__.__dict__[f'B{rd_block}_{rd_typ}{rd_table}_D{rd_decision}'])
+
+    B2_GAIN2_D2 = 'GAIN'
+    B2_LOSS2_D2 = 'LOSS'
+
+
+p = Player()
+p.xxx()
 
 

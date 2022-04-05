@@ -3,7 +3,7 @@ from html_generator import HtmlGenerator as html
 
 # INITS
 title = 'Demographische Angaben'
-filename = '../templates/Outro/DemographischeAngaben.html'
+filename = '../templates/PostGame/DemographischeAngaben.html'
 code = ''
 
 

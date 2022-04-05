@@ -5,4 +5,8 @@ from .models import Constants
 
 class PlayerBot(Bot):
     def play_round(self):
-        pass
+        yield pages.DemographischeAngaben, dict(
+            ALTER=10,
+            JOB=0,
+            GENDER=0
+        )

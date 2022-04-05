@@ -12,10 +12,34 @@ SESSION_CONFIGS = [
         num_demo_participants=1,
     ),
     dict(
+        name='PostGame',
+        app_sequence=['PostGame'],
+        num_demo_participants=1,
+    ),
+    dict(
+        name='IntroTest',
+        app_sequence=['Intro'],
+        num_demo_participants=1,
+        use_browser_bots=True
+    ),
+    dict(
+        name='GamePostTest',
+        app_sequence=['PostGame'],
+        num_demo_participants=1,
+        use_browser_bots=True
+    ),
+    dict(
         name='Outro',
         app_sequence=['Outro'],
         num_demo_participants=1,
     ),
+    dict(
+        name='PayoffTest',
+        app_sequence=['Game', 'Outro'],
+        num_demo_participants=4,
+        use_browser_bots=True
+    ),
+
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs

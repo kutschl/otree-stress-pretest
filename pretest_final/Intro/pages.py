@@ -53,7 +53,7 @@ class Experimentstart(Page):
 
 page_sequence = [
     Willkommen,
-    # Anmeldung,
+    Anmeldung,
     Aufbau,
     Beschreibung,
     Beispielaufgaben,

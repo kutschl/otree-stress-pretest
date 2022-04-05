@@ -89,6 +89,36 @@ def getTable(block: int, table: int, typ: str) -> dict:
     }
 
 
+def getPayoffOptionB(block: int, table: int, decision: int, typ: str):
+    data = None
+    if typ is str('GAIN'):
+        data = gain_data
+    if typ is str('LOSS'):
+        data = loss_data
+    li = []
+    b_start = data[block-1]['x1'][table-1]
+    b_step = (-1)*(data[block-1]['x1'][table-1] - data[block-1]['x2'][table-1])/20
+    b_stop = data[block-1]['x2'][table-1] + b_step
+    for i in np.arange(b_start, b_stop, b_step):
+        li.append(i)
+    if data[block-1]['asc'][table-1] is True:
+        li.reverse()
+    return li[decision-1]
+
+
+def getPayoffOptionA(block: int, table: int, typ: str):
+    data = None
+    if typ is str('GAIN'):
+        data = gain_data
+    if typ is str('LOSS'):
+        data = loss_data
+    return {
+        'p': data[block-1]['p'][table-1],
+        'x1': data[block-1]['x1'][table-1],
+        'x2': data[block-1]['x2'][table-1]
+    }
+
+
 def IntegerField(name, number):
     return models.IntegerField(
         choices=Constants.forms[name]['Choice'],
@@ -101,6 +131,16 @@ class Constants(BaseConstants):
     name_in_url = 'Game'
     players_per_group = None
     num_rounds = 1
+
+    multiplier = 15
+    endowment = 15
+
+    gain_tables_per_block = len(gain_data[0][list(gain_data[0].keys())[0]])
+    loss_tables_per_block = len(loss_data[0][list(loss_data[0].keys())[0]])
+    tables_per_block = gain_tables_per_block + loss_tables_per_block
+    blocks = 2
+    tables = blocks * tables_per_block
+    decisions_per_table = 21
 
     forms = {
         'B1_GAIN1': getTable(1, 1, 'GAIN'),
@@ -201,6 +241,47 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
+    def setPayoff(self):
+        # Randomizer
+        rd_typ = rd.choice(['GAIN', 'LOSS'])
+        rd_block = rd.randint(1, 2)
+        rd_table = rd.randint(1, 20)
+        rd_decision = rd.randint(1, 21)
+
+        # Player Decision
+        # player_decision = globals()[f"self.B{rd_block}_{rd_typ}{rd_table}_D{rd_decision}"]
+        player_decision = self.__class__.__dict__[f'B{rd_block}_{rd_typ}{rd_table}_D{rd_decision}']
+
+        # Payoff Info
+        self.participant.vars['payoff_rd_typ'] = rd_typ
+        self.participant.vars['payoff_rd_block'] = rd_block
+        self.participant.vars['payoff_rd_table'] = rd_table
+        self.participant.vars['payoff_rd_decision'] = rd_decision
+        self.participant.vars['endowment'] = c(Constants.endowment)
+
+        # Payoff Calc
+        if player_decision == 1:
+            # Option A
+            urn = []
+            for _ in np.arange(0, getPayoffOptionA(rd_block, rd_table, rd_typ)['p'] * 100, 1):
+                urn.append(getPayoffOptionA(rd_block, rd_table, rd_typ)['x1'])
+            for _ in np.arange(0, (1-getPayoffOptionA(rd_block, rd_table, rd_typ)['p'])*100, 1):
+                urn.append(getPayoffOptionA(rd_block, rd_table, rd_typ)['x2'])
+            rd.shuffle(urn)
+            self.payoff = c(
+                Constants.endowment + (urn[rd.randint(0, 99)] / Constants.multiplier)
+            )
+            self.participant.vars['payoff_player_decision'] = 1
+            self.participant.vars['payoff'] = self.payoff
+        else:
+            # Option B
+            self.payoff = c(
+                Constants.endowment + (getPayoffOptionB(rd_block, rd_table, rd_decision, rd_typ) / Constants.multiplier)
+            )
+            self.participant.vars['payoff_player_decision'] = 2
+            self.participant.vars['payoff'] = self.payoff
+
     # Block 1 Gain 1
     B1_GAIN1_D1 = IntegerField("B1_GAIN1", 1)
     B1_GAIN1_D2 = IntegerField("B1_GAIN1", 2)

@@ -1,9 +1,19 @@
-- Annas Telefonnummer (siehe Wording)
+OFFEN
+- Annas Telefonnummer
 - IQ Test (random order)
 - Verständnisfragen (https://www.otreehub.com/projects/back-button/)
-- Payoff Funktion (random decision, 50% loss, 50% gain)
+
 - oTree Version checken
 - Screen - Block1 - IQ Test - Screen - Block 2
-- Zeiten messen (load_page -> first_click, first_click -> next_button)
+- Zeiten messen (load_page -> first_click, first_click -> next_button, https://otree.readthedocs.io/en/latest/templates.html#passing-data-from-python-to-javascript-js-vars)
+- wording: 15 Euro und 225 Punkte
+- Bots randomisieren in Antworten bei Tabellen
+- Bots Intro Pass
+- Bots PostGame Easy
+
+
+DONE
 X Unterscheidung von Loss, Gain bei Excel Tabelle
-- 15 Euro und 225 Punkte
+X Payoff Screen
+X Payoff Funktion
+X Bots Outro Pass
