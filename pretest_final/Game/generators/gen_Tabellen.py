@@ -13,7 +13,9 @@ javascript_autofill = open('gen_Tabelle_autofill.js').read()
 css_table = open('gen_Tabelle_table.css').read()
 
 
-tables_per_block = len(data_gain[list(data_gain.keys())[0]]) + len(data_loss[list(data_loss.keys())[0]])
+gain_tables_per_block = len(data_gain[list(data_gain.keys())[0]])
+loss_tables_per_block = len(data_loss[list(data_loss.keys())[0]])
+tables_per_block = gain_tables_per_block + loss_tables_per_block
 blocks = 2
 tables = blocks * tables_per_block
 decisions_per_table = 21
@@ -49,8 +51,10 @@ def codePagesTabellePage():
 def codeModelsConstantsForms():
     code = ''
     for block in np.arange(1, blocks + 1, 1):
-        for table in np.arange(1, tables_per_block + 1, 1):
-            code = code + f"'B{block}_T{table}': getTable({block}, {table}),\n"
+        for gain_table in np.arange(1, gain_tables_per_block + 1, 1):
+            code = code + f"'B{block}_GAIN{gain_table}': getTable({block}, {gain_table}, 'GAIN')\n"
+        for loss_table in np.arange(1, gain_tables_per_block + 1, 1):
+            code = code + f"'B{block}_LOSS{loss_table}': getTable({block}, {loss_table}, 'LOSS'),\n"
         code = code + '\n\n'
     return print(code)
 # codeModelsConstantsForms()
@@ -60,10 +64,15 @@ def codeModelsConstantsForms():
 def codeModelsPlayerIntegerFields():
     code = ''
     for block in np.arange(1, blocks + 1, 1):
-        for table in np.arange(1, tables_per_block + 1, 1):
-            code = code + f'# Block {block} Tabelle {table}\n'
+        for gain_table in np.arange(1, gain_tables_per_block + 1, 1):
+            code = code + f'# Block {block} Gain {gain_table}\n'
             for decision in np.arange(1, decisions_per_table + 1, 1):
-                code = code + f'B{block}_T{table}_D{decision} = IntegerField("B{block}_T{table}", {decision})\n'
+                code = code + f'B{block}_GAIN{gain_table}_D{decision} = IntegerField("B{block}_GAIN{gain_table}", {decision})\n'
+            code = code + '\n'
+        for loss_table in np.arange(1, loss_tables_per_block + 1, 1):
+            code = code + f'# Block {block} Loss {loss_table}\n'
+            for decision in np.arange(1, decisions_per_table + 1, 1):
+                code = code + f'B{block}_LOSS{loss_table}_D{decision} = IntegerField("B{block}_LOSS{loss_table}", {decision})\n'
             code = code + '\n'
     return print(code)
 # codeModelsPlayerIntegerFields()
@@ -78,10 +87,10 @@ def codeB3RowsHtml(block, table):
 
 
 # CODE: templates/Tabelle{i}.html
-def codeTabelleHtml(b, t):
+def codeTabelleHtml(b, t, a):
     # INITS
     title = f'Entscheidungssituation'
-    filename = f'../templates/Game/Block{b}Tabelle{t}.html'
+    filename = f'../templates/Game/B{b}_{a}{t}.html'
     code = ''
 
     # DYNAMIC
@@ -89,14 +98,14 @@ def codeTabelleHtml(b, t):
     dtable_b2_title = 'Option A: <br/> Risikolotterie'
     dtable_b3_title = 'Ihre Entscheidung'
     dtable_b4_title = 'Option B: <br/> Sichere Auszahlung'
-    Number = f'Constants.forms.B{b}_T{t}.Number'
-    Numbering = f'Constants.forms.B{b}_T{t}.Numbering'
-    p1 = f'Constants.forms.B{b}_T{t}.A.p1'
-    p2 = f'Constants.forms.B{b}_T{t}.A.p2'
-    x1 = f'Constants.forms.B{b}_T{t}.A.x1'
-    x2 = f'Constants.forms.B{b}_T{t}.A.x2'
-    B = f'Constants.forms.B{b}_T{t}.B'
-    ASC = f'Constants.forms.B{b}_T{t}.ASC'
+    Number = f'Constants.forms.B{b}_{a}{t}.Number'
+    Numbering = f'Constants.forms.B{b}_{a}{t}.Numbering'
+    p1 = f'Constants.forms.B{b}_{a}{t}.A.p1'
+    p2 = f'Constants.forms.B{b}_{a}{t}.A.p2'
+    x1 = f'Constants.forms.B{b}_{a}{t}.A.x1'
+    x2 = f'Constants.forms.B{b}_{a}{t}.A.x2'
+    B = f'Constants.forms.B{b}_{a}{t}.B'
+    ASC = f'Constants.forms.B{b}_{a}{t}.ASC'
 
     # STATIC
     dtable_b1 = f"""
@@ -203,6 +212,10 @@ def codeTabelleHtml(b, t):
     # OUTPUT
     code = style + dtable + script + p_next
     html.code(title, code, filename)
+
+
 for block in np.arange(1, blocks + 1, 1):
-    for table in np.arange(1, tables_per_block + 1, 1):
-        codeTabelleHtml(block, table)
+    for gain_table in np.arange(1, gain_tables_per_block + 1, 1):
+        codeTabelleHtml(block, gain_table, 'GAIN')
+    for loss_table in np.arange(1, loss_tables_per_block + 1, 1):
+        codeTabelleHtml(block, loss_table, 'LOSS')

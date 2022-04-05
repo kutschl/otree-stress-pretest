@@ -5,5 +5,5 @@
 - oTree Version checken
 - Screen - Block1 - IQ Test - Screen - Block 2
 - Zeiten messen (load_page -> first_click, first_click -> next_button)
-- Unterscheidung von Loss, Gain bei Excel Tabelle
+X Unterscheidung von Loss, Gain bei Excel Tabelle
 - 15 Euro und 225 Punkte
