@@ -6,8 +6,36 @@ OFFEN
 - oTree Version checken
 - Screen - Block1 - IQ Test - Screen - Block 2
 - Zeiten messen (load_page -> first_click, first_click -> next_button, https://otree.readthedocs.io/en/latest/templates.html#passing-data-from-python-to-javascript-js-vars)
-- Bots randomisieren in Antworten bei Tabellen
+- Bots Game: randomisieren in Antworten bei Tabellen
 - Screen für setPayoff Function -> Hauptexperiment beendet, bitte beantworten Sie noch die folgenden Fragen.
+- Einverständniserklärung
+
+Intro
+- Willkommen
+- Anmeldung
+
+Instructions
+-
+
+Comprehension
+-
+
+
+Game
+- Block 1
+- IQ Test
+- Block 2
+- SetPayoff Page
+
+AfterGame
+- Demographische Angaben
+
+
+Outro
+- Auszahlung
+
+
+
 
 DONE
 X Unterscheidung von Loss, Gain bei Excel Tabelle
