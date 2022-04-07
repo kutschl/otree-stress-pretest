@@ -27,7 +27,7 @@ def codePagesTabellePage():
     sequence = ''
     for block in np.arange(1, blocks+1, 1):
         for gain_table in np.arange(1, gain_tables_per_block + 1, 1):
-            sequence = sequence + f'B{block}_GAIN{gain_table}, '
+            sequence = sequence + f'Block{block}_Gewinn_Tabelle{gain_table}, '
             model = "player"
             fields = ''
             for decision in np.arange(1, decisions_per_table + 1, 1):
@@ -35,14 +35,14 @@ def codePagesTabellePage():
             form_model = f"form_model = '{model}'"
             form_fields = f"form_fields = [{fields}]"
             page = f"""
-            class B{block}_GAIN{gain_table}(Page):
+            class Block{block}_Gewinn_Tabelle{gain_table}(Page):
                 {form_model}
                 {form_fields}
                 
             """
             code = code + page
         for loss_table in np.arange(1, loss_tables_per_block + 1, 1):
-            sequence = sequence + f'B{block}_LOSS{loss_table}, '
+            sequence = sequence + f'Block{block}_Verlust_Tabelle{loss_table}, '
             model = "player"
             fields = ''
             for decision in np.arange(1, decisions_per_table + 1, 1):
@@ -50,7 +50,7 @@ def codePagesTabellePage():
             form_model = f"form_model = '{model}'"
             form_fields = f"form_fields = [{fields}]"
             page = f"""
-                class B{block}_LOSS{loss_table}(Page):
+                class Block{block}_Verlust_Tabelle{loss_table}(Page):
                     {form_model}
                     {form_fields}
                     
@@ -59,7 +59,7 @@ def codePagesTabellePage():
     page_sequence = f'page_sequence = [{sequence}]'
     code = code + page_sequence
     return print(code)
-# codePagesTabellePage()
+codePagesTabellePage()
 
 
 # CODE: models.py.Constants.forms
@@ -105,8 +105,14 @@ def codeB3RowsHtml(b, t, a):
 # CODE: templates/Tabelle{i}.html
 def codeTabelleHtml(b, t, a):
     # INITS
-    title = f'Entscheidungssituation'
-    filename = f'../templates/Game/B{b}_{a}{t}.html'
+    title = ''
+    filename = ''
+    if a == 'GAIN':
+        title = f'Block {b} Gewinnsituation {t}'
+        filename = f'../templates/Game/Block{b}_Gewinn_Tabelle{t}.html'
+    if a == 'LOSS':
+        title = f'Block {b} Verlustsituation {t}'
+        filename = f'../templates/Game/Block{b}_Verlust_Tabelle{t}.html'
     code = ''
 
     # DYNAMIC
@@ -204,17 +210,16 @@ def codeTabelleHtml(b, t, a):
     </div>
     """
 
-    dtable_h = f"""
-    <div class="dtable-h">
-        <span>
-            Entscheidungssituation: {{% {Number} %}}
-        </span>
-    </div>
-    """
+    # dtable_h = f"""
+    # <div class="dtable-h">
+    #     <span>
+    #         Entscheidungssituation: {{% {Number} %}}
+    #     </span>
+    # </div>
+    # """
 
     dtable = f"""
     <div class="dtable">
-    {dtable_h}
     {dtable_b}
     </div>
     """

@@ -1,10 +1,20 @@
-from _builtin import Page
+from ._builtin import Page, WaitPage
 
 
-class EmtpyPage(Page):
+class Aufbau(Page):
+    pass
+
+
+class Beschreibung1(Page):
+    pass
+
+
+class Beschreibung2(Page):
     pass
 
 
 page_sequence = [
-    EmtpyPage
+    Aufbau,
+    Beschreibung1,
+    Beschreibung2
 ]

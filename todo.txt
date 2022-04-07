@@ -1,46 +1,31 @@
 OFFEN
-- Wording: Annas Telefonnummer
-- Wording: 15 Euro, Umrechnung 1 Euro = 15 Punkte, Startpunktzahl: 225
-- IQ Test (random order)
-- Verständnisfragen (https://www.otreehub.com/projects/back-button/)
+- NEXT BUTTON EXTRA EINFÜGEN IM GENERATOR, GENERATOREN UMSCHREIBEN
+- IQ Test (random order, "Zwischenfragen")
+- Verständnisfragen (https://www.otreehub.com/projects/back-button/), Reiter
 - oTree Version checken
-- Screen - Block1 - IQ Test - Screen - Block 2
+- Screen - Block1 - Zwischenfragen - Screen - Block 2
 - Zeiten messen (load_page -> first_click, first_click -> next_button, https://otree.readthedocs.io/en/latest/templates.html#passing-data-from-python-to-javascript-js-vars)
 - Bots Game: randomisieren in Antworten bei Tabellen
 - Screen für setPayoff Function -> Hauptexperiment beendet, bitte beantworten Sie noch die folgenden Fragen.
-- Einverständniserklärung
-
-Intro
-- Willkommen
-- Anmeldung
-
-Instructions
--
-
-Comprehension
--
-
+- Java Script einschalten Info auf Willkommen.html
 
 Game
 - Block 1
-- IQ Test
+- Zwischenfragen
 - Block 2
-- SetPayoff Page
-
-AfterGame
-- Demographische Angaben
-
+- SetPayoff Page Text
 
 Outro
 - Auszahlung
 
-
-
-
 DONE
+X Einverständniserklärung: Pop-Up
+X Table Header entfernen, Zähler in Überschrift
 X Unterscheidung von Loss, Gain bei Excel Tabelle
 X Payoff Screen
 X Payoff Funktion
 X Bots Outro Pass
 X Bots Intro Pass
 X Bots PostGame Easy
+X Wording: Annas Telefonnummer
+X Wording: 15 Euro, Umrechnung 1 Euro = 15 Punkte, Startpunktzahl: 225

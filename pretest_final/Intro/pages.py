@@ -23,42 +23,23 @@ class Anmeldung(Page):
     ]
 
 
-class Aufbau(Page):
-    pass
+class Einverstaendniserklaerung(Page):
+    form_model = 'player'
+    form_fields = [
+        'ACCEPT'
+    ]
 
 
-class Beschreibung(Page):
-    pass
-
-
-class Beispielaufgaben(Page):
-    pass
-
-
-class Gewinnbeispiel(Page):
-    pass
-
-
-class Verlustbeispiel(Page):
-    pass
-
-
-class Auszahlung(Page):
-    pass
-
-
-class Experimentstart(Page):
-    pass
+class Einverstaendniserklaerung_Anna(Page):
+    form_model = 'player'
+    form_fields = [
+        'consent'
+    ]
 
 
 page_sequence = [
     Willkommen,
+    Einverstaendniserklaerung,
+    Einverstaendniserklaerung_Anna,
     Anmeldung,
-    Aufbau,
-    Beschreibung,
-    Beispielaufgaben,
-    Gewinnbeispiel,
-    Verlustbeispiel,
-    Auszahlung,
-    Experimentstart
 ]

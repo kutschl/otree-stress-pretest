@@ -7,26 +7,26 @@ SESSION_CONFIGS = [
         num_demo_participants=1,
     ),
     dict(
+        name='Intro_Test',
+        app_sequence=['Intro'],
+        num_demo_participants=10,
+        use_browser_bots=True
+    ),
+    dict(
+        name='Instructions',
+        app_sequence=['Instructions'],
+        num_demo_participants=1,
+    ),
+    dict(
+        name='Instructions_Test',
+        app_sequence=['Instructions'],
+        num_demo_participants=10,
+        use_browser_bots=True
+    ),
+    dict(
         name='Game',
         app_sequence=['Game'],
         num_demo_participants=1,
-    ),
-    dict(
-        name='PostGame',
-        app_sequence=['PostGame'],
-        num_demo_participants=1,
-    ),
-    dict(
-        name='IntroTest',
-        app_sequence=['Intro'],
-        num_demo_participants=1,
-        use_browser_bots=True
-    ),
-    dict(
-        name='GamePostTest',
-        app_sequence=['PostGame'],
-        num_demo_participants=1,
-        use_browser_bots=True
     ),
     dict(
         name='Outro',
@@ -34,11 +34,11 @@ SESSION_CONFIGS = [
         num_demo_participants=1,
     ),
     dict(
-        name='PayoffTest',
+        name='Game_Outro_Test',
         app_sequence=['Game', 'Outro'],
-        num_demo_participants=4,
+        num_demo_participants=50,
         use_browser_bots=True
-    ),
+    )
 
 ]
 

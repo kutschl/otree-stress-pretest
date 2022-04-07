@@ -1,0 +1,127 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Ihre Einwilligung{% endblock %}
+
+{% block content %}
+
+
+<p>
+    
+Um an der Studie teilnehmen zu k&ouml;nnen, m&uuml;ssen Sie der Verarbeitung Ihrer personenbezogenen Daten zustimmen. 
+Lesen Sie sich daf&uuml;r die unten angezeigte Probandenaufkl&auml;rung gr&uuml;ndlich durch. 
+Sie k&ouml;nnen zustimmen, indem Sie am Ende der Aufkl&auml;rung die entsprechende Option ausw&auml;hlen. 
+Wenn Sie der Verarbeitung Ihrer Daten nicht zustimmen, k&ouml;nnen Sie leider nicht an dieser Studie teilnehmen.
+
+</p>
+
+<p>
+    
+Bei Fragen k&ouml;nnen sie sich jederzeit (auch anonym) an die folgende E-Mail wenden: 
+<br/>
+<a href="mailto:schulzetilling@uni-bonn.de">schulzetilling@uni-bonn.de</a>.
+
+</p>
+
+<div class="alert border border-dark" style="margin-top: 2rem;">
+<h4>Einverst&auml;ndniserkl&auml;rung in die Erhebung und Verarbeitung von Daten durch die Universit&auml;t Bonn im Rahmen einer Online-Studie</h4>
+<div style="text-align: justify; font-size: 0.875rem;"/>
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et 
+dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita 
+kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur 
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem 
+ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt 
+ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat 
+nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue 
+duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy 
+nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo 
+consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore 
+eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril 
+delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil 
+imperdiet doming id quod mazim placerat facer 
+</div>
+</div>
+
+<div id="id_ACCEPT" required="" style="margin-top: 2rem; margin-bottom: 1rem">
+    <div class="form-check">
+        <input class="form-check-input" type="radio" id="id_ACCEPT-0" name="ACCEPT" required="" value="True">
+        <label for="id_ACCEPT-0">Ja, ich willige ein.</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" id="id_ACCEPT-1" name="ACCEPT" required="" value="False" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <label for="id_ACCEPT-1">Nein, ich willige nicht ein.</label>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+<p>
+    
+Sie haben der Verarbeitung Ihrer personenbezogenen Daten im Rahmen dieser Studie nicht zugestimmt.
+Bitte beachten Sie, dass Sie nur an der Studie teilnehmen k&ouml;nnen, wenn Sie der Verarbeitung zustimmen.         
+
+</p>
+
+                
+<p>
+    
+Falls Sie Ihre Auswahl noch einmal &auml;ndern wollen, klicken Sie auf "Auswahl &auml;ndern".
+Falls nicht, k&ouml;nnen Sie das Browserfenster bzw. den Browsertab jetzt schlie&szlig;en und nehmen somit nicht an der Studie teil.
+Ihnen entstehen dadurch keine Nachteile.
+
+</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="selectAccept()">
+                    Auswahl &auml;ndern
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="otree-next" id="otree-next">
+    
+<p>
+    Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren.
+</p>
+
+    {% next_button %}
+</div>
+
+<script>
+$(document).ready(function() {
+    document.getElementById('otree-next').setAttribute('style', 'display: none')
+    $('input[type=radio][value="True"]').click(
+        function () {
+            document.getElementById('otree-next').removeAttribute('style')
+        }
+    );
+    $('input[type=radio][value="False"]').click(
+        function () {
+            document.getElementById('otree-next').setAttribute('style', 'display: none')
+        }
+    );
+});
+</script>
+
+<script>
+function selectAccept() {
+    document.getElementById('id_ACCEPT-0').click()
+}
+</script>
+
+
+{% endblock %}

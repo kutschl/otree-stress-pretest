@@ -5,8 +5,7 @@ from otree.api import (
     BaseSubsession,
     BaseGroup,
     BasePlayer,
-    Currency,
-    currency_range
+    Currency
 )
 
 doc = ''
