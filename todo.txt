@@ -1,15 +1,16 @@
 OFFEN
-- NEXT BUTTON EXTRA EINFÜGEN IM GENERATOR, GENERATOREN UMSCHREIBEN
 - IQ Test (random order, "Zwischenfragen")
 - Verständnisfragen (https://www.otreehub.com/projects/back-button/), Reiter
 - oTree Version checken
 - Screen - Block1 - Zwischenfragen - Screen - Block 2
 - Zeiten messen (load_page -> first_click, first_click -> next_button, https://otree.readthedocs.io/en/latest/templates.html#passing-data-from-python-to-javascript-js-vars)
 - Bots Game: randomisieren in Antworten bei Tabellen
-- Screen für setPayoff Function -> Hauptexperiment beendet, bitte beantworten Sie noch die folgenden Fragen.
+
 
 
 DONE
+X NEXT BUTTON EXTRA EINFÜGEN IM GENERATOR, GENERATOREN UMSCHREIBEN
+X Screen für setPayoff Function -> Hauptexperiment beendet, bitte beantworten Sie noch die folgenden Fragen.
 X Java Script einschalten Info auf Willkommen.html
 X Einverständniserklärung: Pop-Up
 X Table Header entfernen, Zähler in Überschrift
