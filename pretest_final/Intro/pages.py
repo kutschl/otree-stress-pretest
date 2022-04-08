@@ -30,16 +30,8 @@ class Einverstaendniserklaerung(Page):
     ]
 
 
-class Einverstaendniserklaerung_Anna(Page):
-    form_model = 'player'
-    form_fields = [
-        'consent'
-    ]
-
-
 page_sequence = [
     Willkommen,
     Einverstaendniserklaerung,
-    Einverstaendniserklaerung_Anna,
     Anmeldung,
 ]

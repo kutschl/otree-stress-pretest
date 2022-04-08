@@ -74,7 +74,6 @@ class Player(BasePlayer):
             return "Der von Ihnen eingegebene BIC-Code ist ungültig."
 
     # Einverständniserklärung
-    consent = models.BooleanField(label="consent", initial=True)
     ACCEPT = models.BooleanField(
         label="Bitte wählen Sie aus, ob Sie in die Einverständniserklärung einwilligen.",
         choices=[

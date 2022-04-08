@@ -227,11 +227,19 @@ def codeTabelleHtml(b, t, a):
     style = html.style(css_table)
     script = html.script(javascript_autofill)
 
-    p_next = "Bitte klicken Sie nun auf <em>Weiter</em>, um fortzufahren."
+    # NEXT BUTTON
+    p_next = "Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren."
     p_next = html.paragraph(p_next)
+    button_next = html.next_button()
+    div_next = f"""
+    <div class="{'otree-next'}" id="{'otree-next'}">
+        {p_next}
+        {button_next}
+    </div>
+    """
 
     # OUTPUT
-    code = style + dtable + script + p_next
+    code = style + dtable + script + div_next
     html.code(title, code, filename)
 
 

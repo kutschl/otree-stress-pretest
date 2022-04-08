@@ -7,18 +7,10 @@ OFFEN
 - Zeiten messen (load_page -> first_click, first_click -> next_button, https://otree.readthedocs.io/en/latest/templates.html#passing-data-from-python-to-javascript-js-vars)
 - Bots Game: randomisieren in Antworten bei Tabellen
 - Screen für setPayoff Function -> Hauptexperiment beendet, bitte beantworten Sie noch die folgenden Fragen.
-- Java Script einschalten Info auf Willkommen.html
 
-Game
-- Block 1
-- Zwischenfragen
-- Block 2
-- SetPayoff Page Text
-
-Outro
-- Auszahlung
 
 DONE
+X Java Script einschalten Info auf Willkommen.html
 X Einverständniserklärung: Pop-Up
 X Table Header entfernen, Zähler in Überschrift
 X Unterscheidung von Loss, Gain bei Excel Tabelle

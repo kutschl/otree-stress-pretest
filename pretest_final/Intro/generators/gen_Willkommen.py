@@ -10,7 +10,6 @@ code = ''
 # CONTENT
 email = "schulzetilling@uni-bonn.de"
 a_email = html.link('mail', email, email)
-
 phone = "0176 86963663"
 a_phone = html.link('phone', phone, phone)
 
@@ -45,11 +44,32 @@ ul = f"""
 </ul>
 """
 
+
+# NOSCRIPT
+noscript = """
+<noscript>
+    <div class="alert alert-danger" role="alert">
+        Zur Teilnahme an dieser Studie wird <em>JavaScript</em> benötigt, welches in Ihrem Browser leider deaktiviert ist.
+        Bitte aktivieren Sie deshalb JavaScript und laden Sie erneut diese Seite
+        oder öffnen Sie Ihren persönlichen Link in einem anderen Browser / auf einem anderen Gerät.
+    </div>
+</noscript>
+"""
+
+
+# NEXT BUTTON
 p_next = "Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren."
 p_next = html.paragraph(p_next)
+button_next = html.next_button()
+div_next = f"""
+<div class="{'otree-next'}" id="{'otree-next'}">
+    {p_next}
+    {button_next}
+</div>
+"""
 
 
 # OUTPUT
-code = p1 + p2 + p3 + ul + p_next
+code = p1 + p2 + p3 + ul + noscript + div_next
 html.code(title, code, url)
 

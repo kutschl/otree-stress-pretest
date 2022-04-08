@@ -45,6 +45,8 @@ def link(type:str, url: str, content: str) -> str:
         return f"""<a href="mailto:{url}">{content}</a>"""
     if type is str('phone'):
         return f"""<a href="tel:{url}">{content}</a>"""
+    if type is str('web'):
+        return f"""<a href="{url}">{content}</a>"""
 
 
 def headline(type: int, content: str) -> str:
@@ -68,5 +70,10 @@ def umlauts(string):
         .replace("ü", "&uuml;") \
         .replace("Ü", "&Uuml;") \
         .replace("ß", "&szlig;") \
-        .replace("€", "&euro;")
+        .replace("€", "&euro;") \
+        .replace("§", "&sect;") \
+        .replace("–", "&ndash;") \
+        .replace("„", "&bdquo;") \
+        .replace("“", "&ldquo;")
+
 

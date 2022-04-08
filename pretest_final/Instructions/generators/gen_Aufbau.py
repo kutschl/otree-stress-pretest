@@ -7,13 +7,10 @@ url = f'../../Instructions/templates/Instructions/{filename}.html'
 code = ''
 
 
-# DYNAMIC
+# CONTENT
 endowment = 15
 multiplier = 15
 
-
-
-# STATIC
 p1 = f"""
 Zu Beginn des Experimentes erhalten Sie <b>{endowment} Euro</b> als Grundbetrag. 
 Dies entspricht in diesem Experiment <b>{endowment*multiplier} Punkten.</b> 
@@ -42,18 +39,25 @@ Diese beeinflussen Ihre Auszahlung dann wieder.
 """
 p3 = html.paragraph(p3)
 
-
 p4 = """
 Sie bearbeiten die Umfrage unabhängig von den anderen Teilnehmern, können also <b>in Ihrem eigenen Tempo</b> arbeiten.
 """
 p4 = html.paragraph(p4)
 
 
-p_next = "Bitte klicken Sie auf <em>Weiter</em>, um mit der Experimentbeschreibung fortzufahren."
+# NEXT BUTTON
+p_next = "Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren."
 p_next = html.paragraph(p_next)
+button_next = html.next_button()
+div_next = f"""
+<div class="{'otree-next'}" id="{'otree-next'}">
+    {p_next}
+    {button_next}
+</div>
+"""
 
 
 # OUTPUT
-code = p1 + p2 + p3 + p4 + p_next
+code = p1 + p2 + p3 + p4 + div_next
 html.code(title, code, url)
 

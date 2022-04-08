@@ -47,11 +47,14 @@ Diese Informationen werden <b>nur f&uuml;r die Abwicklung der Zahlung</b> verwen
     <label for="BIC">{{form.BIC.label}}</label><input type="text" class="form-control" name="BIC" id="BIC"/>
 </p>
 
+<div class="otree-next" id="otree-next">
+    
 <p>
     Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren.
 </p>
 
+    {% next_button %}
+</div>
 
-{% next_button %}
 
 {% endblock %}

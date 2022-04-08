@@ -1,0 +1,36 @@
+.consent-task {
+    margin-bottom: 2rem;
+}
+
+.consent-head {
+    margin-bottom: 1rem;
+}
+
+.consent-body {
+    text-align: justify;
+    font-size: 0.875rem;
+}
+
+.consent-body-section {
+    margin-bottom: 2rem;
+}
+
+.consent-body-section p{
+    margin-bottom: 0.5rem;
+}
+
+.consent-body-section-h {
+    font-size: 1.125rem;
+    text-decoration: underline;
+    margin-bottom: 0.5rem;
+}
+
+
+.consent-form {
+    margin-top: 1rem;
+    margin-bottom: 1rem
+}
+
+.consent-body-section:last-child {
+    margin-bottom: 0rem;
+}

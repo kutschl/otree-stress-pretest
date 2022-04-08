@@ -1,16 +1,19 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}SetPayoff{% endblock %}
+{% block title %}Bitte klicken Sie auf Weiter{% endblock %}
 
 {% block content %}
 
 
+<div class="otree-next" id="otree-next">
+    
 <p>
-    Bitte klicken Sie nun auf <em>Weiter</em>, um fortzufahren.
+    Das Hauptexperiment ist nun abgeschlossen. Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren.
 </p>
 
+    {% next_button %}
+</div>
 
-{% next_button %}
 
 {% endblock %}
