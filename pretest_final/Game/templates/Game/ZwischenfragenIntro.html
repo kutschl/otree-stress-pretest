@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Zwischenfragen{% endblock %}
+
+{% block content %}
+
+
+<p>
+    
+Sie haben nun die ersten 40 Entscheidungen getroffen, die Ihre Aufwandsentsch&auml;digung beeinflussen. 
+Es folgen 16 Fragen, die Ihre Aufwandsentsch&auml;digung nicht beeinflussen.
+
+</p>
+
+<p>
+    
+Nachdem Sie diese beantwortet haben, k&ouml;nnen Sie mit dem zweiten Block mit 40 Fragen fortfahren. 
+Die Entscheidungen in diesem Block beeinflussen Ihre Aufwandsentsch&auml;digung dann wieder.
+
+</p>
+
+<div class="otree-next" id="otree-next">
+    
+<p>
+    Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren.
+</p>
+
+    {% next_button %}
+</div>
+
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from html_generator import HtmlGenerator as html
+from generators import HtmlGenerator as html
 
 # INITS
 title = 'Demographische Angaben'

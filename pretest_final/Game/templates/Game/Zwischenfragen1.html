@@ -1,0 +1,84 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Zwischenfragen (1/4){% endblock %}
+
+{% block content %}
+
+        
+        <div class="zwischenfrage-form">
+            <div class="zwischenfrage-label">
+                {% form.ZWISCHENFRAGE7.label %}
+            </div>
+            {% if Constants.forms_zwischenfragen.ZWISCHENFRAGE7.image %}
+            <img src="{% static 'images/zwischenfrage7.png' %}" alt="Zwischenfrage 7" class="zwischenfrage-img"/>
+            {% endif%}
+            <div class="zwischenfrage-choices">
+                {% form.ZWISCHENFRAGE7 %}
+            </div>
+        </div>
+                
+        <div class="zwischenfrage-form">
+            <div class="zwischenfrage-label">
+                {% form.ZWISCHENFRAGE4.label %}
+            </div>
+            {% if Constants.forms_zwischenfragen.ZWISCHENFRAGE4.image %}
+            <img src="{% static 'images/zwischenfrage4.png' %}" alt="Zwischenfrage 4" class="zwischenfrage-img"/>
+            {% endif%}
+            <div class="zwischenfrage-choices">
+                {% form.ZWISCHENFRAGE4 %}
+            </div>
+        </div>
+                
+        <div class="zwischenfrage-form">
+            <div class="zwischenfrage-label">
+                {% form.ZWISCHENFRAGE5.label %}
+            </div>
+            {% if Constants.forms_zwischenfragen.ZWISCHENFRAGE5.image %}
+            <img src="{% static 'images/zwischenfrage5.png' %}" alt="Zwischenfrage 5" class="zwischenfrage-img"/>
+            {% endif%}
+            <div class="zwischenfrage-choices">
+                {% form.ZWISCHENFRAGE5 %}
+            </div>
+        </div>
+                
+        <div class="zwischenfrage-form">
+            <div class="zwischenfrage-label">
+                {% form.ZWISCHENFRAGE9.label %}
+            </div>
+            {% if Constants.forms_zwischenfragen.ZWISCHENFRAGE9.image %}
+            <img src="{% static 'images/zwischenfrage9.png' %}" alt="Zwischenfrage 9" class="zwischenfrage-img"/>
+            {% endif%}
+            <div class="zwischenfrage-choices">
+                {% form.ZWISCHENFRAGE9 %}
+            </div>
+        </div>
+        
+    <div class="otree-next" id="otree-next">
+        
+<p>
+    Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren.
+</p>
+
+        {% next_button %}
+    </div>
+    
+<style>
+.zwischenfrage-form {
+    margin-bottom: 2rem;
+}
+.zwischenfrage-label {
+    margin-bottom: 1rem;
+}
+.zwischenfrage-img {
+    margin-bottom: 1rem;
+    width: 20rem;
+    border: 2px solid black;
+}
+.zwischenfrage-choices {
+    margin-bottom: 1rem;
+}
+</style>
+
+
+{% endblock %}

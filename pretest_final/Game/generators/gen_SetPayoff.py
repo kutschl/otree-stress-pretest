@@ -1,9 +1,8 @@
-from html_generator import HtmlGenerator as html
+from generators import HtmlGenerator as html
 # INITS
-title = f'Bitte klicken Sie auf Weiter'
+title = f'Bitte klicken Sie auf Weiter!'
 filename = 'SetPayoff'
 url = f'../templates/Game/{filename}.html'
-code = ''
 
 
 # NEXT BUTTON

@@ -1,14 +1,16 @@
 OFFEN
-- IQ Test (random order, "Zwischenfragen")
 - Verständnisfragen (https://www.otreehub.com/projects/back-button/), Reiter
-- oTree Version checken
-- Screen - Block1 - Zwischenfragen - Screen - Block 2
+- Server
+- Wording Outro
 - Zeiten messen (load_page -> first_click, first_click -> next_button, https://otree.readthedocs.io/en/latest/templates.html#passing-data-from-python-to-javascript-js-vars)
-- Bots Game: randomisieren in Antworten bei Tabellen
-
 
 
 DONE
+X BOTS FÜR GAME RANDOMISIEREN
+X VARIABLEN FÜR GENERATOREN VEREINHEITLICHEN
+X GENERATOREN FÜR PAGES
+X SCREEN - BLOCK1 - ZWISCHENFRAGENINTRO - ZWISCHENFRAGEN - SCREEN - BLOCK2 - SETPAYOFF
+X IQ Test (random order, "Zwischenfragen")
 X NEXT BUTTON EXTRA EINFÜGEN IM GENERATOR, GENERATOREN UMSCHREIBEN
 X Screen für setPayoff Function -> Hauptexperiment beendet, bitte beantworten Sie noch die folgenden Fragen.
 X Java Script einschalten Info auf Willkommen.html

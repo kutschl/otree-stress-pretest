@@ -1,4 +1,4 @@
-from html_generator import HtmlGenerator as html
+from generators import HtmlGenerator as html
 
 # INITS
 title = 'Aufbau'
@@ -8,13 +8,19 @@ code = ''
 
 
 # CONTENT
-endowment = 15
-multiplier = 15
+tables_per_block = '{% Constants.tables_per_block %}'
+blocks = '{% Constants.blocks %}'
+tables = '{% Constants.tables %}'
+decisions = '{% Constants.decisions %}'
+
+endowment_in_euro = '{% Constants.endowment_in_euro %}'
+endowment_in_points = '{% Constants.endowment_in_points %}'
+multiplier = '{% Constants.multiplier %}'
 
 p1 = f"""
-Zu Beginn des Experimentes erhalten Sie <b>{endowment} Euro</b> als Grundbetrag. 
-Dies entspricht in diesem Experiment <b>{endowment*multiplier} Punkten.</b> 
-Ausgehend von den {endowment*multiplier} Punkten können Sie Punkte dazuverdienen oder verlieren, 
+Zu Beginn des Experimentes erhalten Sie <b>{endowment_in_euro} Euro</b> als Grundbetrag. 
+Dies entspricht in diesem Experiment <b>{endowment_in_points} Punkten.</b> 
+Ausgehend von den {endowment_in_points} Punkten können Sie Punkte dazuverdienen oder verlieren, 
 wobei Ihre endgültige Punktanzahl von Ihren Entscheidungen und einer zufälligen Auslosung abhängt. 
 Am Ende des Experiments werden die Punkte in Euro umgerechnet, 
 wobei <b>jeweils {multiplier} Punkte einem Euro </b> entsprechen. 

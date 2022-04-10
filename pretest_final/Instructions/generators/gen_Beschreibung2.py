@@ -1,4 +1,4 @@
-from html_generator import HtmlGenerator as html
+from generators import HtmlGenerator as html
 
 # INITS
 title = 'Beschreibung der kommenden Entscheidungssituationen (2/2)'
@@ -8,13 +8,14 @@ code = ''
 
 
 # CONTENT
-tables_per_block = 40
-blocks = 2
-tables = tables_per_block*blocks
-decision_per_table = 21
+tables_per_block = '{% Constants.tables_per_block %}'
+blocks = '{% Constants.blocks %}'
+tables = '{% Constants.tables %}'
+decisions = '{% Constants.decisions %}'
 
-endowment = 15
-multiplier = 15
+endowment_in_euro = '{% Constants.endowment_in_euro %}'
+endowment_in_points = '{% Constants.endowment_in_points %}'
+multiplier = '{% Constants.multiplier %}'
 
 p4 = """
 Ihre Entscheidungen, die Sie während des Experimentes treffen, bestimmen die Höhe Ihrer endgültigen Auszahlung:
@@ -22,10 +23,10 @@ Ihre Entscheidungen, die Sie während des Experimentes treffen, bestimmen die H�
 p4 = html.paragraph(p4)
 
 ol1li1 = "Der Computer wählt eine Tabelle mit 50% Wahrscheinlichkeit aus einer Gewinnsituation und mit 50% Wahrscheinlichkeit aus einer Verlustsituation."
-ol1li2 = f"In der ausgewählten Tabelle wählt der Computer zufällig eine der {decision_per_table} Zeilen. Die Entscheidung, die Sie dort getroffen haben, wird dann <b>tatsächlich umgesetzt:</b>"
+ol1li2 = f"In der ausgewählten Tabelle wählt der Computer zufällig eine der {decisions} Zeilen. Die Entscheidung, die Sie dort getroffen haben, wird dann <b>tatsächlich umgesetzt:</b>"
 ul2li1 = "Haben Sie in dieser Zeile Option A gewählt, wird Option A umgesetzt."
 ul2li2 = "Haben Sie in dieser Zeile Option B gewählt, wird Option B umgesetzt."
-ol1li3 = f"Je nach Entscheidungstyp erhalten oder verlieren Sie eine bestimmte Anzahl an Punkten, wobei {multiplier} Punkte einem Betrag von 1 Euro entsprechen. Der entsprechende Euro-Betrag wird danach mit dem Grundbetrag in Höhe von {endowment} Euro verrechnet."
+ol1li3 = f"Je nach Entscheidungstyp erhalten oder verlieren Sie eine bestimmte Anzahl an Punkten, wobei {multiplier} Punkte einem Betrag von 1 Euro entsprechen. Der entsprechende Euro-Betrag wird danach mit dem Grundbetrag in Höhe von {endowment_in_euro} Euro verrechnet."
 ol1 = f"""
 <ol>
     <li style="margin-top: 0rem">

@@ -38,6 +38,12 @@ SESSION_CONFIGS = [
         app_sequence=['Game', 'Outro'],
         num_demo_participants=50,
         use_browser_bots=True
+    ),
+    dict(
+        name='Experiment_Test_ohne_Comprehension',
+        app_sequence=['Intro', 'Instructions', 'Game', 'Outro'],
+        num_demo_participants=1,
+        use_browser_bots=True
     )
 
 ]

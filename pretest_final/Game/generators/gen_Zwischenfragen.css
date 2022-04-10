@@ -1,0 +1,14 @@
+.zwischenfrage-form {
+    margin-bottom: 2rem;
+}
+.zwischenfrage-label {
+    margin-bottom: 1rem;
+}
+.zwischenfrage-img {
+    margin-bottom: 1rem;
+    width: 20rem;
+    border: 2px solid black;
+}
+.zwischenfrage-choices {
+    margin-bottom: 1rem;
+}

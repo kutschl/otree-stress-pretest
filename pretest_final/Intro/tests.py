@@ -50,6 +50,9 @@ class PlayerBot(Bot):
 
     def play_round(self):
         yield pages.Willkommen,
+        yield pages.Einverstaendniserklaerung, dict(
+            ACCEPT=True,
+        )
         yield pages.Anmeldung, dict(
             VORNAME=getVorname(),
             NACHNAME=getNachname(),

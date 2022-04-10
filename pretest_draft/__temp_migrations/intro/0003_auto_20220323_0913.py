@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='player',
             name='gender',
-            field=otree.db.models.IntegerField(choices=[[0, 'Männlich'], [1, 'Weiblich'], [2, 'Divers'], [3, 'Keine Angabe']], null=True, verbose_name='Mit welchem Geschlecht identifizieren sie sich?'),
+            field=otree.db.models.TableField(choices=[[0, 'Männlich'], [1, 'Weiblich'], [2, 'Divers'], [3, 'Keine Angabe']], null=True, verbose_name='Mit welchem Geschlecht identifizieren sie sich?'),
         ),
     ]

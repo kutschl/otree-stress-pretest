@@ -1,4 +1,4 @@
-from html_generator import HtmlGenerator as html
+from generators import HtmlGenerator as html
 
 # INITS
 title = 'Beschreibung der kommenden Entscheidungssituationen (1/2)'
@@ -8,16 +8,17 @@ code = ''
 
 
 # CONTENT
-tables_per_block = 40
-blocks = 2
-tables = tables_per_block*blocks
-decision_per_table = 21
+tables_per_block = '{% Constants.tables_per_block %}'
+blocks = '{% Constants.blocks %}'
+tables = '{% Constants.tables %}'
+decisions = '{% Constants.decisions %}'
 
-endowment = 15
-multiplier = 15
+endowment_in_euro = '{% Constants.endowment_in_euro %}'
+endowment_in_points = '{% Constants.endowment_in_points %}'
+multiplier = '{% Constants.multiplier %}'
 
 p1 = f"""
-In jeder der kommenden Situationen bekommen Sie eine Tabelle mit {decision_per_table} Zeilen gezeigt. 
+In jeder der kommenden Situationen bekommen Sie eine Tabelle mit {decisions} Zeilen gezeigt. 
 In jeder Zeile treffen Sie eine Entscheidung zwischen einer <b>Lotterie (Option A)</b> und einer <b>sicheren Auszahlung (Option B).</b>
 """
 p1 = html.paragraph(p1)
@@ -28,8 +29,8 @@ Die anderen {tables_per_block} Tabellen stellt eine <b>Verlustsituation</b> mit 
 """
 p2 = html.paragraph(p2)
 
-ul1li1 = f'In den Tabellen, die Gewinnsituationen darstellen, können Sie Punkte zu Ihrem Basiskonto von {endowment*multiplier} Punkten <b>dazuverdienen.</b>'
-ul1li2 = f'In den Tabellen, die Verlustsituationen darstellen, können Sie einen Teil der {endowment*multiplier} Punkte in Ihrem Basiskonto <b>verlieren.</b>'
+ul1li1 = f'In den Tabellen, die Gewinnsituationen darstellen, können Sie Punkte zu Ihrem Basiskonto von {endowment_in_points} Punkten <b>dazuverdienen.</b>'
+ul1li2 = f'In den Tabellen, die Verlustsituationen darstellen, können Sie einen Teil der {endowment_in_points} Punkte in Ihrem Basiskonto <b>verlieren.</b>'
 ul1 = f"""
 <ul>
     <li style="margin-top: -0.5rem">
