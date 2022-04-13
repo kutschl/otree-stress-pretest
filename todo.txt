@@ -1,11 +1,29 @@
 OFFEN
-- Verständnisfragen (https://www.otreehub.com/projects/back-button/), Reiter
+- Tabelle: Lotterie statt Risikolotterie
+- Tabellen: Minuszeichen weg
+- Trennung von Gain und Loss, bei Generatoren und Tabellen
+- Verlusttabelle: sicherer Verlust statt sichere Auszahlung, Verlust bei Lotterie
+- Comprehension: Aufsteigend, Fragen: Absteigend
+- Zwischenfragen: Bilder vergrößern
+- Zwischenfragen: Screen pro Frage, Generator anpassen
+- Wording-final zu ende machen
 - Server
-- Wording Outro
-- Zeiten messen (load_page -> first_click, first_click -> next_button, https://otree.readthedocs.io/en/latest/templates.html#passing-data-from-python-to-javascript-js-vars)
 
 
 DONE
+X Verständnisfragen (https://www.otreehub.com/projects/back-button/), Reiter
+X errors für anmeldung formfield bic iban email
+X Wording Outro
+X Zeiten messen (load_page -> first_click, first_click -> next_button, https://otree.readthedocs.io/en/latest/templates.html#passing-data-from-python-to-javascript-js-vars)
+X intro willkommen kein anruf tel link
+X auto fill anmeldung daten bei fehler
+X titel: zwischenteil (1/16)
+X zwischenteil: nicht-auszahlungsrelevante fragen statt zwischenfragen
+X tabellentask: Bitte entscheiden Sie sich in jeder Zeile zwischen Lotterie und sicherer Auszahlung/Verlust.
+X überschrift tabelle: teil 1: gewinnsituation (1/20)
+X beschreibung des experiment, beschreibung ihrer auszahlung
+X Auszahlungsrelevante Entscheidungen / Teil 1
+X Aufbau: Das Experiment besteht aus 2 TEILEN mit jeweils 40 zu treffenden Entscheidungen
 X BOTS FÜR GAME RANDOMISIEREN
 X VARIABLEN FÜR GENERATOREN VEREINHEITLICHEN
 X GENERATOREN FÜR PAGES

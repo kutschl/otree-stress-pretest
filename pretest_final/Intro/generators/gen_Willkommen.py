@@ -4,15 +4,11 @@ from generators import HtmlGenerator as html
 title = 'Willkommen'
 filename = 'Willkommen'
 url = f'../templates/Intro/{filename}.html'
-code = ''
 
 
 # CONTENT
 email = "schulzetilling@uni-bonn.de"
-a_email = html.link('mail', email, email)
 phone = "0176 86963663"
-a_phone = html.link('phone', phone, phone)
-
 
 p1 = """
 Herzlich Willkommen zur Online-Studie des BonnEconLab. 
@@ -22,10 +18,12 @@ Außerdem dürfen Sie nur teilnehmen, wenn Sie sich in unserer Teilnahmedatenban
 p1 = html.paragraph(p1)
 
 p2 = """
-Sie erhalten die Aufwandsentschädigung nur, <b>wenn Sie die komplette Umfrage ausfüllen.</b> 
-Sie werden dazu <b>ungefähr 30 Minuten</b> brauchen. 
-Bitte bearbeiten Sie diese Umfrage <b>am Computer.</b> 
-Eine Teilnahme mit mobilen Geräten wie Smartphones oder Tablets ist <b>nicht</b> möglich."""
+Es steht Ihnen frei, die Studie jederzeit ohne Angabe von Gründen abzubrechen. 
+Aus einem Abbruch entstehen Ihnen keine Nachteile, abgesehen davon, dass Sie keine Teilnahmevergütung erhalten. 
+Sie werden zum Ausfüllen der Umfrage <b>ungefähr 45 Minuten</b> benötigen. 
+Bitte bearbeiten Sie diese Umfrage <b>am Computer</b>. 
+Eine Teilnahme mit mobilen Geräten wie Smartphones oder Tablets ist <b>nicht</b> möglich.
+"""
 p2 = html.paragraph(p2)
 
 p3 = """
@@ -36,10 +34,10 @@ p3 = html.paragraph(p3)
 ul = f"""
 <ul>
     <li>
-        per Telefonnummer: {a_phone}
+        per Telefonnummer: {phone}
     </li>
     <li>
-        per E-Mail: {a_email}
+        per E-Mail: <a href="mailto:{email}">{email}</a>
     </li>
 </ul>
 """

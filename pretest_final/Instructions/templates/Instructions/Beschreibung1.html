@@ -1,44 +1,46 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}Beschreibung der kommenden Entscheidungssituationen (1/2){% endblock %}
+{% block title %}Beschreibung der kommenden Entscheidungssituationen{% endblock %}
 
 {% block content %}
 
 
 <p>
     
-In jeder der kommenden Situationen bekommen Sie eine Tabelle mit {% Constants.decisions %} Zeilen gezeigt. 
+In jeder der kommenden Situationen bekommen Sie eine Tabelle mit 21 Zeilen gezeigt. 
 In jeder Zeile treffen Sie eine Entscheidung zwischen einer <b>Lotterie (Option A)</b> und einer <b>sicheren Auszahlung (Option B).</b>
 
 </p>
 
 <p>
     
-Insgesamt zeigen wir Ihnen nacheinander {% Constants.tables %} Tabellen. {% Constants.tables_per_block %} der Tabellen stellen eine <b>Gewinnsituation</b> mit positiven Punktgewinnen dar. 
-Die anderen {% Constants.tables_per_block %} Tabellen stellt eine <b>Verlustsituation</b> mit negativen Punktverlusten dar.
+Insgesamt zeigen wir Ihnen nacheinander 80 Tabellen. 
+40 der Tabellen stellen eine <b>Gewinnsituation</b> mit positiven Punktgewinnen dar. 
+Die anderen 40 Tabellen stellt eine <b>Verlustsituation</b> mit negativen Punktverlusten dar. 
 
 </p>
 
 <ul>
     <li style="margin-top: -0.5rem">
-        In den Tabellen, die Gewinnsituationen darstellen, k&ouml;nnen Sie Punkte zu Ihrem Basiskonto von {% Constants.endowment_in_points %} Punkten <b>dazuverdienen.</b>
+        In den Tabellen, die Gewinnsituationen darstellen, k&ouml;nnen Sie Punkte zu Ihrem Basiskonto von 225 Punkten <b>dazuverdienen.</b>
     </li>
     <li style="margin-top: 0.25rem">
-        In den Tabellen, die Verlustsituationen darstellen, k&ouml;nnen Sie einen Teil der {% Constants.endowment_in_points %} Punkte in Ihrem Basiskonto <b>verlieren.</b>
+        In den Tabellen, die Verlustsituationen darstellen, k&ouml;nnen Sie einen Teil der 225 Punkte in Ihrem Basiskonto <b>verlieren.</b>
     </li>
 </ul>
 
 <p>
     
-In jeder Entscheidungssituation sind Ihnen s&auml;mtliche relevanten Informationen angegeben.
+In jeder Entscheidungssituation werden Ihnen s&auml;mtliche f&uuml;r Ihre Entscheidung relevanten Informationen angegeben. 
+Im ersten sowie im zweiten Teil wird es jeweils 20 Gewinnsituationen und 20 Verlustsituationen geben. 
 
 </p>
 
 <div class="otree-next" id="otree-next">
     
 <p>
-    Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren.
+    Bitte klicken Sie auf <em>Weiter</em>, um mit der Experimentbeschreibung fortzufahren.
 </p>
 
     {% next_button %}

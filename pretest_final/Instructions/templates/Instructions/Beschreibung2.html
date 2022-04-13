@@ -1,7 +1,7 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}Beschreibung der kommenden Entscheidungssituationen (2/2){% endblock %}
+{% block title %}Beschreibung der kommenden Auszahlung{% endblock %}
 
 {% block content %}
 
@@ -14,21 +14,33 @@ Ihre Entscheidungen, die Sie w&auml;hrend des Experimentes treffen, bestimmen di
 
 <ol>
     <li style="margin-top: 0rem">
-        Der Computer w&auml;hlt eine Tabelle mit 50% Wahrscheinlichkeit aus einer Gewinnsituation und mit 50% Wahrscheinlichkeit aus einer Verlustsituation.
+        
+Per Zufall wird vom Computer eine Tabelle entweder aus einer Gewinnsituation oder aus einer Verlustsituation ausgew&auml;hlt. 
+
     </li>
     <li style="margin-top: 1rem">
-        In der ausgew&auml;hlten Tabelle w&auml;hlt der Computer zuf&auml;llig eine der {% Constants.decisions %} Zeilen. Die Entscheidung, die Sie dort getroffen haben, wird dann <b>tats&auml;chlich umgesetzt:</b>
+        
+In der ausgew&auml;hlten Tabelle w&auml;hlt der Computer zuf&auml;llig eine der 21 Zeilen. 
+Die Entscheidung, die Sie dort getroffen haben, wird dann <b>tats&auml;chlich umgesetzt:</b>
+
         <ul>
             <li style="margin-top: 0.25rem">
-                Haben Sie in dieser Zeile Option A gew&auml;hlt, wird Option A umgesetzt.
+                
+Haben Sie in dieser Zeile Option A gew&auml;hlt, wird Option A umgesetzt. 
+
             </li>
             <li style="margin-top: 0.25rem">
-                Haben Sie in dieser Zeile Option B gew&auml;hlt, wird Option B umgesetzt.
+                
+Haben Sie in dieser Zeile Option B gew&auml;hlt, wird Option B umgesetzt.
+
             </li>
         </ul>
     </li>
     <li style="margin-top: 1rem">
-        Je nach Entscheidungstyp erhalten oder verlieren Sie eine bestimmte Anzahl an Punkten, wobei {% Constants.multiplier %} Punkte einem Betrag von 1 Euro entsprechen. Der entsprechende Euro-Betrag wird danach mit dem Grundbetrag in H&ouml;he von {% Constants.endowment_in_euro %} Euro verrechnet.
+        
+Je nach Entscheidungstyp (Gewinnsituation oder Verlustsituation) erhalten oder verlieren Sie eine bestimmte Anzahl an Punkten, wobei 15 Punkte einem Betrag von 1 Euro entsprechen. 
+Der entsprechende Euro-Betrag wird danach mit dem Grundbetrag in H&ouml;he von 15 Euro verrechnet.
+
     </li>
 </ol>
 
@@ -41,7 +53,7 @@ Es liegt daher in Ihrem Interesse, jede Entscheidung <b>sorgf&auml;ltig</b> zu t
 <div class="otree-next" id="otree-next">
     
 <p>
-    Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren.
+    Bitte klicken Sie auf <em>Weiter</em>, um mit den Beispielaufgaben und Verst&auml;ndnisfragen fortzufahren.
 </p>
 
     {% next_button %}

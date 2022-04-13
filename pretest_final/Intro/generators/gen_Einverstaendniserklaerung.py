@@ -1,10 +1,9 @@
 from generators import HtmlGenerator as html
 
 # INITS
-title = 'Ihre Einwilligung'
+title = 'Einverständniserklärung'
 filename = 'Einverstaendniserklaerung'
 url = f'../templates/Intro/{filename}.html'
-code = ''
 
 
 # EXTERN FILES

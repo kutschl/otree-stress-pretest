@@ -1,13 +1,21 @@
 from generators import HtmlGenerator as html
+import numpy as np
 
 # INITS
 title = 'Persönliche Informationen'
 filename = 'Anmeldung'
 url = f'../templates/Intro/{filename}.html'
-code = ''
 
 
 # CONTENT
+p = """
+Vielen Dank, dass Sie an dieser Umfrage teilnehmen. 
+Wenn Sie die Umfrage beendet haben, wird Ihnen eine Aufwandsentschädigung überwiesen. 
+Um die Überweisung ausführen zu können, benötigen wir die folgenden Informationen von Ihnen. 
+Diese Informationen werden <b>nur für die Abwicklung</b> der Zahlung verwendet und vor der Datenauswertung von dem restlichen Datensatz getrennt.
+"""
+p = html.paragraph(p)
+
 fields = [
     ['VORNAME', 'text'],
     ['NACHNAME', 'text'],
@@ -20,18 +28,14 @@ fields = [
 ]
 
 form = ''
-for i in fields:
-    label = '{{form.' + i[0] + '.label}}'
-    form = form + html.paragraph(html.label(i[0], label) + html.input(i[1], i[0]))
-
-
-p = """
-Vielen Dank, dass Sie an dieser Umfrage teilnehmen. 
-Wenn Sie die Umfrage beendet haben, wird Ihnen eine Aufwandsentschädigung überwiesen. 
-Um die Überweisung ausführen zu können, benötigen wir die folgenden Informationen von Ihnen. 
-Diese Informationen werden <b>nur für die Abwicklung der Zahlung</b> verwendet und vor der Datenauswertung von dem restlichen Datensatz getrennt.
-"""
-p = html.paragraph(p)
+for field in fields:
+    form = form + f"""
+<p>
+    {{% form.{field[0]}.label %}}
+    <input type="{field[1]}" class="form-control" name="{field[0]}" id="{field[0]}"/>
+    {{% formfield_errors '{field[0]}' %}}
+</p>
+    """
 
 
 # NEXT BUTTON

@@ -1,10 +1,10 @@
-from _builtin import Page
+from ._builtin import Page
 
 
-class View(Page):
+class Verstaendnis(Page):
     pass
 
 
 page_sequence = [
-    View
+    Verstaendnis
 ]

@@ -24,6 +24,11 @@ SESSION_CONFIGS = [
         use_browser_bots=True
     ),
     dict(
+        name='Comprehension',
+        app_sequence=['Comprehension'],
+        num_demo_participants=1,
+    ),
+    dict(
         name='Game',
         app_sequence=['Game'],
         num_demo_participants=1,
@@ -41,7 +46,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='Experiment_Test_ohne_Comprehension',
-        app_sequence=['Intro', 'Instructions', 'Game', 'Outro'],
+        app_sequence=['Intro', 'Instructions', 'Game', 'AfterGame', 'Outro'],
         num_demo_participants=1,
         use_browser_bots=True
     )

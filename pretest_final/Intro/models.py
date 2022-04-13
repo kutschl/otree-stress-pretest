@@ -71,7 +71,7 @@ class Player(BasePlayer):
     # Fehlermeldung BIC
     def BIC_error_message(self, value):
         if re.match('([a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?)', value) is None:
-            return "Der von Ihnen eingegebene BIC-Code ist ungültig."
+            return "Die IBAN ist ungültig. Bitte überprüfen Sie Ihre Eingabe."
 
     # Einverständniserklärung
     ACCEPT = models.BooleanField(

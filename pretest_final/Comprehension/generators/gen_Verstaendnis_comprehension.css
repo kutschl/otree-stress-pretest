@@ -1,0 +1,16 @@
+:target {
+    scroll-margin-top: 5rem;
+}
+
+.example-content-h-first {
+    margin-bottom: 1rem;
+}
+
+.example-content-h {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.tab-header {
+    margin-top: 1rem;
+}

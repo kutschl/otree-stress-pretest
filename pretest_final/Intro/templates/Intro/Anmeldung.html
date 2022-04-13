@@ -11,42 +11,58 @@
 Vielen Dank, dass Sie an dieser Umfrage teilnehmen. 
 Wenn Sie die Umfrage beendet haben, wird Ihnen eine Aufwandsentsch&auml;digung &uuml;berwiesen. 
 Um die &Uuml;berweisung ausf&uuml;hren zu k&ouml;nnen, ben&ouml;tigen wir die folgenden Informationen von Ihnen. 
-Diese Informationen werden <b>nur f&uuml;r die Abwicklung der Zahlung</b> verwendet und vor der Datenauswertung von dem restlichen Datensatz getrennt.
+Diese Informationen werden <b>nur f&uuml;r die Abwicklung</b> der Zahlung verwendet und vor der Datenauswertung von dem restlichen Datensatz getrennt.
 
 </p>
 
 <p>
-    <label for="VORNAME">{{form.VORNAME.label}}</label><input type="text" class="form-control" name="VORNAME" id="VORNAME"/>
+    {% form.VORNAME.label %}
+    <input type="text" class="form-control" name="VORNAME" id="VORNAME"/>
+    {% formfield_errors 'VORNAME' %}
 </p>
-
+    
 <p>
-    <label for="NACHNAME">{{form.NACHNAME.label}}</label><input type="text" class="form-control" name="NACHNAME" id="NACHNAME"/>
+    {% form.NACHNAME.label %}
+    <input type="text" class="form-control" name="NACHNAME" id="NACHNAME"/>
+    {% formfield_errors 'NACHNAME' %}
 </p>
-
+    
 <p>
-    <label for="STRASSE">{{form.STRASSE.label}}</label><input type="text" class="form-control" name="STRASSE" id="STRASSE"/>
+    {% form.STRASSE.label %}
+    <input type="text" class="form-control" name="STRASSE" id="STRASSE"/>
+    {% formfield_errors 'STRASSE' %}
 </p>
-
+    
 <p>
-    <label for="PLZ">{{form.PLZ.label}}</label><input type="number" class="form-control" name="PLZ" id="PLZ"/>
+    {% form.PLZ.label %}
+    <input type="number" class="form-control" name="PLZ" id="PLZ"/>
+    {% formfield_errors 'PLZ' %}
 </p>
-
+    
 <p>
-    <label for="STADT">{{form.STADT.label}}</label><input type="text" class="form-control" name="STADT" id="STADT"/>
+    {% form.STADT.label %}
+    <input type="text" class="form-control" name="STADT" id="STADT"/>
+    {% formfield_errors 'STADT' %}
 </p>
-
+    
 <p>
-    <label for="EMAIL">{{form.EMAIL.label}}</label><input type="email" class="form-control" name="EMAIL" id="EMAIL"/>
+    {% form.EMAIL.label %}
+    <input type="email" class="form-control" name="EMAIL" id="EMAIL"/>
+    {% formfield_errors 'EMAIL' %}
 </p>
-
+    
 <p>
-    <label for="IBAN">{{form.IBAN.label}}</label><input type="text" class="form-control" name="IBAN" id="IBAN"/>
+    {% form.IBAN.label %}
+    <input type="text" class="form-control" name="IBAN" id="IBAN"/>
+    {% formfield_errors 'IBAN' %}
 </p>
-
+    
 <p>
-    <label for="BIC">{{form.BIC.label}}</label><input type="text" class="form-control" name="BIC" id="BIC"/>
+    {% form.BIC.label %}
+    <input type="text" class="form-control" name="BIC" id="BIC"/>
+    {% formfield_errors 'BIC' %}
 </p>
-
+    
 <div class="otree-next" id="otree-next">
     
 <p>
