@@ -7,6 +7,19 @@ OFFEN
 - Zwischenfragen: Bilder vergrößern
 - Zwischenfragen: Screen pro Frage, Generator anpassen
 - Wording-final zu ende machen
+- Zufällige Reihenfolge von Tabellen:
+
+    import random
+    d = {
+         "a": "ACAT",
+        "b": "ACTG",
+         "c": "ACCC"
+     }
+    print(d)
+    shuffled = list(d.values())
+    random.shuffle(shuffled)
+    a = dict(zip(d, shuffled))
+    print(a)
 - Server
 
 

@@ -77,6 +77,8 @@ def codeHtml(b, t, a):
     dtable_b4_title = 'Option B: <br/> Sichere Auszahlung'
     Number = f'Constants.forms_tabellen.B{b}_{a}{t}.Number'
     Numbering = f'Constants.forms_tabellen.B{b}_{a}{t}.Numbering'
+    #todo use Typ and Number maybe?
+    Typ = f'Constants.forms_tabellen.B{b}_{a}{t}.Typ'
     p1 = f'Constants.forms_tabellen.B{b}_{a}{t}.A.p1'
     p2 = f'Constants.forms_tabellen.B{b}_{a}{t}.A.p2'
     x1 = f'Constants.forms_tabellen.B{b}_{a}{t}.A.x1'

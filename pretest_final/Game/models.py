@@ -80,6 +80,7 @@ def getTable(block: int, table: int, typ: str) -> dict:
         'Numbering': np.arange(1, 21 + 1).tolist(),
         'A': getOptionA(data, block-1, table-1),
         'B': getOptionB(data, block-1, table-1),
+        'Typ': typ,
         'ASC': data[block-1]['asc'][table-1],
         'Choice': [
             [1, 'A'],
