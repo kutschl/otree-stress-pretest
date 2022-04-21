@@ -7,15 +7,65 @@
 
 
 <p>
-    Endowment: {{participant.vars.endowment}}, Payoff: {{participant.vars.payoff}}, Typ: {{participant.vars.payoff_rd_typ}}, Block: {{participant.vars.payoff_rd_block}}, Entscheidung: {{participant.vars.payoff_rd_decision}}, Ihre Entscheidung: {{participant.vars.payoff_player_decision}}
+    
+Sie erhalten eine <b>Auszahlung in H&ouml;he von {%participant.vars.payoff%}.</b>
+
 </p>
 
 <p>
-    Sie erhalten Ihre Auszahlung innerhalb der n&auml;chsten Tage per &Uuml;berweisung. Bitte kontaktieren Sie <a href="mailto:schulzetilling@uni-bonn.de">schulzetilling@uni-bonn.de</a>, falls Sie weitere Fragen zu dem Experiment oder Ihrer &Uuml;berweisung haben sollten.
+    
+Die f&uuml;r Ihre Auszahlung relevante Entscheidung war die folgende: 
+
+</p>
+
+<ul style="margin-top: -0.5rem">
+     <li style="margin-bottom: 0.25rem">
+          Teil: 
+          {%participant.vars.payoff_rd_block%}
+     </li>
+     <li style="margin-bottom: 0.25rem">
+          Tabelle:
+          {% if participant.vars.payoff_rd_typ == 'GAIN'%}
+          Gewinnsituation
+          {% endif %}
+          {% if participant.vars.payoff_rd_typ == 'LOSS'%}
+          Verlustsituation
+          {% endif %}
+          {%participant.vars.payoff_rd_table%}
+     </li>
+     <li style="margin-bottom: 0.25rem">
+          Zeile:
+          {%participant.vars.payoff_rd_decision%}
+     </li>
+     <li style="margin-bottom: 0.25rem">
+          Ihre Entscheidung: 
+          
+          {% if participant.vars.payoff_player_decision == 1%}
+          Lotterie (Option A)
+          {% endif %}
+          
+          {% if participant.vars.payoff_player_decision == 2%}
+              {% if participant.vars.payoff_rd_typ == 'GAIN'%}
+              Sichere Auszahlung (Option B)
+              {% endif %}
+              {% if participant.vars.payoff_rd_typ == 'LOSS'%}
+              Sicherer Verlust (Option B)
+              {% endif %}
+          {% endif %}
+     </li>
+</ul>
+
+<p>
+    
+Sie erhalten Ihre Auszahlung innerhalb der n&auml;chsten Wochen per &Uuml;berweisung. 
+Bitte kontaktieren Sie <a href="mailto:schulzetilling@uni-bonn.de">schulzetilling@uni-bonn.de</a>, falls Sie weitere Fragen zu dem Experiment oder Ihrer &Uuml;berweisung haben sollten. 
+
 </p>
 
 <p>
-    Vielen Dank f&uuml;r Ihre Teilnahme am Experiment! Sie k&ouml;nnen das Browserfenster nun schlie&szlig;en.
+    
+Vielen Dank f&uuml;r Ihre Teilnahme am Experiment! Sie k&ouml;nnen das Browserfenster nun schlie&szlig;en. 
+
 </p>
 
 

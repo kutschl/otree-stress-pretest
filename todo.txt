@@ -5,12 +5,14 @@ server
 
 comprehension
 - fragen
-- wording von example
 - Comprehension: Aufsteigend, Fragen: Absteigend
+- weiter mit der restlichen ufmrage button
 
 game
 - texte vor den blöcken und gewinn/verlustabschnitten
 
+intro
+- autofill bei fehler
 
 
 - Zufällige Reihenfolge von Tabellen:
@@ -29,6 +31,7 @@ game
 
 
 DONE
+X wording von comprehension example
 X Wording-final zu ende machen
 X Tabelle: Lotterie statt Risikolotterie
 X Tabellen: Minuszeichen weg

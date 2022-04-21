@@ -15,7 +15,7 @@ css_table = open('gen_ExampleTable_table.css').read()
 # --------------------------------------------
 
 
-def codeHTML(type, select_a, asc):
+def codeExampleTableInput(type, select_a, asc):
 
     # INITS
     p1 = None
@@ -89,11 +89,16 @@ def codeHTML(type, select_a, asc):
 
     # Table B3: Entscheidung
     dtable_b3_rows = ''
-    for i in np.arange(0, 21, 1):
+    for i in np.arange(0, select_a, 1):
         if type == "GAIN":
-            dtable_b3_rows = dtable_b3_rows + f'<tr class="dtable-b3-tr"><td>A</td><td><input required class="form-check-input {"gain"}-example-table" value="1" type="radio" id="EXAMPLE_GAIN_{i+1}-0" name="EXAMPLE_GAIN_{i+1}"/></td><td><input required class="form-check-input {"gain"}-example-table" type="radio" value="2" id="EXAMPLE_GAIN_{i+1}-1" name="EXAMPLE_GAIN_{i+1}"/></td><td>B</td></tr>\n'
+            dtable_b3_rows = dtable_b3_rows + f'<tr class="dtable-b3-tr"><td>A</td><td><input required class="form-check-input {"gain"}-example-table" value="1" type="radio" id="EXAMPLE_GAIN_{i+1}-0" name="EXAMPLE_GAIN_{i+1}"/></td><td><input required class="form-check-input {"gain"}-example-table" type="radio" value="2" id="EXAMPLE_GAIN_{i+1}-1" name="EXAMPLE_GAIN_{i+1}" checked/></td><td>B</td></tr>\n'
         if type == "LOSS":
-            dtable_b3_rows = dtable_b3_rows + f'<tr class="dtable-b3-tr"><td>A</td><td><input required class="form-check-input {"loss"}-example-table" value="1" type="radio" id="EXAMPLE_LOSS_{i+1}-0" name="EXAMPLE_LOSS_{i+1}"/></td><td><input required class="form-check-input {"loss"}-example-table" type="radio" value="2" id="EXAMPLE_LOSS_{i+1}-1" name="EXAMPLE_LOSS_{i+1}"/></td><td>B</td></tr>\n'
+            dtable_b3_rows = dtable_b3_rows + f'<tr class="dtable-b3-tr"><td>A</td><td><input required class="form-check-input {"loss"}-example-table" value="1" type="radio" id="EXAMPLE_LOSS_{i+1}-0" name="EXAMPLE_LOSS_{i+1}" checked/></td><td><input required class="form-check-input {"loss"}-example-table" type="radio" value="2" id="EXAMPLE_LOSS_{i+1}-1" name="EXAMPLE_LOSS_{i+1}"/></td><td>B</td></tr>\n'
+    for i in np.arange(select_a, 21, 1):
+        if type == "GAIN":
+            dtable_b3_rows = dtable_b3_rows + f'<tr class="dtable-b3-tr"><td>A</td><td><input required class="form-check-input {"gain"}-example-table" value="1" type="radio" id="EXAMPLE_GAIN_{i+1}-0" name="EXAMPLE_GAIN_{i+1}" checked/></td><td><input required class="form-check-input {"gain"}-example-table" type="radio" value="2" id="EXAMPLE_GAIN_{i+1}-1" name="EXAMPLE_GAIN_{i+1}"/></td><td>B</td></tr>\n'
+        if type == "LOSS":
+            dtable_b3_rows = dtable_b3_rows + f'<tr class="dtable-b3-tr"><td>A</td><td><input required class="form-check-input {"loss"}-example-table" value="1" type="radio" id="EXAMPLE_LOSS_{i+1}-0" name="EXAMPLE_LOSS_{i+1}"/></td><td><input required class="form-check-input {"loss"}-example-table" type="radio" value="2" id="EXAMPLE_LOSS_{i+1}-1" name="EXAMPLE_LOSS_{i+1}" checked/></td><td>B</td></tr>\n'
     # --------------------------------------------
     dtable_b3_title = 'Ihre Entscheidung'
     dtable_b3 = f"""
@@ -124,9 +129,9 @@ def codeHTML(type, select_a, asc):
         b_step = (-1)*(data_gain_example['x1'][0] - data_gain_example['x2'][0])/20
         b_stop = data_gain_example['x2'][0] + b_step
     if type == "LOSS":
-        b_start = data_loss_example['x1'][0]
-        b_step = (-1)*(data_loss_example['x1'][0] - data_loss_example['x2'][0])/20
-        b_stop = data_loss_example['x2'][0] + b_step
+        b_start = data_loss_example['x2'][0]
+        b_step = (-1)*(data_loss_example['x2'][0] - data_loss_example['x1'][0])/20
+        b_stop = data_loss_example['x1'][0] + b_step
     # --------------------------------------------
     dtable_b4_rows_data = []
     for i in np.arange(b_start, b_stop, b_step):
@@ -177,13 +182,12 @@ def codeHTML(type, select_a, asc):
     # OUTPUT
     f = ''
     if type == 'GAIN':
-        f = open('gen_ExampleGainTable.html', 'w')
+        f = open('gen_ExampleGainTableInput.html', 'w')
     if type == 'LOSS':
-        f = open('gen_ExampleLossTable.html', 'w')
+        f = open('gen_ExampleLossTableInput.html', 'w')
     f.write(dtable)
     f.close()
 
 
-
-codeHTML('GAIN', 7, False)
-codeHTML('LOSS', 10, False)
+codeExampleTableInput('GAIN', 8, False)
+codeExampleTableInput('LOSS', 5, False)

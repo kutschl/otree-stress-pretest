@@ -1,6 +1,6 @@
 from generators import HtmlGenerator as html
 # INITS
-title = f'Ende: Auszahlungsrelevante Entscheidungen:'
+title = f'Ende: Auszahlungsrelevante Entscheidungen'
 filename = 'SetPayoff'
 url = f'../templates/Game/{filename}.html'
 
