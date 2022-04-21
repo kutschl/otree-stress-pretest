@@ -3,16 +3,8 @@ server
 - reset db
 - install xlrd
 
-comprehension
-- fragen
-- Comprehension: Aufsteigend, Fragen: Absteigend
-- weiter mit der restlichen ufmrage button
-
 game
 - texte vor den blöcken und gewinn/verlustabschnitten
-
-intro
-- autofill bei fehler
 
 
 - Zufällige Reihenfolge von Tabellen:
@@ -31,6 +23,10 @@ intro
 
 
 DONE
+X intro autofill bei fehler
+X fragen
+X Comprehension: Aufsteigend, Fragen: Absteigend
+X weiter mit der restlichen ufmrage button
 X wording von comprehension example
 X Wording-final zu ende machen
 X Tabelle: Lotterie statt Risikolotterie

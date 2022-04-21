@@ -15,54 +15,15 @@ Diese Informationen werden <b>nur f&uuml;r die Abwicklung</b> der Zahlung verwen
 
 </p>
 
-<p>
-    {% form.VORNAME.label %}
-    <input type="text" class="form-control" name="VORNAME" id="VORNAME"/>
-    {% formfield_errors 'VORNAME' %}
-</p>
-    
-<p>
-    {% form.NACHNAME.label %}
-    <input type="text" class="form-control" name="NACHNAME" id="NACHNAME"/>
-    {% formfield_errors 'NACHNAME' %}
-</p>
-    
-<p>
-    {% form.STRASSE.label %}
-    <input type="text" class="form-control" name="STRASSE" id="STRASSE"/>
-    {% formfield_errors 'STRASSE' %}
-</p>
-    
-<p>
-    {% form.PLZ.label %}
-    <input type="number" class="form-control" name="PLZ" id="PLZ"/>
-    {% formfield_errors 'PLZ' %}
-</p>
-    
-<p>
-    {% form.STADT.label %}
-    <input type="text" class="form-control" name="STADT" id="STADT"/>
-    {% formfield_errors 'STADT' %}
-</p>
-    
-<p>
-    {% form.EMAIL.label %}
-    <input type="email" class="form-control" name="EMAIL" id="EMAIL"/>
-    {% formfield_errors 'EMAIL' %}
-</p>
-    
-<p>
-    {% form.IBAN.label %}
-    <input type="text" class="form-control" name="IBAN" id="IBAN"/>
-    {% formfield_errors 'IBAN' %}
-</p>
-    
-<p>
-    {% form.BIC.label %}
-    <input type="text" class="form-control" name="BIC" id="BIC"/>
-    {% formfield_errors 'BIC' %}
-</p>
-    
+{% formfield player.VORNAME %}
+{% formfield player.NACHNAME %}
+{% formfield player.STRASSE %}
+{% formfield player.PLZ %}
+{% formfield player.STADT %}
+{% formfield player.EMAIL %}
+{% formfield player.IBAN %}
+{% formfield player.BIC %}
+
 <div class="otree-next" id="otree-next">
     
 <p>

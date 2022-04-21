@@ -16,29 +16,25 @@ Diese Informationen werden <b>nur für die Abwicklung</b> der Zahlung verwendet 
 """
 p = html.paragraph(p)
 
-fields = [
-    ['VORNAME', 'text'],
-    ['NACHNAME', 'text'],
-    ['STRASSE', 'text'],
-    ['PLZ', 'number'],
-    ['STADT', 'text'],
-    ['EMAIL', 'email'],
-    ['IBAN', 'text'],
-    ['BIC', 'text']
-]
+f_vorname = "{% formfield player.VORNAME %}"
+f_nachname = "{% formfield player.NACHNAME %}"
+f_strasse = "{% formfield player.STRASSE %}"
+f_plz = "{% formfield player.PLZ %}"
+f_stadt = "{% formfield player.STADT %}"
+f_email = "{% formfield player.EMAIL %}"
+f_iban = "{% formfield player.IBAN %}"
+f_bic = "{% formfield player.BIC %}"
+form = f"""
+{f_vorname}
+{f_nachname}
+{f_strasse}
+{f_plz}
+{f_stadt}
+{f_email}
+{f_iban}
+{f_bic}
+"""
 
-form = ''
-for field in fields:
-    form = form + f"""
-<p>
-    {{% form.{field[0]}.label %}}
-    <input type="{field[1]}" class="form-control" name="{field[0]}" id="{field[0]}"/>
-    {{% formfield_errors '{field[0]}' %}}
-</p>
-    """
-
-
-# NEXT BUTTON
 p_next = "Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren."
 p_next = html.paragraph(p_next)
 button_next = html.next_button()
