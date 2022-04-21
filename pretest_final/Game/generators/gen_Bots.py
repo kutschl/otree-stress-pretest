@@ -35,16 +35,13 @@ def codeBotsBlock(block_number: int):
 
 def codeBotsZwischenfragen():
     # INITS
-    order = [[7, 4, 5, 9], [10, 12, 8, 15], [11, 13, 2, 16], [14, 1, 3, 6]]
-    pages = 4
+    order = [7, 4, 5, 9, 10, 12, 8, 15, 11, 13, 2, 16, 14, 1, 3, 6]
 
     # GENERATOR
-    code = 'yield pages.ZwischenfragenIntro, \n'
-    for page in np.arange(1, pages+1):
-        code_dict = ''
-        for question in np.arange(0, len(order[page-1])):
-            code_dict = code_dict + f'ZWISCHENFRAGE{order[page-1][question]} = 1, '
-        code = code + f'yield pages.Zwischenfragen{page}, dict({code_dict}), \n'
+    code = 'yield pages.ZwischenteilIntro, \n'
+    for page in np.arange(0, len(order)):
+        code_dict = f'ZWISCHENFRAGE{order[page]} = 1, '
+        code = code + f'yield pages.Zwischenteil{page+1}, dict({code_dict}), \n'
     return code
 
 

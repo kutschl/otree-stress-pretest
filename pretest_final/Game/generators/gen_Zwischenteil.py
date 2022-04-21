@@ -3,23 +3,23 @@ import numpy as np
 import random as rd
 
 # order = randomizeOrder()
-order = [[7, 4, 5, 9], [10, 12, 8, 15], [11, 13, 2, 16], [14, 1, 3, 6]]
+order = [7, 4, 5, 9, 10, 12, 8, 15, 11, 13, 2, 16, 14, 1, 3, 6]
 
 
-def codeModelsZwischenfragenFields():
+def codeModelsZwischenteilFields():
     code = '# ZWISCHENFRAGEN \n'
     for question in np.arange(1, 16+1, 1):
         code = code + f'ZWISCHENFRAGE{question} = ZwischenfragenField({question}) \n'
     return print(code)
-# codeModelsZwischenfragenFields()
+# codeModelsZwischenteilFields()
 
 
-def codeModelsZwischenfragenForms():
+def codeModelsZwischenteilForms():
     code = ''
     for question in np.arange(1, 16+1, 1):
         code = code + f'"ZWISCHENFRAGE{question}": getZwischenfragen({question}), \n'
     return print(code)
-# codeModelsZwischenfragenForms()
+# codeModelsZwischenteilForms()
 
 
 def randomizeOrder():
@@ -37,33 +37,29 @@ def randomizeOrder():
 # randomizeOrder()
 
 
-def codeHtml(page: int, order: list):
+def codeHtml(question: int, order: list):
     # INITS
-    title = f'Zwischenfragen ({page}/4)'
-    filename = f'Zwischenfragen{page}'
+    title = f'Zwischenteil ({question+1}/16)'
+    filename = f'Zwischenteil{question+1}'
     url = f'../templates/Game/{filename}.html'
 
-    css_Zwischenfragen = open('gen_Zwischenfragen.css').read()
-    css_Zwischenfragen = html.style(css_Zwischenfragen)
+    css_Zwischenteil = open('gen_Zwischenteil.css').read()
+    css_Zwischenteil = html.style(css_Zwischenteil)
 
     # CONTENT
-    pointer = 1
-    for question in np.arange(0, len(order[page-1]), 1):
-        globals()[f'div_form{pointer}'] = f"""        
-        <div class="zwischenfrage-form">
-            <div class="zwischenfrage-label">
-                {{% form.ZWISCHENFRAGE{order[page-1][question]}.label %}}
+    div_form = f"""        
+        <div class="zwischenteil-form">
+            <div class="zwischenteil-label">
+                {{% form.ZWISCHENFRAGE{order[question]}.label %}}
             </div>
-            {{% if Constants.forms_zwischenfragen.ZWISCHENFRAGE{order[page-1][question]}.image %}}
-            <img src="{{% static 'images/zwischenfrage{order[page-1][question]}.png' %}}" alt="Zwischenfrage {order[page-1][question]}" class="zwischenfrage-img"/>
+            {{% if Constants.forms_zwischenfragen.ZWISCHENFRAGE{order[question]}.image %}}
+            <img src="{{% static 'images/zwischenfrage{order[question]}.png' %}}" alt="Zwischenteil: Frage {order[question]}" class="zwischenteil-img"/>
             {{% endif%}}
-            <div class="zwischenfrage-choices">
-                {{% form.ZWISCHENFRAGE{order[page-1][question]} %}}
+            <div class="zwischenteil-choices">
+                {{% form.ZWISCHENFRAGE{order[question]} %}}
             </div>
         </div>
         """
-        pointer = pointer + 1
-
 
 
     # NEXT BUTTON
@@ -78,10 +74,11 @@ def codeHtml(page: int, order: list):
     """
 
     # OUTPUT
-    code = div_form1 + div_form2 + div_form3 + div_form4 + div_next + css_Zwischenfragen
+    code = div_form + div_next + css_Zwischenteil
     html.code(title, code, url)
-# for page in np.arange(1, 4+1, 1):
-#     codeHtml(page, order)
+
+for question in np.arange(0, 16, 1):
+    codeHtml(question, order)
 
 
 

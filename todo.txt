@@ -1,18 +1,24 @@
-OFFEN
-- Tabelle: Lotterie statt Risikolotterie
-- Tabellen: Minuszeichen weg
-- Trennung von Gain und Loss, bei Generatoren und Tabellen
-- Verlusttabelle: sicherer Verlust statt sichere Auszahlung, Verlust bei Lotterie
+server
+- automatic upload
+- reset db
+- install xlrd
+
+comprehension
+- fragen
+- wording von example
 - Comprehension: Aufsteigend, Fragen: Absteigend
-- Zwischenfragen: Bilder vergrößern
-- Zwischenfragen: Screen pro Frage, Generator anpassen
-- Wording-final zu ende machen
+
+game
+- texte vor den blöcken und gewinn/verlustabschnitten
+
+
+
 - Zufällige Reihenfolge von Tabellen:
 
     import random
     d = {
          "a": "ACAT",
-        "b": "ACTG",
+         "b": "ACTG",
          "c": "ACCC"
      }
     print(d)
@@ -20,10 +26,16 @@ OFFEN
     random.shuffle(shuffled)
     a = dict(zip(d, shuffled))
     print(a)
-- Server
 
 
 DONE
+X Wording-final zu ende machen
+X Tabelle: Lotterie statt Risikolotterie
+X Tabellen: Minuszeichen weg
+X Trennung von Gain und Loss, bei Generatoren und Tabellen
+X Verlusttabelle: sicherer Verlust statt sichere Auszahlung, Verlust bei Lotterie
+X Zwischenfragen: Bilder vergrößern
+X Zwischenfragen: Screen pro Frage, Generator anpassen
 X Verständnisfragen (https://www.otreehub.com/projects/back-button/), Reiter
 X errors für anmeldung formfield bic iban email
 X Wording Outro

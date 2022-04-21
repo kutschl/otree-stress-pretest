@@ -63,21 +63,24 @@ def codeHtml(b, t, a):
     title = ''
     filename = ''
     if a == 'GAIN':
-        title = f'Block {b} Gewinnsituation {t}'
+        title = f'Teil {b}: Gewinnsituation ({t}/20)'
         filename = f'../templates/Game/Block{b}GewinnTabelle{t}.html'
     if a == 'LOSS':
-        title = f'Block {b} Verlustsituation {t}'
+        title = f'Teil {b}: Verlustsituation ({t}/20)'
         filename = f'../templates/Game/Block{b}VerlustTabelle{t}.html'
-    code = ''
 
-    # DYNAMIC
+    # CONTENT
     dtable_b1_title = ''
-    dtable_b2_title = 'Option A: <br/> Risikolotterie'
+    dtable_b2_title = 'Option A: <br/> Lotterie'
     dtable_b3_title = 'Ihre Entscheidung'
-    dtable_b4_title = 'Option B: <br/> Sichere Auszahlung'
+    dtable_b4_title_var = ''
+    if a == 'GAIN':
+        dtable_b4_title_var = "Sichere Auszahlung"
+    if a == 'LOSS':
+        dtable_b4_title_var = "Sicherer Verlust"
+    dtable_b4_title = f'Option B: <br/> {dtable_b4_title_var}'
     Number = f'Constants.forms_tabellen.B{b}_{a}{t}.Number'
     Numbering = f'Constants.forms_tabellen.B{b}_{a}{t}.Numbering'
-    #todo use Typ and Number maybe?
     Typ = f'Constants.forms_tabellen.B{b}_{a}{t}.Typ'
     p1 = f'Constants.forms_tabellen.B{b}_{a}{t}.A.p1'
     p2 = f'Constants.forms_tabellen.B{b}_{a}{t}.A.p2'
@@ -86,7 +89,12 @@ def codeHtml(b, t, a):
     B = f'Constants.forms_tabellen.B{b}_{a}{t}.B'
     ASC = f'Constants.forms_tabellen.B{b}_{a}{t}.ASC'
 
-    # STATIC
+    p_task = """
+    Bitte wählen Sie für jede Zeile eine der beiden Entscheidungsoptionen aus. 
+    Sobald Sie überall eine Entscheidung getroffen haben, klicken Sie bitte auf <em>Weiter</em>. 
+    """
+    p_task = html.paragraph(p_task)
+
     dtable_b1 = f"""
     <!--Tabelle B1: Nummerierung-->
     <table class="dtable-b1">
@@ -105,6 +113,12 @@ def codeHtml(b, t, a):
     </table>
     """
 
+    dtable_b2_var = ''
+    if a == 'LOSS':
+        dtable_b2_var = 'Verlust'
+    if a == 'GAIN':
+        dtable_b2_var = 'Auszahlung'
+
     dtable_b2 = f"""
     <!--Tabelle B2: Option A-->
     <table class="dtable-b2">
@@ -116,10 +130,10 @@ def codeHtml(b, t, a):
       <tr class="dtable-b2-tr">
         <td>
           <div>
-            <p>Auszahlung von {{%{x1}%}}</p>
-            <p>mit Wahrscheinlichkeit {{%{p1}%}}</p>
-            <p>und Auszahlung von {{%{x2}%}}</p>
-            <p>mit Wahrscheinlichkeit {{%{p2}%}}</p>
+            <p>{dtable_b2_var} von {{%{x1}%}}</p>
+            <p>mit {{%{p1}%}} Wahrscheinlichkeit</p>
+            <p>und {dtable_b2_var} von {{%{x2}%}}</p>
+            <p>mit {{%{p2}%}} Wahrscheinlichkeit</p>
           </div>
         </td>
       </tr>
@@ -185,18 +199,15 @@ def codeHtml(b, t, a):
     script = html.script(javascript_autofill)
 
     # NEXT BUTTON
-    p_next = "Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren."
-    p_next = html.paragraph(p_next)
     button_next = html.next_button()
     div_next = f"""
     <div class="{'otree-next'}" id="{'otree-next'}">
-        {p_next}
         {button_next}
     </div>
     """
 
     # OUTPUT
-    code = style + dtable + script + div_next
+    code = style + p_task + dtable + script + div_next
     html.code(title, code, filename)
 for block in np.arange(1, blocks + 1, 1):
     for gain_table in np.arange(1, gain_tables_per_block + 1, 1):

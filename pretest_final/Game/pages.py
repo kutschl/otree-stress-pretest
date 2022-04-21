@@ -205,28 +205,88 @@ class Block1VerlustTabelle20(Page):
     form_fields = 'B1_LOSS20_D1', 'B1_LOSS20_D2', 'B1_LOSS20_D3', 'B1_LOSS20_D4', 'B1_LOSS20_D5', 'B1_LOSS20_D6', 'B1_LOSS20_D7', 'B1_LOSS20_D8', 'B1_LOSS20_D9', 'B1_LOSS20_D10', 'B1_LOSS20_D11', 'B1_LOSS20_D12', 'B1_LOSS20_D13', 'B1_LOSS20_D14', 'B1_LOSS20_D15', 'B1_LOSS20_D16', 'B1_LOSS20_D17', 'B1_LOSS20_D18', 'B1_LOSS20_D19', 'B1_LOSS20_D20', 'B1_LOSS20_D21', 
     
 
-class ZwischenfragenIntro(Page):
+class ZwischenteilIntro(Page):
     pass
     
 
-class Zwischenfragen1(Page):
+class Zwischenteil1(Page):
     form_model = 'player'
-    form_fields = 'ZWISCHENFRAGE7', 'ZWISCHENFRAGE4', 'ZWISCHENFRAGE5', 'ZWISCHENFRAGE9', 
+    form_fields = ['ZWISCHENFRAGE7']
     
 
-class Zwischenfragen2(Page):
+class Zwischenteil2(Page):
     form_model = 'player'
-    form_fields = 'ZWISCHENFRAGE10', 'ZWISCHENFRAGE12', 'ZWISCHENFRAGE8', 'ZWISCHENFRAGE15', 
+    form_fields = ['ZWISCHENFRAGE4']
     
 
-class Zwischenfragen3(Page):
+class Zwischenteil3(Page):
     form_model = 'player'
-    form_fields = 'ZWISCHENFRAGE11', 'ZWISCHENFRAGE13', 'ZWISCHENFRAGE2', 'ZWISCHENFRAGE16', 
+    form_fields = ['ZWISCHENFRAGE5']
     
 
-class Zwischenfragen4(Page):
+class Zwischenteil4(Page):
     form_model = 'player'
-    form_fields = 'ZWISCHENFRAGE14', 'ZWISCHENFRAGE1', 'ZWISCHENFRAGE3', 'ZWISCHENFRAGE6', 
+    form_fields = ['ZWISCHENFRAGE9']
+    
+
+class Zwischenteil5(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE10']
+    
+
+class Zwischenteil6(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE12']
+    
+
+class Zwischenteil7(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE8']
+    
+
+class Zwischenteil8(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE15']
+    
+
+class Zwischenteil9(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE11']
+    
+
+class Zwischenteil10(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE13']
+    
+
+class Zwischenteil11(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE2']
+    
+
+class Zwischenteil12(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE16']
+    
+
+class Zwischenteil13(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE14']
+    
+
+class Zwischenteil14(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE1']
+    
+
+class Zwischenteil15(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE3']
+    
+
+class Zwischenteil16(Page):
+    form_model = 'player'
+    form_fields = ['ZWISCHENFRAGE6']
     
 
 class Block2Intro(Page):
@@ -438,5 +498,4 @@ class SetPayoff(Page):
         self.player.setPayoff()    
 
 
-
-page_sequence = [Block1Intro, Block1GewinnTabelle1, Block1GewinnTabelle2, Block1GewinnTabelle3, Block1GewinnTabelle4, Block1GewinnTabelle5, Block1GewinnTabelle6, Block1GewinnTabelle7, Block1GewinnTabelle8, Block1GewinnTabelle9, Block1GewinnTabelle10, Block1GewinnTabelle11, Block1GewinnTabelle12, Block1GewinnTabelle13, Block1GewinnTabelle14, Block1GewinnTabelle15, Block1GewinnTabelle16, Block1GewinnTabelle17, Block1GewinnTabelle18, Block1GewinnTabelle19, Block1GewinnTabelle20, Block1VerlustTabelle1, Block1VerlustTabelle2, Block1VerlustTabelle3, Block1VerlustTabelle4, Block1VerlustTabelle5, Block1VerlustTabelle6, Block1VerlustTabelle7, Block1VerlustTabelle8, Block1VerlustTabelle9, Block1VerlustTabelle10, Block1VerlustTabelle11, Block1VerlustTabelle12, Block1VerlustTabelle13, Block1VerlustTabelle14, Block1VerlustTabelle15, Block1VerlustTabelle16, Block1VerlustTabelle17, Block1VerlustTabelle18, Block1VerlustTabelle19, Block1VerlustTabelle20, ZwischenfragenIntro, Zwischenfragen1, Zwischenfragen2, Zwischenfragen3, Zwischenfragen4, Block2Intro, Block2GewinnTabelle1, Block2GewinnTabelle2, Block2GewinnTabelle3, Block2GewinnTabelle4, Block2GewinnTabelle5, Block2GewinnTabelle6, Block2GewinnTabelle7, Block2GewinnTabelle8, Block2GewinnTabelle9, Block2GewinnTabelle10, Block2GewinnTabelle11, Block2GewinnTabelle12, Block2GewinnTabelle13, Block2GewinnTabelle14, Block2GewinnTabelle15, Block2GewinnTabelle16, Block2GewinnTabelle17, Block2GewinnTabelle18, Block2GewinnTabelle19, Block2GewinnTabelle20, Block2VerlustTabelle1, Block2VerlustTabelle2, Block2VerlustTabelle3, Block2VerlustTabelle4, Block2VerlustTabelle5, Block2VerlustTabelle6, Block2VerlustTabelle7, Block2VerlustTabelle8, Block2VerlustTabelle9, Block2VerlustTabelle10, Block2VerlustTabelle11, Block2VerlustTabelle12, Block2VerlustTabelle13, Block2VerlustTabelle14, Block2VerlustTabelle15, Block2VerlustTabelle16, Block2VerlustTabelle17, Block2VerlustTabelle18, Block2VerlustTabelle19, Block2VerlustTabelle20, SetPayoff]    
+page_sequence = [Block1Intro, Block1GewinnTabelle1, Block1GewinnTabelle2, Block1GewinnTabelle3, Block1GewinnTabelle4, Block1GewinnTabelle5, Block1GewinnTabelle6, Block1GewinnTabelle7, Block1GewinnTabelle8, Block1GewinnTabelle9, Block1GewinnTabelle10, Block1GewinnTabelle11, Block1GewinnTabelle12, Block1GewinnTabelle13, Block1GewinnTabelle14, Block1GewinnTabelle15, Block1GewinnTabelle16, Block1GewinnTabelle17, Block1GewinnTabelle18, Block1GewinnTabelle19, Block1GewinnTabelle20, Block1VerlustTabelle1, Block1VerlustTabelle2, Block1VerlustTabelle3, Block1VerlustTabelle4, Block1VerlustTabelle5, Block1VerlustTabelle6, Block1VerlustTabelle7, Block1VerlustTabelle8, Block1VerlustTabelle9, Block1VerlustTabelle10, Block1VerlustTabelle11, Block1VerlustTabelle12, Block1VerlustTabelle13, Block1VerlustTabelle14, Block1VerlustTabelle15, Block1VerlustTabelle16, Block1VerlustTabelle17, Block1VerlustTabelle18, Block1VerlustTabelle19, Block1VerlustTabelle20, ZwischenteilIntro, Zwischenteil1, Zwischenteil2, Zwischenteil3, Zwischenteil4, Zwischenteil5, Zwischenteil6, Zwischenteil7, Zwischenteil8, Zwischenteil9, Zwischenteil10, Zwischenteil11, Zwischenteil12, Zwischenteil13, Zwischenteil14, Zwischenteil15, Zwischenteil16, Block2Intro, Block2GewinnTabelle1, Block2GewinnTabelle2, Block2GewinnTabelle3, Block2GewinnTabelle4, Block2GewinnTabelle5, Block2GewinnTabelle6, Block2GewinnTabelle7, Block2GewinnTabelle8, Block2GewinnTabelle9, Block2GewinnTabelle10, Block2GewinnTabelle11, Block2GewinnTabelle12, Block2GewinnTabelle13, Block2GewinnTabelle14, Block2GewinnTabelle15, Block2GewinnTabelle16, Block2GewinnTabelle17, Block2GewinnTabelle18, Block2GewinnTabelle19, Block2GewinnTabelle20, Block2VerlustTabelle1, Block2VerlustTabelle2, Block2VerlustTabelle3, Block2VerlustTabelle4, Block2VerlustTabelle5, Block2VerlustTabelle6, Block2VerlustTabelle7, Block2VerlustTabelle8, Block2VerlustTabelle9, Block2VerlustTabelle10, Block2VerlustTabelle11, Block2VerlustTabelle12, Block2VerlustTabelle13, Block2VerlustTabelle14, Block2VerlustTabelle15, Block2VerlustTabelle16, Block2VerlustTabelle17, Block2VerlustTabelle18, Block2VerlustTabelle19, Block2VerlustTabelle20, SetPayoff]

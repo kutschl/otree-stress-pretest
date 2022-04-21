@@ -50,20 +50,17 @@ def codePagesBlock(block_number: int):
     return code
 
 
-def codePagesZwischenfragen():
+def codePagesZwischenteil():
     # INITS
-    order = [[7, 4, 5, 9], [10, 12, 8, 15], [11, 13, 2, 16], [14, 1, 3, 6]]
-    pages = 4
+    order = [7, 4, 5, 9, 10, 12, 8, 15, 11, 13, 2, 16, 14, 1, 3, 6]
 
     # GENERATOR
     code = ''
-    for page in np.arange(1, pages+1, 1):
-        page_name = f'Zwischenfragen{page}'
+    for question in np.arange(0, len(order), 1):
+        page_name = f'Zwischenteil{question+1}'
         page_sequence.append(page_name)
         form_model = 'player'
-        form_fields = ''
-        for question in np.arange(0, len(order[page-1]), 1):
-            form_fields = form_fields + f"'ZWISCHENFRAGE{order[page-1][question]}', "
+        form_fields = [f'ZWISCHENFRAGE{order[question]}']
         code = code + OtreePagesGenerator.getPageWithFields(
             page_name,
             form_model,
@@ -72,8 +69,8 @@ def codePagesZwischenfragen():
     return code
 
 
-def codePagesZwischenfragenIntro():
-    page_name = 'ZwischenfragenIntro'
+def codePagesZwischenteilIntro():
+    page_name = 'ZwischenteilIntro'
     page_sequence.append(page_name)
     return OtreePagesGenerator.getPageWithPass(page_name)
 
@@ -90,7 +87,7 @@ class {page_name}(Page):
 
 
 # OUTPUT
-pages = codePagesBlockIntro(1) + codePagesBlock(1) + codePagesZwischenfragenIntro() + codePagesZwischenfragen() + codePagesBlockIntro(2) + codePagesBlock(2) + codePagesSetPayoff()
+pages = codePagesBlockIntro(1) + codePagesBlock(1) + codePagesZwischenteilIntro() + codePagesZwischenteil() + codePagesBlockIntro(2) + codePagesBlock(2) + codePagesSetPayoff()
 OtreePagesGenerator.writePagesFile(url, imports, pages, page_sequence)
 
 

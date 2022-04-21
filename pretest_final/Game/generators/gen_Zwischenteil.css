@@ -1,14 +1,15 @@
-.zwischenfrage-form {
+.zwischenteil-form {
     margin-bottom: 2rem;
 }
-.zwischenfrage-label {
+.zwischenteil-label {
     margin-bottom: 1rem;
 }
-.zwischenfrage-img {
+.zwischenteil-img {
     margin-bottom: 1rem;
-    width: 20rem;
+    max-width: 40rem;
+    min-width: 30rem;
     border: 2px solid black;
 }
-.zwischenfrage-choices {
+.zwischenteil-choices {
     margin-bottom: 1rem;
 }

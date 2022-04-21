@@ -1,7 +1,7 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}Block 1 Gewinnsituation 18{% endblock %}
+{% block title %}Teil 1: Gewinnsituation (18/20){% endblock %}
 
 {% block content %}
 
@@ -130,6 +130,13 @@
 
 </style>
 
+<p>
+    
+    Bitte w&auml;hlen Sie f&uuml;r jede Zeile eine der beiden Entscheidungsoptionen aus. 
+    Sobald Sie &uuml;berall eine Entscheidung getroffen haben, klicken Sie bitte auf <em>Weiter</em>. 
+    
+</p>
+
     <div class="dtable">
     
     <div class="dtable-b">
@@ -155,16 +162,16 @@
     <table class="dtable-b2">
       <tr class="dtable-b2-tr1">
         <td>
-          <span>Option A: <br/> Risikolotterie</span>
+          <span>Option A: <br/> Lotterie</span>
         </td>
       </tr>
       <tr class="dtable-b2-tr">
         <td>
           <div>
             <p>Auszahlung von {%Constants.forms_tabellen.B1_GAIN18.A.x1%}</p>
-            <p>mit Wahrscheinlichkeit {%Constants.forms_tabellen.B1_GAIN18.A.p1%}</p>
+            <p>mit {%Constants.forms_tabellen.B1_GAIN18.A.p1%} Wahrscheinlichkeit</p>
             <p>und Auszahlung von {%Constants.forms_tabellen.B1_GAIN18.A.x2%}</p>
-            <p>mit Wahrscheinlichkeit {%Constants.forms_tabellen.B1_GAIN18.A.p2%}</p>
+            <p>mit {%Constants.forms_tabellen.B1_GAIN18.A.p2%} Wahrscheinlichkeit</p>
           </div>
         </td>
       </tr>
@@ -390,11 +397,6 @@ $(document).ready(function() {
 </script>
 
     <div class="otree-next" id="otree-next">
-        
-<p>
-    Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren.
-</p>
-
         {% next_button %}
     </div>
     

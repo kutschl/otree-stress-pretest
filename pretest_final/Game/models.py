@@ -3,7 +3,7 @@ import pandas as pd
 import random as rd
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
-    Currency as c, currency_range
+    Currency as c
 )
 
 doc = ""
@@ -19,7 +19,7 @@ def loadLotteries(url: str, sheet: str):
         d[col] = []
         for row in np.arange(0, len(f), 1):
             d[col].append(f[col].loc[row])
-    for row in np.arange(0, len(f), 1):
+    for _ in np.arange(0, len(f), 1):
         d['type'].append(sheet)
     return d
 
@@ -33,7 +33,7 @@ def separateLotteries(d: dict) -> list[dict]:
     d2 = dict(d)
     d1['asc'] = []
     d2['asc'] = []
-    for i in np.arange(0, len(d[list(d.keys())[0]]), 1):
+    for _ in np.arange(0, len(d[list(d.keys())[0]]), 1):
         randomizer = rd.choice([True, False])
         if randomizer is True:
             d1['asc'].append(randomizer)
@@ -49,24 +49,32 @@ loss_data = separateLotteries(loss_data)
 
 
 def getOptionA(data: list[dict], block: int, table: int) -> dict:
+    p1 = data[block]['p'][table]
+    x1 = data[block]['x1'][table]
+    x2 = data[block]['x2'][table]
+    if data[block]['type'][table] == 'LOSS':
+        x1 = x1*(-1)
+        x2 = x2*(-1)
     return {
-        'p1': str("{0:.0%}".format(data[block]['p'][table])),
-        'p2': str("{0:.0%}".format(1-data[block]['p'][table])),
-        'x1': str("{:.2f}".format(data[block]['x1'][table])) + str(' Punkte'),
-        'x2': str("{:.2f}".format(data[block]['x2'][table])) + str(' Punkte')
+        'p1': str("{0:.0%}".format(p1)),
+        'p2': str("{0:.0%}".format(1-p1)),
+        'x1': str("{:.2f}".format(x1)) + str(' Punkten'),
+        'x2': str("{:.2f}".format(x2)) + str(' Punkten')
     }
 
 
 def getOptionB(data: list[dict], block: int, table: int) -> list:
-    li = []
+    option_b = []
     b_start = data[block]['x1'][table]
     b_step = (-1)*(data[block]['x1'][table] - data[block]['x2'][table])/20
     b_stop = data[block]['x2'][table] + b_step
     for i in np.arange(b_start, b_stop, b_step):
-        li.append(str("{:.2f}".format(i)) + str(' Punkte'))
+        if data[block]['type'][table] == 'LOSS':
+            i = i*(-1)
+        option_b.append(str("{:.2f}".format(i)) + str(' Punkte'))
     if data[block]['asc'][table] is True:
-        li.reverse()
-    return li
+        option_b.reverse()
+    return option_b
 
 
 def getTable(block: int, table: int, typ: str) -> dict:
