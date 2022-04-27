@@ -58,12 +58,16 @@ class {page_name}(Page):
         return dict(
             BLOCK_NUMBER={block},
             TABLE_NUMBER={table},
-            LOTTERY=int(self.player.participant.vars['block{block}'][{table-1}]['NUMBER']),
             TYPE=self.player.participant.vars['block{block}'][{table-1}]['TYPE'],
             ORDER=self.player.participant.vars['block{block}'][{table-1}]['ORDER'],
         )
         
     def before_next_page(self):
+        self.player.BLOCK{block}_TABLE{table}_LOTTERY = self.player.participant.vars['block{block}'][{table-1}]['NUMBER']
+        self.player.BLOCK{block}_TABLE{table}_TYPE = self.player.participant.vars['block{block}'][{table-1}]['TYPE']
+        self.player.BLOCK{block}_TABLE{table}_ORDER = self.player.participant.vars['block{block}'][{table-1}]['ORDER']
+      
+        
         if (self.player.participant.vars['payoff_random_block'] == {block}) and self.player.participant.vars['payoff_random_table'] == {table}: 
             self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK{block}_TABLE{table}_SP_OPTION
             self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK{block}_TABLE{table}_SP_DECISION
