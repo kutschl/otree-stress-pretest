@@ -31,7 +31,7 @@ SESSION_CONFIGS = [
     dict(
         name='Game',
         app_sequence=['Game'],
-        num_demo_participants=1,
+        num_demo_participants=3,
     ),
     dict(
         name='Outro',
@@ -43,6 +43,11 @@ SESSION_CONFIGS = [
         app_sequence=['Game', 'Outro'],
         num_demo_participants=50,
         use_browser_bots=True
+    ),
+    dict(
+        name='Game_Outro',
+        app_sequence=['Game', 'Outro'],
+        num_demo_participants=50,
     ),
     dict(
         name='Experiment',

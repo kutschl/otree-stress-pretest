@@ -8,13 +8,12 @@ url = f'../templates/Outro/{filename}.html'
 
 
 # CONTENT
-endowment = 'participant.vars.endowment'
 payoff = 'participant.vars.payoff'
-payoff_rd_typ = 'participant.vars.payoff_rd_typ'
-payoff_rd_block = 'participant.vars.payoff_rd_block'
-payoff_rd_table = 'participant.vars.payoff_rd_table'
-payoff_rd_decision = 'participant.vars.payoff_rd_decision'
-payoff_player_decision = 'participant.vars.payoff_player_decision'
+payoff_table_type = 'participant.vars.payoff_table_type'
+payoff_rd_block = 'participant.vars.payoff_random_block'
+payoff_rd_table = 'participant.vars.payoff_random_table'
+payoff_rd_decision = 'participant.vars.payoff_random_decision'
+payoff_player_option = 'participant.vars.payoff_player_option'
 p_payoff = f"""
 Sie erhalten eine <b>Auszahlung in Höhe von {{%{payoff}%}}.</b>
 """
@@ -33,10 +32,10 @@ li_payoff_details = f"""
      </li>
      <li style="margin-bottom: 0.25rem">
           Tabelle:
-          {{% if {payoff_rd_typ} == 'GAIN'%}}
+          {{% if {payoff_table_type} == 0 %}}
           Gewinnsituation
           {{% endif %}}
-          {{% if {payoff_rd_typ} == 'LOSS'%}}
+          {{% if {payoff_table_type} == 1 %}}
           Verlustsituation
           {{% endif %}}
           {{%{payoff_rd_table}%}}
@@ -48,15 +47,15 @@ li_payoff_details = f"""
      <li style="margin-bottom: 0.25rem">
           Ihre Entscheidung: 
           
-          {{% if {payoff_player_decision} == 1%}}
+          {{% if {payoff_player_option} == 0 %}}
           Lotterie (Option A)
           {{% endif %}}
           
-          {{% if {payoff_player_decision} == 2%}}
-              {{% if {payoff_rd_typ} == 'GAIN'%}}
+          {{% if {payoff_player_option} == 1 %}}
+              {{% if {payoff_table_type} == 0 %}}
               Sichere Auszahlung (Option B)
               {{% endif %}}
-              {{% if {payoff_rd_typ} == 'LOSS'%}}
+              {{% if {payoff_table_type} == 1 %}}
               Sicherer Verlust (Option B)
               {{% endif %}}
           {{% endif %}}

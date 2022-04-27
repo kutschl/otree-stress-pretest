@@ -1,0 +1,15 @@
+.zwischenteil-form {
+    margin-bottom: 2rem;
+}
+.zwischenteil-label {
+    margin-bottom: 1rem;
+}
+.zwischenteil-img {
+    margin-bottom: 1rem;
+    max-width: 40rem;
+    min-width: 30rem;
+    border: 2px solid black;
+}
+.zwischenteil-choices {
+    margin-bottom: 1rem;
+}

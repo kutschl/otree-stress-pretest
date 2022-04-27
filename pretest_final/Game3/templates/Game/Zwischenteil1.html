@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Zwischenteil (1/16){% endblock %}
+
+{% block content %}
+
+        
+        <div class="zwischenteil-form">
+            <div class="zwischenteil-label">
+                {% form.ZWISCHENFRAGE7.label %}
+            </div>
+            {% if Constants.forms_zwischenfragen.ZWISCHENFRAGE7.image %}
+            <img src="{% static 'images/zwischenfrage7.png' %}" alt="Zwischenteil: Frage 7" class="zwischenteil-img"/>
+            {% endif%}
+            <div class="zwischenteil-choices">
+                {% form.ZWISCHENFRAGE7 %}
+            </div>
+        </div>
+        
+    <div class="otree-next" id="otree-next">
+        
+<p>
+    Bitte klicken Sie auf <em>Weiter</em>, um fortzufahren.
+</p>
+
+        {% next_button %}
+    </div>
+    
+<style>
+.zwischenteil-form {
+    margin-bottom: 2rem;
+}
+.zwischenteil-label {
+    margin-bottom: 1rem;
+}
+.zwischenteil-img {
+    margin-bottom: 1rem;
+    max-width: 40rem;
+    min-width: 30rem;
+    border: 2px solid black;
+}
+.zwischenteil-choices {
+    margin-bottom: 1rem;
+}
+</style>
+
+
+{% endblock %}

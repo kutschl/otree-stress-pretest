@@ -1,0 +1,639 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Teil 1: Tabelle (28/40):
+    {% if participant.vars.block1.27.TYPE == 0 %}
+    Gewinnsituation
+    {% endif %}
+    {% if participant.vars.block1.27.TYPE == 1 %}
+    Verlustsituation
+    {% endif %}
+    {% endblock %}
+
+{% block content %}
+
+
+<p>
+    
+    Bitte w&auml;hlen Sie f&uuml;r jede Zeile eine der beiden Entscheidungsoptionen aus.
+    Sobald Sie &uuml;berall eine Entscheidung getroffen haben, klicken Sie bitte auf <em>Weiter</em>.
+    
+</p>
+
+    <div class="dtable" id="TYPE{% participant.vars.block1.27.ORDER %}_ORDER{% participant.vars.block1.27.ORDER %}">
+    
+    <div class="dtable-b">
+        
+    <!--Tabelle B1: Nummerierung-->
+    <table class="dtable-b1">
+      <tr class="dtable-b1-tr1">
+        <td>
+          <span></span>
+        </td>
+      </tr>
+      {% for i in participant.vars.block1.27.NUMBERING %}
+      <tr class="dtable-b1-tr">
+        <th>
+          <span style="padding-right: 0.25rem">{% i %}</span>
+        </th>
+      </tr>
+      {% endfor %}
+    </table>
+    
+        
+    <!--Tabelle B2: Option A-->
+    <table class="dtable-b2">
+      <tr class="dtable-b2-tr1">
+        <td>
+          <span>Option A: <br/> Lotterie</span>
+        </td>
+      </tr>
+      <tr class="dtable-b2-tr">
+        <td>
+          <div>
+          
+            <p>
+            {% if participant.vars.block1.27.TYPE == 0 %}
+            Gewinn
+            {% endif %}
+            {% if participant.vars.block1.27.TYPE == 1 %}
+            Verlust
+            {% endif %}
+            von 
+            {% participant.vars.block1.27.OPTION_A.x1%}
+            Punkten
+            </p>
+            
+            <p>
+            mit 
+            {% participant.vars.block1.27.OPTION_A.p1%}
+            Wahrscheinlichkeit
+            </p>
+            
+            <p>
+            {% if participant.vars.block1.27.TYPE == 0 %}
+            Gewinn
+            {% endif %}
+            {% if participant.vars.block1.27.TYPE == 1 %}
+            Verlust
+            {% endif %}
+            von 
+            {% participant.vars.block1.27.OPTION_A.x2%}
+            Punkten
+            </p>
+            
+            <p>
+            mit 
+            {% participant.vars.block1.27.OPTION_A.p2%}
+            Wahrscheinlichkeit
+            </p>
+            
+          </div>
+        </td>
+      </tr>
+    </table>
+    
+        
+    <!--Tabelle B3: Entscheidung-->
+    <table class="dtable-b3">
+      <tr class="dtable-b3-tr1">
+        <td colspan="4">
+          <span>Ihre Entscheidung</span>
+        </td>
+      </tr>
+      
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_1-0" name="RADIO_1" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_1-1" name="RADIO_1" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_2-0" name="RADIO_2" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_2-1" name="RADIO_2" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_3-0" name="RADIO_3" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_3-1" name="RADIO_3" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_4-0" name="RADIO_4" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_4-1" name="RADIO_4" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_5-0" name="RADIO_5" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_5-1" name="RADIO_5" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_6-0" name="RADIO_6" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_6-1" name="RADIO_6" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_7-0" name="RADIO_7" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_7-1" name="RADIO_7" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_8-0" name="RADIO_8" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_8-1" name="RADIO_8" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_9-0" name="RADIO_9" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_9-1" name="RADIO_9" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_10-0" name="RADIO_10" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_10-1" name="RADIO_10" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_11-0" name="RADIO_11" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_11-1" name="RADIO_11" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_12-0" name="RADIO_12" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_12-1" name="RADIO_12" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_13-0" name="RADIO_13" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_13-1" name="RADIO_13" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_14-0" name="RADIO_14" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_14-1" name="RADIO_14" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_15-0" name="RADIO_15" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_15-1" name="RADIO_15" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_16-0" name="RADIO_16" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_16-1" name="RADIO_16" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_17-0" name="RADIO_17" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_17-1" name="RADIO_17" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_18-0" name="RADIO_18" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_18-1" name="RADIO_18" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_19-0" name="RADIO_19" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_19-1" name="RADIO_19" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_20-0" name="RADIO_20" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_20-1" name="RADIO_20" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+        <tr class="dtable-b3-tr">
+        <td>A</td>
+        <td>
+            <input class="form-check-input" type="radio" value="0" id="RADIO_21-0" name="RADIO_21" required>
+        </td>
+        <td>
+            <input class="form-check-input" type="radio" value="1" id="RADIO_21-1" name="RADIO_21" required>
+        </td>
+        <td>B</td>
+        </tr>
+        
+    </table>
+    
+        
+    <!--Tabelle B4: Option B-->
+    <table class="dtable-b4">
+      <tr class="dtable-b4-tr1">
+        <td>
+          <span>
+    Option B: <br/>
+    Sicherer 
+    {% if participant.vars.block1.27.TYPE == 0 %}
+    Gewinn
+    {% endif %}
+    {% if participant.vars.block1.27.TYPE == 1 %}
+    Verlust
+    {% endif %}
+    </span>
+        </td>
+      </tr>
+      {% for i in participant.vars.block1.27.OPTION_B %}
+      <tr class="dtable-b4-tr">
+        <td>
+          <span>{% i %} Punkte</span>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+    </div>
+    
+    </div>
+    
+    <div style="display:none;">
+    
+        {% formfield player.BLOCK1_TABLE28_LOTTERY %}
+        {% formfield player.BLOCK1_TABLE28_TYPE %}
+        {% formfield player.BLOCK1_TABLE28_ORDER %}
+        {% formfield player.BLOCK1_TABLE28_SP_OPTION %}
+        {% formfield player.BLOCK1_TABLE28_SP_DECISION %}         
+                    
+    </div>
+    
+<style>
+.dtable {
+    border: 2px solid black;
+    width: 100%;
+    height: auto;
+    font-size: 0.875rem;
+    font-family: Arial, "sans-serif";
+    margin: 2rem 0 2rem 0;
+}
+
+.dtable-h {
+    border-bottom: 2px solid black;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+}
+
+.dtable-h span {
+    margin: auto 0 auto 2rem;
+    font-weight: bold;
+}
+
+.dtable-b {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+}
+
+.dtable-b1 {
+    width: 4rem;
+    min-width: 4rem;
+}
+
+.dtable-b2, .dtable-b3, .dtable-b4 {
+    width: 100%;
+    min-width: 50px;
+}
+
+.dtable-b1-tr1, .dtable-b2-tr1, .dtable-b3-tr1, .dtable-b4-tr1 {
+    height: 4rem;
+    border-bottom: 2px solid black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.dtable-b1-tr1, .dtable-b2-tr1, .dtable-b3-tr1 {
+    border-right: 2px solid black;
+}
+
+.dtable-b1-tr {
+    border-right: 2px solid black;
+    text-align: right;
+    font-weight: normal;
+}
+
+.dtable-b2-tr {
+    border-right: 2px solid black;
+    font-weight: normal;
+    text-align: center;
+}
+
+.dtable-b2-tr td {
+    height: 100%;
+}
+
+.dtable-b2-tr td div {
+    padding-top: 1rem;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.dtable-b3-tr {
+    border-right: 2px solid black;
+    font-weight: normal;
+}
+
+.dtable-b3-tr td:nth-child(1) {
+    text-align: center;
+    font-weight: bold;
+}
+
+.dtable-b3-tr td:nth-child(2) {
+    min-width: 3rem;
+    width: 3rem;
+    text-align: center;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-right: 1rem;
+}
+
+.dtable-b3-tr td:nth-child(3) {
+    min-width: 3rem;
+    width: 3rem;
+    text-align: center;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-left: 1rem;
+}
+
+.dtable-b3-tr td:nth-child(4) {
+    text-align: center;
+    font-weight: bold;
+}
+
+.dtable-b3-tr:last-child td{
+    border-bottom: none;
+}
+
+.dtable-b3-tr input {
+    border: 2px solid black;
+}
+
+.dtable-b4-tr {
+    text-align: center;
+    font-weight: normal;
+}
+
+
+</style>
+
+<script>
+$(document).ready(function() {
+    $('input[type=radio][value="0"]').click(
+        function () {
+            console.log(js_vars.TYPE, js_vars.ORDER)
+            if ((js_vars.TYPE == 0 && js_vars.ORDER == 1) || (js_vars.TYPE == 1 && js_vars.ORDER == 0)) {
+                console.log("DESCENDING")
+                let radios = document.querySelectorAll('input[type=radio]')
+                let after = false
+                let i = 0
+                while (after === false && i <= radios.length) {
+                    if (radios[i].id === this.id) {
+                        radios[i].checked = true;
+                        after = true;
+                    }
+                    if (radios[i].value == 1) {
+                        radios[i].checked = true;
+                    }
+                    i++;
+                }
+                radios[i].checked = false;
+                i++;
+                while (i < radios.length) {
+                    if (radios[i].value == 0) {
+                        radios[i].checked = true;
+                    }
+                    i++;
+                }
+            }
+            if ((js_vars.TYPE == 0 && js_vars.ORDER == 0) || (js_vars.TYPE == 1 && js_vars.ORDER == 1)) {
+                console.log("ASCENDING")
+                let radios = document.querySelectorAll('input[type=radio]')
+                let after = false
+                let i = 0
+                while (after === false && i <= radios.length) {
+                    if (radios[i].id === this.id) {
+                        radios[i].checked = true;
+                        after = true;
+                    }
+                    if (radios[i].value == 0) {
+                        radios[i].checked = true;
+                    }
+                    i++;
+                }
+                radios[i].checked = false;
+                i++;
+                while (i < radios.length) {
+                    if (radios[i].value == 1) {
+                        radios[i].checked = true;
+                    }
+                    i++;
+                }
+            }
+        }
+    );
+
+    $('input[type=radio][value="1"]').click(
+        function () {
+            console.log(js_vars.TYPE, js_vars.ORDER)
+            if ((js_vars.TYPE == 0 && js_vars.ORDER == 1) || (js_vars.TYPE == 1 && js_vars.ORDER == 0)) {
+                console.log("DESCENDING")
+                let radios = document.querySelectorAll('input[type=radio]')
+                let after = false
+                let i = 0
+                while(after === false && i <= radios.length) {
+                    if(radios[i].id === this.id) {
+                        radios[i].checked = true;
+                        after = true;
+                    }
+                    if(radios[i].value == 1) {
+                        radios[i].checked = true;
+                    }
+                    i++;
+                }
+                while(i<radios.length) {
+                    if(radios[i].value == 0) {
+                        radios[i].checked = true;
+                    }
+                    i++;
+                }
+            }
+            if ((js_vars.TYPE == 0 && js_vars.ORDER == 0) || (js_vars.TYPE == 1 && js_vars.ORDER == 1)) {
+                console.log("ASCENDING")
+                let radios = document.querySelectorAll('input[type=radio]')
+                let after = false
+                let i = 0
+                while(after === false && i <= radios.length) {
+                    if(radios[i].id === this.id) {
+                        radios[i].checked = true;
+                        after = true;
+                    }
+                    if(radios[i].value == 0) {
+                        radios[i].checked = true;
+                    }
+                    i++;
+                }
+                while(i <radios.length) {
+                    if(radios[i].value == 1) {
+                        radios[i].checked = true;
+                    }
+                    i++;
+                }
+            }
+        }
+    );
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('input[type=radio]').click(
+        function () {
+
+            // get Values
+            const LOTTERY = js_vars.LOTTERY
+            const TYPE = js_vars.TYPE
+            const ORDER = js_vars.ORDER
+            const OPTION = this.value
+            const DECISION = this.name.substr(6)
+
+            // set Values
+            document.getElementById('id_BLOCK' + js_vars.BLOCK_NUMBER + '_TABLE' + js_vars.TABLE_NUMBER + '_LOTTERY').value = LOTTERY
+            document.getElementById('id_BLOCK' + js_vars.BLOCK_NUMBER + '_TABLE' + js_vars.TABLE_NUMBER + '_TYPE').value = TYPE
+            document.getElementById('id_BLOCK' + js_vars.BLOCK_NUMBER + '_TABLE' + js_vars.TABLE_NUMBER + '_ORDER').value = ORDER
+            document.getElementById('id_BLOCK' + js_vars.BLOCK_NUMBER + '_TABLE' + js_vars.TABLE_NUMBER + '_SP_OPTION').value = OPTION
+            document.getElementById('id_BLOCK' + js_vars.BLOCK_NUMBER + '_TABLE' + js_vars.TABLE_NUMBER + '_SP_DECISION').value = DECISION
+        }
+    );
+});
+</script>
+
+    <div class="otree-next" id="otree-next">
+        {% next_button %}
+    </div>
+    
+
+{% endblock %}

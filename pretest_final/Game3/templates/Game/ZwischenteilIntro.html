@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Zwischenteil: Nicht-Auszahlungsrelevante Fragen{% endblock %}
+
+{% block content %}
+
+
+<p>
+    
+Sie haben nun die ersten 40 Entscheidungen getroffen, die Ihre Aufwandsentsch&auml;digung beeinflussen. 
+Es folgen 16 Fragen, die Ihre Aufwandsentsch&auml;digung nicht beeinflussen.
+
+</p>
+
+<p>
+    
+Nachdem Sie diese beantwortet haben, k&ouml;nnen Sie mit dem zweiten Teil mit 40 Entscheidungssituationen fortfahren. 
+Die Entscheidungen in diesem Teil sind dann wieder f&uuml;r ihre Auszahlung relevant. 
+
+</p>
+
+<div class="otree-next" id="otree-next">
+    
+<p>
+    Bitte klicken Sie auf <em>Weiter</em>, um mit den Fragen aus dem Zwischenteil zu starten.
+</p>
+
+    {% next_button %}
+</div>
+
+
+{% endblock %}

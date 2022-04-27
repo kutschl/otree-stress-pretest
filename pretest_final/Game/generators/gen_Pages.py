@@ -3,50 +3,74 @@ import numpy as np
 
 # INITS
 url = '../pages.py'
-imports = """from ._builtin import Page, WaitPage"""
+imports = """from ._builtin import Page, WaitPage
+import random as rd"""
 page_sequence = []
 pages = ''
 
 
 # GENERATORS
-def codePagesBlockIntro(block_number: int):
-    page_name = f'Block{block_number}Intro'
+def codePagesBlockIntro(block):
+    page_name = f'Block{block}Intro'
     page_sequence.append(page_name)
-    return OtreePagesGenerator.getPageWithPass(page_name)
+    if block == 1:
+        return f"""
+class {page_name}(Page):
+    def vars_for_template(self):
+        self.player.participant.vars['block{block}'] = self.player.getBlock({block})
+        
+        self.player.participant.vars['payoff_random_block'] = rd.randint(1, 2)
+        self.player.participant.vars['payoff_random_table'] = rd.randint(1, 40)
+        self.player.participant.vars['payoff_random_decision'] = rd.randint(1, 21)
+
+"""
+    if block == 2:
+        return f"""
+class {page_name}(Page):
+    def vars_for_template(self):
+        self.player.participant.vars['block{block}'] = self.player.getBlock({block})
+"""
 
 
-def codePagesBlock(block_number: int):
+
+def codePagesBlock(block):
     # INITS
-    decisions = 21
-    gain_tables = 20
-    loss_tables = 20
+    tables = 40
 
     # GENERATOR
     code = ''
-    for gain_table in np.arange(1, gain_tables + 1, 1):
-        page_name = f'Block{block_number}GewinnTabelle{gain_table}'
+    for table in np.arange(1, tables + 1, 1):
+        page_name = f'Block{block}Table{table}'
         page_sequence.append(page_name)
-        form_model = 'player'
-        form_fields = ''
-        for decision in np.arange(1, decisions + 1, 1):
-            form_fields = form_fields + f"'B{block_number}_GAIN{gain_table}_D{decision}', "
-        code = code + OtreePagesGenerator.getPageWithFields(
-            page_name,
-            form_model,
-            form_fields
+        code = code + f"""
+class {page_name}(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK{block}_TABLE{table}_LOTTERY',
+        'BLOCK{block}_TABLE{table}_TYPE',
+        'BLOCK{block}_TABLE{table}_ORDER',
+        'BLOCK{block}_TABLE{table}_SP_OPTION',
+        'BLOCK{block}_TABLE{table}_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER={block},
+            TABLE_NUMBER={table},
+            LOTTERY=int(self.player.participant.vars['block{block}'][{table-1}]['NUMBER']),
+            TYPE=self.player.participant.vars['block{block}'][{table-1}]['TYPE'],
+            ORDER=self.player.participant.vars['block{block}'][{table-1}]['ORDER'],
         )
-    for loss_table in np.arange(1, loss_tables + 1, 1):
-        page_name = f'Block{block_number}VerlustTabelle{loss_table}'
-        page_sequence.append(page_name)
-        form_model = 'player'
-        form_fields = ''
-        for decision in np.arange(1, decisions + 1, 1):
-            form_fields = form_fields + f"'B{block_number}_LOSS{loss_table}_D{decision}', "
-        code = code + OtreePagesGenerator.getPageWithFields(
-            page_name,
-            form_model,
-            form_fields
-        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == {block}) and self.player.participant.vars['payoff_random_table'] == {table}: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK{block}_TABLE{table}_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK{block}_TABLE{table}_SP_DECISION
+
+
+"""
+
     return code
 
 

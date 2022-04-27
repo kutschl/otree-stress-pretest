@@ -1,0 +1,120 @@
+.dtable {
+    border: 2px solid black;
+    width: 100%;
+    height: auto;
+    font-size: 0.875rem;
+    font-family: Arial, "sans-serif";
+    margin: 2rem 0 2rem 0;
+}
+
+.dtable-h {
+    border-bottom: 2px solid black;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+}
+
+.dtable-h span {
+    margin: auto 0 auto 2rem;
+    font-weight: bold;
+}
+
+.dtable-b {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+}
+
+.dtable-b1 {
+    width: 4rem;
+    min-width: 4rem;
+}
+
+.dtable-b2, .dtable-b3, .dtable-b4 {
+    width: 100%;
+    min-width: 50px;
+}
+
+.dtable-b1-tr1, .dtable-b2-tr1, .dtable-b3-tr1, .dtable-b4-tr1 {
+    height: 4rem;
+    border-bottom: 2px solid black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.dtable-b1-tr1, .dtable-b2-tr1, .dtable-b3-tr1 {
+    border-right: 2px solid black;
+}
+
+.dtable-b1-tr {
+    border-right: 2px solid black;
+    text-align: right;
+    font-weight: normal;
+}
+
+.dtable-b2-tr {
+    border-right: 2px solid black;
+    font-weight: normal;
+    text-align: center;
+}
+
+.dtable-b2-tr td {
+    height: 100%;
+}
+
+.dtable-b2-tr td div {
+    padding-top: 1rem;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.dtable-b3-tr {
+    border-right: 2px solid black;
+    font-weight: normal;
+}
+
+.dtable-b3-tr td:nth-child(1) {
+    text-align: center;
+    font-weight: bold;
+}
+
+.dtable-b3-tr td:nth-child(2) {
+    min-width: 3rem;
+    width: 3rem;
+    text-align: center;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-right: 1rem;
+}
+
+.dtable-b3-tr td:nth-child(3) {
+    min-width: 3rem;
+    width: 3rem;
+    text-align: center;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-left: 1rem;
+}
+
+.dtable-b3-tr td:nth-child(4) {
+    text-align: center;
+    font-weight: bold;
+}
+
+.dtable-b3-tr:last-child td{
+    border-bottom: none;
+}
+
+.dtable-b3-tr input {
+    border: 2px solid black;
+}
+
+.dtable-b4-tr {
+    text-align: center;
+    font-weight: normal;
+}
+

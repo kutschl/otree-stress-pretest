@@ -21,34 +21,34 @@ Die f&uuml;r Ihre Auszahlung relevante Entscheidung war die folgende:
 <ul style="margin-top: -0.5rem">
      <li style="margin-bottom: 0.25rem">
           Teil: 
-          {%participant.vars.payoff_rd_block%}
+          {%participant.vars.payoff_random_block%}
      </li>
      <li style="margin-bottom: 0.25rem">
           Tabelle:
-          {% if participant.vars.payoff_rd_typ == 'GAIN'%}
+          {% if participant.vars.payoff_table_type == 0 %}
           Gewinnsituation
           {% endif %}
-          {% if participant.vars.payoff_rd_typ == 'LOSS'%}
+          {% if participant.vars.payoff_table_type == 1 %}
           Verlustsituation
           {% endif %}
-          {%participant.vars.payoff_rd_table%}
+          {%participant.vars.payoff_random_table%}
      </li>
      <li style="margin-bottom: 0.25rem">
           Zeile:
-          {%participant.vars.payoff_rd_decision%}
+          {%participant.vars.payoff_random_decision%}
      </li>
      <li style="margin-bottom: 0.25rem">
           Ihre Entscheidung: 
           
-          {% if participant.vars.payoff_player_decision == 1%}
+          {% if participant.vars.payoff_player_option == 0 %}
           Lotterie (Option A)
           {% endif %}
           
-          {% if participant.vars.payoff_player_decision == 2%}
-              {% if participant.vars.payoff_rd_typ == 'GAIN'%}
+          {% if participant.vars.payoff_player_option == 1 %}
+              {% if participant.vars.payoff_table_type == 0 %}
               Sichere Auszahlung (Option B)
               {% endif %}
-              {% if participant.vars.payoff_rd_typ == 'LOSS'%}
+              {% if participant.vars.payoff_table_type == 1 %}
               Sicherer Verlust (Option B)
               {% endif %}
           {% endif %}

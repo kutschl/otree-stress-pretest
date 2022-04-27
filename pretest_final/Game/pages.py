@@ -1,209 +1,1095 @@
 from ._builtin import Page, WaitPage
+import random as rd
 
 
 class Block1Intro(Page):
-    pass
-    
+    def vars_for_template(self):
+        self.player.participant.vars['block1'] = self.player.getBlock(1)
+        
+        self.player.participant.vars['payoff_random_block'] = rd.randint(1, 2)
+        self.player.participant.vars['payoff_random_table'] = rd.randint(1, 40)
+        self.player.participant.vars['payoff_random_decision'] = rd.randint(1, 21)
 
-class Block1GewinnTabelle1(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN1_D1', 'B1_GAIN1_D2', 'B1_GAIN1_D3', 'B1_GAIN1_D4', 'B1_GAIN1_D5', 'B1_GAIN1_D6', 'B1_GAIN1_D7', 'B1_GAIN1_D8', 'B1_GAIN1_D9', 'B1_GAIN1_D10', 'B1_GAIN1_D11', 'B1_GAIN1_D12', 'B1_GAIN1_D13', 'B1_GAIN1_D14', 'B1_GAIN1_D15', 'B1_GAIN1_D16', 'B1_GAIN1_D17', 'B1_GAIN1_D18', 'B1_GAIN1_D19', 'B1_GAIN1_D20', 'B1_GAIN1_D21', 
-    
 
-class Block1GewinnTabelle2(Page):
+class Block1Table1(Page):
     form_model = 'player'
-    form_fields = 'B1_GAIN2_D1', 'B1_GAIN2_D2', 'B1_GAIN2_D3', 'B1_GAIN2_D4', 'B1_GAIN2_D5', 'B1_GAIN2_D6', 'B1_GAIN2_D7', 'B1_GAIN2_D8', 'B1_GAIN2_D9', 'B1_GAIN2_D10', 'B1_GAIN2_D11', 'B1_GAIN2_D12', 'B1_GAIN2_D13', 'B1_GAIN2_D14', 'B1_GAIN2_D15', 'B1_GAIN2_D16', 'B1_GAIN2_D17', 'B1_GAIN2_D18', 'B1_GAIN2_D19', 'B1_GAIN2_D20', 'B1_GAIN2_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE1_LOTTERY',
+        'BLOCK1_TABLE1_TYPE',
+        'BLOCK1_TABLE1_ORDER',
+        'BLOCK1_TABLE1_SP_OPTION',
+        'BLOCK1_TABLE1_SP_DECISION'
+    ]
 
-class Block1GewinnTabelle3(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN3_D1', 'B1_GAIN3_D2', 'B1_GAIN3_D3', 'B1_GAIN3_D4', 'B1_GAIN3_D5', 'B1_GAIN3_D6', 'B1_GAIN3_D7', 'B1_GAIN3_D8', 'B1_GAIN3_D9', 'B1_GAIN3_D10', 'B1_GAIN3_D11', 'B1_GAIN3_D12', 'B1_GAIN3_D13', 'B1_GAIN3_D14', 'B1_GAIN3_D15', 'B1_GAIN3_D16', 'B1_GAIN3_D17', 'B1_GAIN3_D18', 'B1_GAIN3_D19', 'B1_GAIN3_D20', 'B1_GAIN3_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=1,
+            LOTTERY=int(self.player.participant.vars['block1'][0]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][0]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][0]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 1: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE1_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE1_SP_DECISION
 
-class Block1GewinnTabelle4(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN4_D1', 'B1_GAIN4_D2', 'B1_GAIN4_D3', 'B1_GAIN4_D4', 'B1_GAIN4_D5', 'B1_GAIN4_D6', 'B1_GAIN4_D7', 'B1_GAIN4_D8', 'B1_GAIN4_D9', 'B1_GAIN4_D10', 'B1_GAIN4_D11', 'B1_GAIN4_D12', 'B1_GAIN4_D13', 'B1_GAIN4_D14', 'B1_GAIN4_D15', 'B1_GAIN4_D16', 'B1_GAIN4_D17', 'B1_GAIN4_D18', 'B1_GAIN4_D19', 'B1_GAIN4_D20', 'B1_GAIN4_D21', 
-    
 
-class Block1GewinnTabelle5(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN5_D1', 'B1_GAIN5_D2', 'B1_GAIN5_D3', 'B1_GAIN5_D4', 'B1_GAIN5_D5', 'B1_GAIN5_D6', 'B1_GAIN5_D7', 'B1_GAIN5_D8', 'B1_GAIN5_D9', 'B1_GAIN5_D10', 'B1_GAIN5_D11', 'B1_GAIN5_D12', 'B1_GAIN5_D13', 'B1_GAIN5_D14', 'B1_GAIN5_D15', 'B1_GAIN5_D16', 'B1_GAIN5_D17', 'B1_GAIN5_D18', 'B1_GAIN5_D19', 'B1_GAIN5_D20', 'B1_GAIN5_D21', 
-    
 
-class Block1GewinnTabelle6(Page):
+class Block1Table2(Page):
     form_model = 'player'
-    form_fields = 'B1_GAIN6_D1', 'B1_GAIN6_D2', 'B1_GAIN6_D3', 'B1_GAIN6_D4', 'B1_GAIN6_D5', 'B1_GAIN6_D6', 'B1_GAIN6_D7', 'B1_GAIN6_D8', 'B1_GAIN6_D9', 'B1_GAIN6_D10', 'B1_GAIN6_D11', 'B1_GAIN6_D12', 'B1_GAIN6_D13', 'B1_GAIN6_D14', 'B1_GAIN6_D15', 'B1_GAIN6_D16', 'B1_GAIN6_D17', 'B1_GAIN6_D18', 'B1_GAIN6_D19', 'B1_GAIN6_D20', 'B1_GAIN6_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE2_LOTTERY',
+        'BLOCK1_TABLE2_TYPE',
+        'BLOCK1_TABLE2_ORDER',
+        'BLOCK1_TABLE2_SP_OPTION',
+        'BLOCK1_TABLE2_SP_DECISION'
+    ]
 
-class Block1GewinnTabelle7(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN7_D1', 'B1_GAIN7_D2', 'B1_GAIN7_D3', 'B1_GAIN7_D4', 'B1_GAIN7_D5', 'B1_GAIN7_D6', 'B1_GAIN7_D7', 'B1_GAIN7_D8', 'B1_GAIN7_D9', 'B1_GAIN7_D10', 'B1_GAIN7_D11', 'B1_GAIN7_D12', 'B1_GAIN7_D13', 'B1_GAIN7_D14', 'B1_GAIN7_D15', 'B1_GAIN7_D16', 'B1_GAIN7_D17', 'B1_GAIN7_D18', 'B1_GAIN7_D19', 'B1_GAIN7_D20', 'B1_GAIN7_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=2,
+            LOTTERY=int(self.player.participant.vars['block1'][1]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][1]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][1]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 2: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE2_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE2_SP_DECISION
 
-class Block1GewinnTabelle8(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN8_D1', 'B1_GAIN8_D2', 'B1_GAIN8_D3', 'B1_GAIN8_D4', 'B1_GAIN8_D5', 'B1_GAIN8_D6', 'B1_GAIN8_D7', 'B1_GAIN8_D8', 'B1_GAIN8_D9', 'B1_GAIN8_D10', 'B1_GAIN8_D11', 'B1_GAIN8_D12', 'B1_GAIN8_D13', 'B1_GAIN8_D14', 'B1_GAIN8_D15', 'B1_GAIN8_D16', 'B1_GAIN8_D17', 'B1_GAIN8_D18', 'B1_GAIN8_D19', 'B1_GAIN8_D20', 'B1_GAIN8_D21', 
-    
 
-class Block1GewinnTabelle9(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN9_D1', 'B1_GAIN9_D2', 'B1_GAIN9_D3', 'B1_GAIN9_D4', 'B1_GAIN9_D5', 'B1_GAIN9_D6', 'B1_GAIN9_D7', 'B1_GAIN9_D8', 'B1_GAIN9_D9', 'B1_GAIN9_D10', 'B1_GAIN9_D11', 'B1_GAIN9_D12', 'B1_GAIN9_D13', 'B1_GAIN9_D14', 'B1_GAIN9_D15', 'B1_GAIN9_D16', 'B1_GAIN9_D17', 'B1_GAIN9_D18', 'B1_GAIN9_D19', 'B1_GAIN9_D20', 'B1_GAIN9_D21', 
-    
 
-class Block1GewinnTabelle10(Page):
+class Block1Table3(Page):
     form_model = 'player'
-    form_fields = 'B1_GAIN10_D1', 'B1_GAIN10_D2', 'B1_GAIN10_D3', 'B1_GAIN10_D4', 'B1_GAIN10_D5', 'B1_GAIN10_D6', 'B1_GAIN10_D7', 'B1_GAIN10_D8', 'B1_GAIN10_D9', 'B1_GAIN10_D10', 'B1_GAIN10_D11', 'B1_GAIN10_D12', 'B1_GAIN10_D13', 'B1_GAIN10_D14', 'B1_GAIN10_D15', 'B1_GAIN10_D16', 'B1_GAIN10_D17', 'B1_GAIN10_D18', 'B1_GAIN10_D19', 'B1_GAIN10_D20', 'B1_GAIN10_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE3_LOTTERY',
+        'BLOCK1_TABLE3_TYPE',
+        'BLOCK1_TABLE3_ORDER',
+        'BLOCK1_TABLE3_SP_OPTION',
+        'BLOCK1_TABLE3_SP_DECISION'
+    ]
 
-class Block1GewinnTabelle11(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN11_D1', 'B1_GAIN11_D2', 'B1_GAIN11_D3', 'B1_GAIN11_D4', 'B1_GAIN11_D5', 'B1_GAIN11_D6', 'B1_GAIN11_D7', 'B1_GAIN11_D8', 'B1_GAIN11_D9', 'B1_GAIN11_D10', 'B1_GAIN11_D11', 'B1_GAIN11_D12', 'B1_GAIN11_D13', 'B1_GAIN11_D14', 'B1_GAIN11_D15', 'B1_GAIN11_D16', 'B1_GAIN11_D17', 'B1_GAIN11_D18', 'B1_GAIN11_D19', 'B1_GAIN11_D20', 'B1_GAIN11_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=3,
+            LOTTERY=int(self.player.participant.vars['block1'][2]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][2]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][2]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 3: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE3_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE3_SP_DECISION
 
-class Block1GewinnTabelle12(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN12_D1', 'B1_GAIN12_D2', 'B1_GAIN12_D3', 'B1_GAIN12_D4', 'B1_GAIN12_D5', 'B1_GAIN12_D6', 'B1_GAIN12_D7', 'B1_GAIN12_D8', 'B1_GAIN12_D9', 'B1_GAIN12_D10', 'B1_GAIN12_D11', 'B1_GAIN12_D12', 'B1_GAIN12_D13', 'B1_GAIN12_D14', 'B1_GAIN12_D15', 'B1_GAIN12_D16', 'B1_GAIN12_D17', 'B1_GAIN12_D18', 'B1_GAIN12_D19', 'B1_GAIN12_D20', 'B1_GAIN12_D21', 
-    
 
-class Block1GewinnTabelle13(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN13_D1', 'B1_GAIN13_D2', 'B1_GAIN13_D3', 'B1_GAIN13_D4', 'B1_GAIN13_D5', 'B1_GAIN13_D6', 'B1_GAIN13_D7', 'B1_GAIN13_D8', 'B1_GAIN13_D9', 'B1_GAIN13_D10', 'B1_GAIN13_D11', 'B1_GAIN13_D12', 'B1_GAIN13_D13', 'B1_GAIN13_D14', 'B1_GAIN13_D15', 'B1_GAIN13_D16', 'B1_GAIN13_D17', 'B1_GAIN13_D18', 'B1_GAIN13_D19', 'B1_GAIN13_D20', 'B1_GAIN13_D21', 
-    
 
-class Block1GewinnTabelle14(Page):
+class Block1Table4(Page):
     form_model = 'player'
-    form_fields = 'B1_GAIN14_D1', 'B1_GAIN14_D2', 'B1_GAIN14_D3', 'B1_GAIN14_D4', 'B1_GAIN14_D5', 'B1_GAIN14_D6', 'B1_GAIN14_D7', 'B1_GAIN14_D8', 'B1_GAIN14_D9', 'B1_GAIN14_D10', 'B1_GAIN14_D11', 'B1_GAIN14_D12', 'B1_GAIN14_D13', 'B1_GAIN14_D14', 'B1_GAIN14_D15', 'B1_GAIN14_D16', 'B1_GAIN14_D17', 'B1_GAIN14_D18', 'B1_GAIN14_D19', 'B1_GAIN14_D20', 'B1_GAIN14_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE4_LOTTERY',
+        'BLOCK1_TABLE4_TYPE',
+        'BLOCK1_TABLE4_ORDER',
+        'BLOCK1_TABLE4_SP_OPTION',
+        'BLOCK1_TABLE4_SP_DECISION'
+    ]
 
-class Block1GewinnTabelle15(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN15_D1', 'B1_GAIN15_D2', 'B1_GAIN15_D3', 'B1_GAIN15_D4', 'B1_GAIN15_D5', 'B1_GAIN15_D6', 'B1_GAIN15_D7', 'B1_GAIN15_D8', 'B1_GAIN15_D9', 'B1_GAIN15_D10', 'B1_GAIN15_D11', 'B1_GAIN15_D12', 'B1_GAIN15_D13', 'B1_GAIN15_D14', 'B1_GAIN15_D15', 'B1_GAIN15_D16', 'B1_GAIN15_D17', 'B1_GAIN15_D18', 'B1_GAIN15_D19', 'B1_GAIN15_D20', 'B1_GAIN15_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=4,
+            LOTTERY=int(self.player.participant.vars['block1'][3]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][3]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][3]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 4: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE4_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE4_SP_DECISION
 
-class Block1GewinnTabelle16(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN16_D1', 'B1_GAIN16_D2', 'B1_GAIN16_D3', 'B1_GAIN16_D4', 'B1_GAIN16_D5', 'B1_GAIN16_D6', 'B1_GAIN16_D7', 'B1_GAIN16_D8', 'B1_GAIN16_D9', 'B1_GAIN16_D10', 'B1_GAIN16_D11', 'B1_GAIN16_D12', 'B1_GAIN16_D13', 'B1_GAIN16_D14', 'B1_GAIN16_D15', 'B1_GAIN16_D16', 'B1_GAIN16_D17', 'B1_GAIN16_D18', 'B1_GAIN16_D19', 'B1_GAIN16_D20', 'B1_GAIN16_D21', 
-    
 
-class Block1GewinnTabelle17(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN17_D1', 'B1_GAIN17_D2', 'B1_GAIN17_D3', 'B1_GAIN17_D4', 'B1_GAIN17_D5', 'B1_GAIN17_D6', 'B1_GAIN17_D7', 'B1_GAIN17_D8', 'B1_GAIN17_D9', 'B1_GAIN17_D10', 'B1_GAIN17_D11', 'B1_GAIN17_D12', 'B1_GAIN17_D13', 'B1_GAIN17_D14', 'B1_GAIN17_D15', 'B1_GAIN17_D16', 'B1_GAIN17_D17', 'B1_GAIN17_D18', 'B1_GAIN17_D19', 'B1_GAIN17_D20', 'B1_GAIN17_D21', 
-    
 
-class Block1GewinnTabelle18(Page):
+class Block1Table5(Page):
     form_model = 'player'
-    form_fields = 'B1_GAIN18_D1', 'B1_GAIN18_D2', 'B1_GAIN18_D3', 'B1_GAIN18_D4', 'B1_GAIN18_D5', 'B1_GAIN18_D6', 'B1_GAIN18_D7', 'B1_GAIN18_D8', 'B1_GAIN18_D9', 'B1_GAIN18_D10', 'B1_GAIN18_D11', 'B1_GAIN18_D12', 'B1_GAIN18_D13', 'B1_GAIN18_D14', 'B1_GAIN18_D15', 'B1_GAIN18_D16', 'B1_GAIN18_D17', 'B1_GAIN18_D18', 'B1_GAIN18_D19', 'B1_GAIN18_D20', 'B1_GAIN18_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE5_LOTTERY',
+        'BLOCK1_TABLE5_TYPE',
+        'BLOCK1_TABLE5_ORDER',
+        'BLOCK1_TABLE5_SP_OPTION',
+        'BLOCK1_TABLE5_SP_DECISION'
+    ]
 
-class Block1GewinnTabelle19(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN19_D1', 'B1_GAIN19_D2', 'B1_GAIN19_D3', 'B1_GAIN19_D4', 'B1_GAIN19_D5', 'B1_GAIN19_D6', 'B1_GAIN19_D7', 'B1_GAIN19_D8', 'B1_GAIN19_D9', 'B1_GAIN19_D10', 'B1_GAIN19_D11', 'B1_GAIN19_D12', 'B1_GAIN19_D13', 'B1_GAIN19_D14', 'B1_GAIN19_D15', 'B1_GAIN19_D16', 'B1_GAIN19_D17', 'B1_GAIN19_D18', 'B1_GAIN19_D19', 'B1_GAIN19_D20', 'B1_GAIN19_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=5,
+            LOTTERY=int(self.player.participant.vars['block1'][4]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][4]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][4]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 5: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE5_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE5_SP_DECISION
 
-class Block1GewinnTabelle20(Page):
-    form_model = 'player'
-    form_fields = 'B1_GAIN20_D1', 'B1_GAIN20_D2', 'B1_GAIN20_D3', 'B1_GAIN20_D4', 'B1_GAIN20_D5', 'B1_GAIN20_D6', 'B1_GAIN20_D7', 'B1_GAIN20_D8', 'B1_GAIN20_D9', 'B1_GAIN20_D10', 'B1_GAIN20_D11', 'B1_GAIN20_D12', 'B1_GAIN20_D13', 'B1_GAIN20_D14', 'B1_GAIN20_D15', 'B1_GAIN20_D16', 'B1_GAIN20_D17', 'B1_GAIN20_D18', 'B1_GAIN20_D19', 'B1_GAIN20_D20', 'B1_GAIN20_D21', 
-    
 
-class Block1VerlustTabelle1(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS1_D1', 'B1_LOSS1_D2', 'B1_LOSS1_D3', 'B1_LOSS1_D4', 'B1_LOSS1_D5', 'B1_LOSS1_D6', 'B1_LOSS1_D7', 'B1_LOSS1_D8', 'B1_LOSS1_D9', 'B1_LOSS1_D10', 'B1_LOSS1_D11', 'B1_LOSS1_D12', 'B1_LOSS1_D13', 'B1_LOSS1_D14', 'B1_LOSS1_D15', 'B1_LOSS1_D16', 'B1_LOSS1_D17', 'B1_LOSS1_D18', 'B1_LOSS1_D19', 'B1_LOSS1_D20', 'B1_LOSS1_D21', 
-    
 
-class Block1VerlustTabelle2(Page):
+class Block1Table6(Page):
     form_model = 'player'
-    form_fields = 'B1_LOSS2_D1', 'B1_LOSS2_D2', 'B1_LOSS2_D3', 'B1_LOSS2_D4', 'B1_LOSS2_D5', 'B1_LOSS2_D6', 'B1_LOSS2_D7', 'B1_LOSS2_D8', 'B1_LOSS2_D9', 'B1_LOSS2_D10', 'B1_LOSS2_D11', 'B1_LOSS2_D12', 'B1_LOSS2_D13', 'B1_LOSS2_D14', 'B1_LOSS2_D15', 'B1_LOSS2_D16', 'B1_LOSS2_D17', 'B1_LOSS2_D18', 'B1_LOSS2_D19', 'B1_LOSS2_D20', 'B1_LOSS2_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE6_LOTTERY',
+        'BLOCK1_TABLE6_TYPE',
+        'BLOCK1_TABLE6_ORDER',
+        'BLOCK1_TABLE6_SP_OPTION',
+        'BLOCK1_TABLE6_SP_DECISION'
+    ]
 
-class Block1VerlustTabelle3(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS3_D1', 'B1_LOSS3_D2', 'B1_LOSS3_D3', 'B1_LOSS3_D4', 'B1_LOSS3_D5', 'B1_LOSS3_D6', 'B1_LOSS3_D7', 'B1_LOSS3_D8', 'B1_LOSS3_D9', 'B1_LOSS3_D10', 'B1_LOSS3_D11', 'B1_LOSS3_D12', 'B1_LOSS3_D13', 'B1_LOSS3_D14', 'B1_LOSS3_D15', 'B1_LOSS3_D16', 'B1_LOSS3_D17', 'B1_LOSS3_D18', 'B1_LOSS3_D19', 'B1_LOSS3_D20', 'B1_LOSS3_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=6,
+            LOTTERY=int(self.player.participant.vars['block1'][5]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][5]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][5]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 6: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE6_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE6_SP_DECISION
 
-class Block1VerlustTabelle4(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS4_D1', 'B1_LOSS4_D2', 'B1_LOSS4_D3', 'B1_LOSS4_D4', 'B1_LOSS4_D5', 'B1_LOSS4_D6', 'B1_LOSS4_D7', 'B1_LOSS4_D8', 'B1_LOSS4_D9', 'B1_LOSS4_D10', 'B1_LOSS4_D11', 'B1_LOSS4_D12', 'B1_LOSS4_D13', 'B1_LOSS4_D14', 'B1_LOSS4_D15', 'B1_LOSS4_D16', 'B1_LOSS4_D17', 'B1_LOSS4_D18', 'B1_LOSS4_D19', 'B1_LOSS4_D20', 'B1_LOSS4_D21', 
-    
 
-class Block1VerlustTabelle5(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS5_D1', 'B1_LOSS5_D2', 'B1_LOSS5_D3', 'B1_LOSS5_D4', 'B1_LOSS5_D5', 'B1_LOSS5_D6', 'B1_LOSS5_D7', 'B1_LOSS5_D8', 'B1_LOSS5_D9', 'B1_LOSS5_D10', 'B1_LOSS5_D11', 'B1_LOSS5_D12', 'B1_LOSS5_D13', 'B1_LOSS5_D14', 'B1_LOSS5_D15', 'B1_LOSS5_D16', 'B1_LOSS5_D17', 'B1_LOSS5_D18', 'B1_LOSS5_D19', 'B1_LOSS5_D20', 'B1_LOSS5_D21', 
-    
 
-class Block1VerlustTabelle6(Page):
+class Block1Table7(Page):
     form_model = 'player'
-    form_fields = 'B1_LOSS6_D1', 'B1_LOSS6_D2', 'B1_LOSS6_D3', 'B1_LOSS6_D4', 'B1_LOSS6_D5', 'B1_LOSS6_D6', 'B1_LOSS6_D7', 'B1_LOSS6_D8', 'B1_LOSS6_D9', 'B1_LOSS6_D10', 'B1_LOSS6_D11', 'B1_LOSS6_D12', 'B1_LOSS6_D13', 'B1_LOSS6_D14', 'B1_LOSS6_D15', 'B1_LOSS6_D16', 'B1_LOSS6_D17', 'B1_LOSS6_D18', 'B1_LOSS6_D19', 'B1_LOSS6_D20', 'B1_LOSS6_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE7_LOTTERY',
+        'BLOCK1_TABLE7_TYPE',
+        'BLOCK1_TABLE7_ORDER',
+        'BLOCK1_TABLE7_SP_OPTION',
+        'BLOCK1_TABLE7_SP_DECISION'
+    ]
 
-class Block1VerlustTabelle7(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS7_D1', 'B1_LOSS7_D2', 'B1_LOSS7_D3', 'B1_LOSS7_D4', 'B1_LOSS7_D5', 'B1_LOSS7_D6', 'B1_LOSS7_D7', 'B1_LOSS7_D8', 'B1_LOSS7_D9', 'B1_LOSS7_D10', 'B1_LOSS7_D11', 'B1_LOSS7_D12', 'B1_LOSS7_D13', 'B1_LOSS7_D14', 'B1_LOSS7_D15', 'B1_LOSS7_D16', 'B1_LOSS7_D17', 'B1_LOSS7_D18', 'B1_LOSS7_D19', 'B1_LOSS7_D20', 'B1_LOSS7_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=7,
+            LOTTERY=int(self.player.participant.vars['block1'][6]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][6]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][6]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 7: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE7_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE7_SP_DECISION
 
-class Block1VerlustTabelle8(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS8_D1', 'B1_LOSS8_D2', 'B1_LOSS8_D3', 'B1_LOSS8_D4', 'B1_LOSS8_D5', 'B1_LOSS8_D6', 'B1_LOSS8_D7', 'B1_LOSS8_D8', 'B1_LOSS8_D9', 'B1_LOSS8_D10', 'B1_LOSS8_D11', 'B1_LOSS8_D12', 'B1_LOSS8_D13', 'B1_LOSS8_D14', 'B1_LOSS8_D15', 'B1_LOSS8_D16', 'B1_LOSS8_D17', 'B1_LOSS8_D18', 'B1_LOSS8_D19', 'B1_LOSS8_D20', 'B1_LOSS8_D21', 
-    
 
-class Block1VerlustTabelle9(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS9_D1', 'B1_LOSS9_D2', 'B1_LOSS9_D3', 'B1_LOSS9_D4', 'B1_LOSS9_D5', 'B1_LOSS9_D6', 'B1_LOSS9_D7', 'B1_LOSS9_D8', 'B1_LOSS9_D9', 'B1_LOSS9_D10', 'B1_LOSS9_D11', 'B1_LOSS9_D12', 'B1_LOSS9_D13', 'B1_LOSS9_D14', 'B1_LOSS9_D15', 'B1_LOSS9_D16', 'B1_LOSS9_D17', 'B1_LOSS9_D18', 'B1_LOSS9_D19', 'B1_LOSS9_D20', 'B1_LOSS9_D21', 
-    
 
-class Block1VerlustTabelle10(Page):
+class Block1Table8(Page):
     form_model = 'player'
-    form_fields = 'B1_LOSS10_D1', 'B1_LOSS10_D2', 'B1_LOSS10_D3', 'B1_LOSS10_D4', 'B1_LOSS10_D5', 'B1_LOSS10_D6', 'B1_LOSS10_D7', 'B1_LOSS10_D8', 'B1_LOSS10_D9', 'B1_LOSS10_D10', 'B1_LOSS10_D11', 'B1_LOSS10_D12', 'B1_LOSS10_D13', 'B1_LOSS10_D14', 'B1_LOSS10_D15', 'B1_LOSS10_D16', 'B1_LOSS10_D17', 'B1_LOSS10_D18', 'B1_LOSS10_D19', 'B1_LOSS10_D20', 'B1_LOSS10_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE8_LOTTERY',
+        'BLOCK1_TABLE8_TYPE',
+        'BLOCK1_TABLE8_ORDER',
+        'BLOCK1_TABLE8_SP_OPTION',
+        'BLOCK1_TABLE8_SP_DECISION'
+    ]
 
-class Block1VerlustTabelle11(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS11_D1', 'B1_LOSS11_D2', 'B1_LOSS11_D3', 'B1_LOSS11_D4', 'B1_LOSS11_D5', 'B1_LOSS11_D6', 'B1_LOSS11_D7', 'B1_LOSS11_D8', 'B1_LOSS11_D9', 'B1_LOSS11_D10', 'B1_LOSS11_D11', 'B1_LOSS11_D12', 'B1_LOSS11_D13', 'B1_LOSS11_D14', 'B1_LOSS11_D15', 'B1_LOSS11_D16', 'B1_LOSS11_D17', 'B1_LOSS11_D18', 'B1_LOSS11_D19', 'B1_LOSS11_D20', 'B1_LOSS11_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=8,
+            LOTTERY=int(self.player.participant.vars['block1'][7]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][7]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][7]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 8: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE8_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE8_SP_DECISION
 
-class Block1VerlustTabelle12(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS12_D1', 'B1_LOSS12_D2', 'B1_LOSS12_D3', 'B1_LOSS12_D4', 'B1_LOSS12_D5', 'B1_LOSS12_D6', 'B1_LOSS12_D7', 'B1_LOSS12_D8', 'B1_LOSS12_D9', 'B1_LOSS12_D10', 'B1_LOSS12_D11', 'B1_LOSS12_D12', 'B1_LOSS12_D13', 'B1_LOSS12_D14', 'B1_LOSS12_D15', 'B1_LOSS12_D16', 'B1_LOSS12_D17', 'B1_LOSS12_D18', 'B1_LOSS12_D19', 'B1_LOSS12_D20', 'B1_LOSS12_D21', 
-    
 
-class Block1VerlustTabelle13(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS13_D1', 'B1_LOSS13_D2', 'B1_LOSS13_D3', 'B1_LOSS13_D4', 'B1_LOSS13_D5', 'B1_LOSS13_D6', 'B1_LOSS13_D7', 'B1_LOSS13_D8', 'B1_LOSS13_D9', 'B1_LOSS13_D10', 'B1_LOSS13_D11', 'B1_LOSS13_D12', 'B1_LOSS13_D13', 'B1_LOSS13_D14', 'B1_LOSS13_D15', 'B1_LOSS13_D16', 'B1_LOSS13_D17', 'B1_LOSS13_D18', 'B1_LOSS13_D19', 'B1_LOSS13_D20', 'B1_LOSS13_D21', 
-    
 
-class Block1VerlustTabelle14(Page):
+class Block1Table9(Page):
     form_model = 'player'
-    form_fields = 'B1_LOSS14_D1', 'B1_LOSS14_D2', 'B1_LOSS14_D3', 'B1_LOSS14_D4', 'B1_LOSS14_D5', 'B1_LOSS14_D6', 'B1_LOSS14_D7', 'B1_LOSS14_D8', 'B1_LOSS14_D9', 'B1_LOSS14_D10', 'B1_LOSS14_D11', 'B1_LOSS14_D12', 'B1_LOSS14_D13', 'B1_LOSS14_D14', 'B1_LOSS14_D15', 'B1_LOSS14_D16', 'B1_LOSS14_D17', 'B1_LOSS14_D18', 'B1_LOSS14_D19', 'B1_LOSS14_D20', 'B1_LOSS14_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE9_LOTTERY',
+        'BLOCK1_TABLE9_TYPE',
+        'BLOCK1_TABLE9_ORDER',
+        'BLOCK1_TABLE9_SP_OPTION',
+        'BLOCK1_TABLE9_SP_DECISION'
+    ]
 
-class Block1VerlustTabelle15(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS15_D1', 'B1_LOSS15_D2', 'B1_LOSS15_D3', 'B1_LOSS15_D4', 'B1_LOSS15_D5', 'B1_LOSS15_D6', 'B1_LOSS15_D7', 'B1_LOSS15_D8', 'B1_LOSS15_D9', 'B1_LOSS15_D10', 'B1_LOSS15_D11', 'B1_LOSS15_D12', 'B1_LOSS15_D13', 'B1_LOSS15_D14', 'B1_LOSS15_D15', 'B1_LOSS15_D16', 'B1_LOSS15_D17', 'B1_LOSS15_D18', 'B1_LOSS15_D19', 'B1_LOSS15_D20', 'B1_LOSS15_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=9,
+            LOTTERY=int(self.player.participant.vars['block1'][8]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][8]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][8]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 9: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE9_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE9_SP_DECISION
 
-class Block1VerlustTabelle16(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS16_D1', 'B1_LOSS16_D2', 'B1_LOSS16_D3', 'B1_LOSS16_D4', 'B1_LOSS16_D5', 'B1_LOSS16_D6', 'B1_LOSS16_D7', 'B1_LOSS16_D8', 'B1_LOSS16_D9', 'B1_LOSS16_D10', 'B1_LOSS16_D11', 'B1_LOSS16_D12', 'B1_LOSS16_D13', 'B1_LOSS16_D14', 'B1_LOSS16_D15', 'B1_LOSS16_D16', 'B1_LOSS16_D17', 'B1_LOSS16_D18', 'B1_LOSS16_D19', 'B1_LOSS16_D20', 'B1_LOSS16_D21', 
-    
 
-class Block1VerlustTabelle17(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS17_D1', 'B1_LOSS17_D2', 'B1_LOSS17_D3', 'B1_LOSS17_D4', 'B1_LOSS17_D5', 'B1_LOSS17_D6', 'B1_LOSS17_D7', 'B1_LOSS17_D8', 'B1_LOSS17_D9', 'B1_LOSS17_D10', 'B1_LOSS17_D11', 'B1_LOSS17_D12', 'B1_LOSS17_D13', 'B1_LOSS17_D14', 'B1_LOSS17_D15', 'B1_LOSS17_D16', 'B1_LOSS17_D17', 'B1_LOSS17_D18', 'B1_LOSS17_D19', 'B1_LOSS17_D20', 'B1_LOSS17_D21', 
-    
 
-class Block1VerlustTabelle18(Page):
+class Block1Table10(Page):
     form_model = 'player'
-    form_fields = 'B1_LOSS18_D1', 'B1_LOSS18_D2', 'B1_LOSS18_D3', 'B1_LOSS18_D4', 'B1_LOSS18_D5', 'B1_LOSS18_D6', 'B1_LOSS18_D7', 'B1_LOSS18_D8', 'B1_LOSS18_D9', 'B1_LOSS18_D10', 'B1_LOSS18_D11', 'B1_LOSS18_D12', 'B1_LOSS18_D13', 'B1_LOSS18_D14', 'B1_LOSS18_D15', 'B1_LOSS18_D16', 'B1_LOSS18_D17', 'B1_LOSS18_D18', 'B1_LOSS18_D19', 'B1_LOSS18_D20', 'B1_LOSS18_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE10_LOTTERY',
+        'BLOCK1_TABLE10_TYPE',
+        'BLOCK1_TABLE10_ORDER',
+        'BLOCK1_TABLE10_SP_OPTION',
+        'BLOCK1_TABLE10_SP_DECISION'
+    ]
 
-class Block1VerlustTabelle19(Page):
-    form_model = 'player'
-    form_fields = 'B1_LOSS19_D1', 'B1_LOSS19_D2', 'B1_LOSS19_D3', 'B1_LOSS19_D4', 'B1_LOSS19_D5', 'B1_LOSS19_D6', 'B1_LOSS19_D7', 'B1_LOSS19_D8', 'B1_LOSS19_D9', 'B1_LOSS19_D10', 'B1_LOSS19_D11', 'B1_LOSS19_D12', 'B1_LOSS19_D13', 'B1_LOSS19_D14', 'B1_LOSS19_D15', 'B1_LOSS19_D16', 'B1_LOSS19_D17', 'B1_LOSS19_D18', 'B1_LOSS19_D19', 'B1_LOSS19_D20', 'B1_LOSS19_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=10,
+            LOTTERY=int(self.player.participant.vars['block1'][9]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][9]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][9]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 10: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE10_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE10_SP_DECISION
 
-class Block1VerlustTabelle20(Page):
+
+
+class Block1Table11(Page):
     form_model = 'player'
-    form_fields = 'B1_LOSS20_D1', 'B1_LOSS20_D2', 'B1_LOSS20_D3', 'B1_LOSS20_D4', 'B1_LOSS20_D5', 'B1_LOSS20_D6', 'B1_LOSS20_D7', 'B1_LOSS20_D8', 'B1_LOSS20_D9', 'B1_LOSS20_D10', 'B1_LOSS20_D11', 'B1_LOSS20_D12', 'B1_LOSS20_D13', 'B1_LOSS20_D14', 'B1_LOSS20_D15', 'B1_LOSS20_D16', 'B1_LOSS20_D17', 'B1_LOSS20_D18', 'B1_LOSS20_D19', 'B1_LOSS20_D20', 'B1_LOSS20_D21', 
-    
+    form_fields = [
+        'BLOCK1_TABLE11_LOTTERY',
+        'BLOCK1_TABLE11_TYPE',
+        'BLOCK1_TABLE11_ORDER',
+        'BLOCK1_TABLE11_SP_OPTION',
+        'BLOCK1_TABLE11_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=11,
+            LOTTERY=int(self.player.participant.vars['block1'][10]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][10]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][10]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 11: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE11_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE11_SP_DECISION
+
+
+
+class Block1Table12(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE12_LOTTERY',
+        'BLOCK1_TABLE12_TYPE',
+        'BLOCK1_TABLE12_ORDER',
+        'BLOCK1_TABLE12_SP_OPTION',
+        'BLOCK1_TABLE12_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=12,
+            LOTTERY=int(self.player.participant.vars['block1'][11]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][11]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][11]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 12: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE12_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE12_SP_DECISION
+
+
+
+class Block1Table13(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE13_LOTTERY',
+        'BLOCK1_TABLE13_TYPE',
+        'BLOCK1_TABLE13_ORDER',
+        'BLOCK1_TABLE13_SP_OPTION',
+        'BLOCK1_TABLE13_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=13,
+            LOTTERY=int(self.player.participant.vars['block1'][12]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][12]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][12]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 13: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE13_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE13_SP_DECISION
+
+
+
+class Block1Table14(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE14_LOTTERY',
+        'BLOCK1_TABLE14_TYPE',
+        'BLOCK1_TABLE14_ORDER',
+        'BLOCK1_TABLE14_SP_OPTION',
+        'BLOCK1_TABLE14_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=14,
+            LOTTERY=int(self.player.participant.vars['block1'][13]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][13]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][13]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 14: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE14_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE14_SP_DECISION
+
+
+
+class Block1Table15(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE15_LOTTERY',
+        'BLOCK1_TABLE15_TYPE',
+        'BLOCK1_TABLE15_ORDER',
+        'BLOCK1_TABLE15_SP_OPTION',
+        'BLOCK1_TABLE15_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=15,
+            LOTTERY=int(self.player.participant.vars['block1'][14]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][14]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][14]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 15: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE15_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE15_SP_DECISION
+
+
+
+class Block1Table16(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE16_LOTTERY',
+        'BLOCK1_TABLE16_TYPE',
+        'BLOCK1_TABLE16_ORDER',
+        'BLOCK1_TABLE16_SP_OPTION',
+        'BLOCK1_TABLE16_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=16,
+            LOTTERY=int(self.player.participant.vars['block1'][15]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][15]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][15]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 16: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE16_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE16_SP_DECISION
+
+
+
+class Block1Table17(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE17_LOTTERY',
+        'BLOCK1_TABLE17_TYPE',
+        'BLOCK1_TABLE17_ORDER',
+        'BLOCK1_TABLE17_SP_OPTION',
+        'BLOCK1_TABLE17_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=17,
+            LOTTERY=int(self.player.participant.vars['block1'][16]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][16]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][16]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 17: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE17_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE17_SP_DECISION
+
+
+
+class Block1Table18(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE18_LOTTERY',
+        'BLOCK1_TABLE18_TYPE',
+        'BLOCK1_TABLE18_ORDER',
+        'BLOCK1_TABLE18_SP_OPTION',
+        'BLOCK1_TABLE18_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=18,
+            LOTTERY=int(self.player.participant.vars['block1'][17]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][17]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][17]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 18: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE18_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE18_SP_DECISION
+
+
+
+class Block1Table19(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE19_LOTTERY',
+        'BLOCK1_TABLE19_TYPE',
+        'BLOCK1_TABLE19_ORDER',
+        'BLOCK1_TABLE19_SP_OPTION',
+        'BLOCK1_TABLE19_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=19,
+            LOTTERY=int(self.player.participant.vars['block1'][18]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][18]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][18]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 19: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE19_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE19_SP_DECISION
+
+
+
+class Block1Table20(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE20_LOTTERY',
+        'BLOCK1_TABLE20_TYPE',
+        'BLOCK1_TABLE20_ORDER',
+        'BLOCK1_TABLE20_SP_OPTION',
+        'BLOCK1_TABLE20_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=20,
+            LOTTERY=int(self.player.participant.vars['block1'][19]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][19]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][19]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 20: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE20_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE20_SP_DECISION
+
+
+
+class Block1Table21(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE21_LOTTERY',
+        'BLOCK1_TABLE21_TYPE',
+        'BLOCK1_TABLE21_ORDER',
+        'BLOCK1_TABLE21_SP_OPTION',
+        'BLOCK1_TABLE21_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=21,
+            LOTTERY=int(self.player.participant.vars['block1'][20]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][20]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][20]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 21: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE21_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE21_SP_DECISION
+
+
+
+class Block1Table22(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE22_LOTTERY',
+        'BLOCK1_TABLE22_TYPE',
+        'BLOCK1_TABLE22_ORDER',
+        'BLOCK1_TABLE22_SP_OPTION',
+        'BLOCK1_TABLE22_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=22,
+            LOTTERY=int(self.player.participant.vars['block1'][21]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][21]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][21]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 22: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE22_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE22_SP_DECISION
+
+
+
+class Block1Table23(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE23_LOTTERY',
+        'BLOCK1_TABLE23_TYPE',
+        'BLOCK1_TABLE23_ORDER',
+        'BLOCK1_TABLE23_SP_OPTION',
+        'BLOCK1_TABLE23_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=23,
+            LOTTERY=int(self.player.participant.vars['block1'][22]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][22]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][22]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 23: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE23_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE23_SP_DECISION
+
+
+
+class Block1Table24(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE24_LOTTERY',
+        'BLOCK1_TABLE24_TYPE',
+        'BLOCK1_TABLE24_ORDER',
+        'BLOCK1_TABLE24_SP_OPTION',
+        'BLOCK1_TABLE24_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=24,
+            LOTTERY=int(self.player.participant.vars['block1'][23]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][23]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][23]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 24: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE24_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE24_SP_DECISION
+
+
+
+class Block1Table25(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE25_LOTTERY',
+        'BLOCK1_TABLE25_TYPE',
+        'BLOCK1_TABLE25_ORDER',
+        'BLOCK1_TABLE25_SP_OPTION',
+        'BLOCK1_TABLE25_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=25,
+            LOTTERY=int(self.player.participant.vars['block1'][24]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][24]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][24]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 25: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE25_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE25_SP_DECISION
+
+
+
+class Block1Table26(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE26_LOTTERY',
+        'BLOCK1_TABLE26_TYPE',
+        'BLOCK1_TABLE26_ORDER',
+        'BLOCK1_TABLE26_SP_OPTION',
+        'BLOCK1_TABLE26_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=26,
+            LOTTERY=int(self.player.participant.vars['block1'][25]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][25]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][25]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 26: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE26_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE26_SP_DECISION
+
+
+
+class Block1Table27(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE27_LOTTERY',
+        'BLOCK1_TABLE27_TYPE',
+        'BLOCK1_TABLE27_ORDER',
+        'BLOCK1_TABLE27_SP_OPTION',
+        'BLOCK1_TABLE27_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=27,
+            LOTTERY=int(self.player.participant.vars['block1'][26]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][26]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][26]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 27: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE27_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE27_SP_DECISION
+
+
+
+class Block1Table28(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE28_LOTTERY',
+        'BLOCK1_TABLE28_TYPE',
+        'BLOCK1_TABLE28_ORDER',
+        'BLOCK1_TABLE28_SP_OPTION',
+        'BLOCK1_TABLE28_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=28,
+            LOTTERY=int(self.player.participant.vars['block1'][27]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][27]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][27]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 28: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE28_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE28_SP_DECISION
+
+
+
+class Block1Table29(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE29_LOTTERY',
+        'BLOCK1_TABLE29_TYPE',
+        'BLOCK1_TABLE29_ORDER',
+        'BLOCK1_TABLE29_SP_OPTION',
+        'BLOCK1_TABLE29_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=29,
+            LOTTERY=int(self.player.participant.vars['block1'][28]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][28]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][28]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 29: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE29_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE29_SP_DECISION
+
+
+
+class Block1Table30(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE30_LOTTERY',
+        'BLOCK1_TABLE30_TYPE',
+        'BLOCK1_TABLE30_ORDER',
+        'BLOCK1_TABLE30_SP_OPTION',
+        'BLOCK1_TABLE30_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=30,
+            LOTTERY=int(self.player.participant.vars['block1'][29]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][29]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][29]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 30: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE30_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE30_SP_DECISION
+
+
+
+class Block1Table31(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE31_LOTTERY',
+        'BLOCK1_TABLE31_TYPE',
+        'BLOCK1_TABLE31_ORDER',
+        'BLOCK1_TABLE31_SP_OPTION',
+        'BLOCK1_TABLE31_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=31,
+            LOTTERY=int(self.player.participant.vars['block1'][30]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][30]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][30]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 31: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE31_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE31_SP_DECISION
+
+
+
+class Block1Table32(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE32_LOTTERY',
+        'BLOCK1_TABLE32_TYPE',
+        'BLOCK1_TABLE32_ORDER',
+        'BLOCK1_TABLE32_SP_OPTION',
+        'BLOCK1_TABLE32_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=32,
+            LOTTERY=int(self.player.participant.vars['block1'][31]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][31]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][31]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 32: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE32_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE32_SP_DECISION
+
+
+
+class Block1Table33(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE33_LOTTERY',
+        'BLOCK1_TABLE33_TYPE',
+        'BLOCK1_TABLE33_ORDER',
+        'BLOCK1_TABLE33_SP_OPTION',
+        'BLOCK1_TABLE33_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=33,
+            LOTTERY=int(self.player.participant.vars['block1'][32]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][32]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][32]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 33: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE33_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE33_SP_DECISION
+
+
+
+class Block1Table34(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE34_LOTTERY',
+        'BLOCK1_TABLE34_TYPE',
+        'BLOCK1_TABLE34_ORDER',
+        'BLOCK1_TABLE34_SP_OPTION',
+        'BLOCK1_TABLE34_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=34,
+            LOTTERY=int(self.player.participant.vars['block1'][33]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][33]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][33]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 34: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE34_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE34_SP_DECISION
+
+
+
+class Block1Table35(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE35_LOTTERY',
+        'BLOCK1_TABLE35_TYPE',
+        'BLOCK1_TABLE35_ORDER',
+        'BLOCK1_TABLE35_SP_OPTION',
+        'BLOCK1_TABLE35_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=35,
+            LOTTERY=int(self.player.participant.vars['block1'][34]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][34]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][34]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 35: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE35_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE35_SP_DECISION
+
+
+
+class Block1Table36(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE36_LOTTERY',
+        'BLOCK1_TABLE36_TYPE',
+        'BLOCK1_TABLE36_ORDER',
+        'BLOCK1_TABLE36_SP_OPTION',
+        'BLOCK1_TABLE36_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=36,
+            LOTTERY=int(self.player.participant.vars['block1'][35]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][35]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][35]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 36: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE36_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE36_SP_DECISION
+
+
+
+class Block1Table37(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE37_LOTTERY',
+        'BLOCK1_TABLE37_TYPE',
+        'BLOCK1_TABLE37_ORDER',
+        'BLOCK1_TABLE37_SP_OPTION',
+        'BLOCK1_TABLE37_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=37,
+            LOTTERY=int(self.player.participant.vars['block1'][36]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][36]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][36]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 37: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE37_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE37_SP_DECISION
+
+
+
+class Block1Table38(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE38_LOTTERY',
+        'BLOCK1_TABLE38_TYPE',
+        'BLOCK1_TABLE38_ORDER',
+        'BLOCK1_TABLE38_SP_OPTION',
+        'BLOCK1_TABLE38_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=38,
+            LOTTERY=int(self.player.participant.vars['block1'][37]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][37]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][37]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 38: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE38_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE38_SP_DECISION
+
+
+
+class Block1Table39(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE39_LOTTERY',
+        'BLOCK1_TABLE39_TYPE',
+        'BLOCK1_TABLE39_ORDER',
+        'BLOCK1_TABLE39_SP_OPTION',
+        'BLOCK1_TABLE39_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=39,
+            LOTTERY=int(self.player.participant.vars['block1'][38]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][38]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][38]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 39: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE39_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE39_SP_DECISION
+
+
+
+class Block1Table40(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK1_TABLE40_LOTTERY',
+        'BLOCK1_TABLE40_TYPE',
+        'BLOCK1_TABLE40_ORDER',
+        'BLOCK1_TABLE40_SP_OPTION',
+        'BLOCK1_TABLE40_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=1,
+            TABLE_NUMBER=40,
+            LOTTERY=int(self.player.participant.vars['block1'][39]['NUMBER']),
+            TYPE=self.player.participant.vars['block1'][39]['TYPE'],
+            ORDER=self.player.participant.vars['block1'][39]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 1) and self.player.participant.vars['payoff_random_table'] == 40: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK1_TABLE40_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK1_TABLE40_SP_DECISION
+
+
 
 class ZwischenteilIntro(Page):
     pass
@@ -290,212 +1176,1093 @@ class Zwischenteil16(Page):
     
 
 class Block2Intro(Page):
-    pass
-    
+    def vars_for_template(self):
+        self.player.participant.vars['block2'] = self.player.getBlock(2)
 
-class Block2GewinnTabelle1(Page):
+class Block2Table1(Page):
     form_model = 'player'
-    form_fields = 'B2_GAIN1_D1', 'B2_GAIN1_D2', 'B2_GAIN1_D3', 'B2_GAIN1_D4', 'B2_GAIN1_D5', 'B2_GAIN1_D6', 'B2_GAIN1_D7', 'B2_GAIN1_D8', 'B2_GAIN1_D9', 'B2_GAIN1_D10', 'B2_GAIN1_D11', 'B2_GAIN1_D12', 'B2_GAIN1_D13', 'B2_GAIN1_D14', 'B2_GAIN1_D15', 'B2_GAIN1_D16', 'B2_GAIN1_D17', 'B2_GAIN1_D18', 'B2_GAIN1_D19', 'B2_GAIN1_D20', 'B2_GAIN1_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE1_LOTTERY',
+        'BLOCK2_TABLE1_TYPE',
+        'BLOCK2_TABLE1_ORDER',
+        'BLOCK2_TABLE1_SP_OPTION',
+        'BLOCK2_TABLE1_SP_DECISION'
+    ]
 
-class Block2GewinnTabelle2(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN2_D1', 'B2_GAIN2_D2', 'B2_GAIN2_D3', 'B2_GAIN2_D4', 'B2_GAIN2_D5', 'B2_GAIN2_D6', 'B2_GAIN2_D7', 'B2_GAIN2_D8', 'B2_GAIN2_D9', 'B2_GAIN2_D10', 'B2_GAIN2_D11', 'B2_GAIN2_D12', 'B2_GAIN2_D13', 'B2_GAIN2_D14', 'B2_GAIN2_D15', 'B2_GAIN2_D16', 'B2_GAIN2_D17', 'B2_GAIN2_D18', 'B2_GAIN2_D19', 'B2_GAIN2_D20', 'B2_GAIN2_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=1,
+            LOTTERY=int(self.player.participant.vars['block2'][0]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][0]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][0]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 1: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE1_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE1_SP_DECISION
 
-class Block2GewinnTabelle3(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN3_D1', 'B2_GAIN3_D2', 'B2_GAIN3_D3', 'B2_GAIN3_D4', 'B2_GAIN3_D5', 'B2_GAIN3_D6', 'B2_GAIN3_D7', 'B2_GAIN3_D8', 'B2_GAIN3_D9', 'B2_GAIN3_D10', 'B2_GAIN3_D11', 'B2_GAIN3_D12', 'B2_GAIN3_D13', 'B2_GAIN3_D14', 'B2_GAIN3_D15', 'B2_GAIN3_D16', 'B2_GAIN3_D17', 'B2_GAIN3_D18', 'B2_GAIN3_D19', 'B2_GAIN3_D20', 'B2_GAIN3_D21', 
-    
 
-class Block2GewinnTabelle4(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN4_D1', 'B2_GAIN4_D2', 'B2_GAIN4_D3', 'B2_GAIN4_D4', 'B2_GAIN4_D5', 'B2_GAIN4_D6', 'B2_GAIN4_D7', 'B2_GAIN4_D8', 'B2_GAIN4_D9', 'B2_GAIN4_D10', 'B2_GAIN4_D11', 'B2_GAIN4_D12', 'B2_GAIN4_D13', 'B2_GAIN4_D14', 'B2_GAIN4_D15', 'B2_GAIN4_D16', 'B2_GAIN4_D17', 'B2_GAIN4_D18', 'B2_GAIN4_D19', 'B2_GAIN4_D20', 'B2_GAIN4_D21', 
-    
 
-class Block2GewinnTabelle5(Page):
+class Block2Table2(Page):
     form_model = 'player'
-    form_fields = 'B2_GAIN5_D1', 'B2_GAIN5_D2', 'B2_GAIN5_D3', 'B2_GAIN5_D4', 'B2_GAIN5_D5', 'B2_GAIN5_D6', 'B2_GAIN5_D7', 'B2_GAIN5_D8', 'B2_GAIN5_D9', 'B2_GAIN5_D10', 'B2_GAIN5_D11', 'B2_GAIN5_D12', 'B2_GAIN5_D13', 'B2_GAIN5_D14', 'B2_GAIN5_D15', 'B2_GAIN5_D16', 'B2_GAIN5_D17', 'B2_GAIN5_D18', 'B2_GAIN5_D19', 'B2_GAIN5_D20', 'B2_GAIN5_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE2_LOTTERY',
+        'BLOCK2_TABLE2_TYPE',
+        'BLOCK2_TABLE2_ORDER',
+        'BLOCK2_TABLE2_SP_OPTION',
+        'BLOCK2_TABLE2_SP_DECISION'
+    ]
 
-class Block2GewinnTabelle6(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN6_D1', 'B2_GAIN6_D2', 'B2_GAIN6_D3', 'B2_GAIN6_D4', 'B2_GAIN6_D5', 'B2_GAIN6_D6', 'B2_GAIN6_D7', 'B2_GAIN6_D8', 'B2_GAIN6_D9', 'B2_GAIN6_D10', 'B2_GAIN6_D11', 'B2_GAIN6_D12', 'B2_GAIN6_D13', 'B2_GAIN6_D14', 'B2_GAIN6_D15', 'B2_GAIN6_D16', 'B2_GAIN6_D17', 'B2_GAIN6_D18', 'B2_GAIN6_D19', 'B2_GAIN6_D20', 'B2_GAIN6_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=2,
+            LOTTERY=int(self.player.participant.vars['block2'][1]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][1]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][1]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 2: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE2_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE2_SP_DECISION
 
-class Block2GewinnTabelle7(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN7_D1', 'B2_GAIN7_D2', 'B2_GAIN7_D3', 'B2_GAIN7_D4', 'B2_GAIN7_D5', 'B2_GAIN7_D6', 'B2_GAIN7_D7', 'B2_GAIN7_D8', 'B2_GAIN7_D9', 'B2_GAIN7_D10', 'B2_GAIN7_D11', 'B2_GAIN7_D12', 'B2_GAIN7_D13', 'B2_GAIN7_D14', 'B2_GAIN7_D15', 'B2_GAIN7_D16', 'B2_GAIN7_D17', 'B2_GAIN7_D18', 'B2_GAIN7_D19', 'B2_GAIN7_D20', 'B2_GAIN7_D21', 
-    
 
-class Block2GewinnTabelle8(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN8_D1', 'B2_GAIN8_D2', 'B2_GAIN8_D3', 'B2_GAIN8_D4', 'B2_GAIN8_D5', 'B2_GAIN8_D6', 'B2_GAIN8_D7', 'B2_GAIN8_D8', 'B2_GAIN8_D9', 'B2_GAIN8_D10', 'B2_GAIN8_D11', 'B2_GAIN8_D12', 'B2_GAIN8_D13', 'B2_GAIN8_D14', 'B2_GAIN8_D15', 'B2_GAIN8_D16', 'B2_GAIN8_D17', 'B2_GAIN8_D18', 'B2_GAIN8_D19', 'B2_GAIN8_D20', 'B2_GAIN8_D21', 
-    
 
-class Block2GewinnTabelle9(Page):
+class Block2Table3(Page):
     form_model = 'player'
-    form_fields = 'B2_GAIN9_D1', 'B2_GAIN9_D2', 'B2_GAIN9_D3', 'B2_GAIN9_D4', 'B2_GAIN9_D5', 'B2_GAIN9_D6', 'B2_GAIN9_D7', 'B2_GAIN9_D8', 'B2_GAIN9_D9', 'B2_GAIN9_D10', 'B2_GAIN9_D11', 'B2_GAIN9_D12', 'B2_GAIN9_D13', 'B2_GAIN9_D14', 'B2_GAIN9_D15', 'B2_GAIN9_D16', 'B2_GAIN9_D17', 'B2_GAIN9_D18', 'B2_GAIN9_D19', 'B2_GAIN9_D20', 'B2_GAIN9_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE3_LOTTERY',
+        'BLOCK2_TABLE3_TYPE',
+        'BLOCK2_TABLE3_ORDER',
+        'BLOCK2_TABLE3_SP_OPTION',
+        'BLOCK2_TABLE3_SP_DECISION'
+    ]
 
-class Block2GewinnTabelle10(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN10_D1', 'B2_GAIN10_D2', 'B2_GAIN10_D3', 'B2_GAIN10_D4', 'B2_GAIN10_D5', 'B2_GAIN10_D6', 'B2_GAIN10_D7', 'B2_GAIN10_D8', 'B2_GAIN10_D9', 'B2_GAIN10_D10', 'B2_GAIN10_D11', 'B2_GAIN10_D12', 'B2_GAIN10_D13', 'B2_GAIN10_D14', 'B2_GAIN10_D15', 'B2_GAIN10_D16', 'B2_GAIN10_D17', 'B2_GAIN10_D18', 'B2_GAIN10_D19', 'B2_GAIN10_D20', 'B2_GAIN10_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=3,
+            LOTTERY=int(self.player.participant.vars['block2'][2]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][2]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][2]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 3: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE3_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE3_SP_DECISION
 
-class Block2GewinnTabelle11(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN11_D1', 'B2_GAIN11_D2', 'B2_GAIN11_D3', 'B2_GAIN11_D4', 'B2_GAIN11_D5', 'B2_GAIN11_D6', 'B2_GAIN11_D7', 'B2_GAIN11_D8', 'B2_GAIN11_D9', 'B2_GAIN11_D10', 'B2_GAIN11_D11', 'B2_GAIN11_D12', 'B2_GAIN11_D13', 'B2_GAIN11_D14', 'B2_GAIN11_D15', 'B2_GAIN11_D16', 'B2_GAIN11_D17', 'B2_GAIN11_D18', 'B2_GAIN11_D19', 'B2_GAIN11_D20', 'B2_GAIN11_D21', 
-    
 
-class Block2GewinnTabelle12(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN12_D1', 'B2_GAIN12_D2', 'B2_GAIN12_D3', 'B2_GAIN12_D4', 'B2_GAIN12_D5', 'B2_GAIN12_D6', 'B2_GAIN12_D7', 'B2_GAIN12_D8', 'B2_GAIN12_D9', 'B2_GAIN12_D10', 'B2_GAIN12_D11', 'B2_GAIN12_D12', 'B2_GAIN12_D13', 'B2_GAIN12_D14', 'B2_GAIN12_D15', 'B2_GAIN12_D16', 'B2_GAIN12_D17', 'B2_GAIN12_D18', 'B2_GAIN12_D19', 'B2_GAIN12_D20', 'B2_GAIN12_D21', 
-    
 
-class Block2GewinnTabelle13(Page):
+class Block2Table4(Page):
     form_model = 'player'
-    form_fields = 'B2_GAIN13_D1', 'B2_GAIN13_D2', 'B2_GAIN13_D3', 'B2_GAIN13_D4', 'B2_GAIN13_D5', 'B2_GAIN13_D6', 'B2_GAIN13_D7', 'B2_GAIN13_D8', 'B2_GAIN13_D9', 'B2_GAIN13_D10', 'B2_GAIN13_D11', 'B2_GAIN13_D12', 'B2_GAIN13_D13', 'B2_GAIN13_D14', 'B2_GAIN13_D15', 'B2_GAIN13_D16', 'B2_GAIN13_D17', 'B2_GAIN13_D18', 'B2_GAIN13_D19', 'B2_GAIN13_D20', 'B2_GAIN13_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE4_LOTTERY',
+        'BLOCK2_TABLE4_TYPE',
+        'BLOCK2_TABLE4_ORDER',
+        'BLOCK2_TABLE4_SP_OPTION',
+        'BLOCK2_TABLE4_SP_DECISION'
+    ]
 
-class Block2GewinnTabelle14(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN14_D1', 'B2_GAIN14_D2', 'B2_GAIN14_D3', 'B2_GAIN14_D4', 'B2_GAIN14_D5', 'B2_GAIN14_D6', 'B2_GAIN14_D7', 'B2_GAIN14_D8', 'B2_GAIN14_D9', 'B2_GAIN14_D10', 'B2_GAIN14_D11', 'B2_GAIN14_D12', 'B2_GAIN14_D13', 'B2_GAIN14_D14', 'B2_GAIN14_D15', 'B2_GAIN14_D16', 'B2_GAIN14_D17', 'B2_GAIN14_D18', 'B2_GAIN14_D19', 'B2_GAIN14_D20', 'B2_GAIN14_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=4,
+            LOTTERY=int(self.player.participant.vars['block2'][3]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][3]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][3]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 4: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE4_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE4_SP_DECISION
 
-class Block2GewinnTabelle15(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN15_D1', 'B2_GAIN15_D2', 'B2_GAIN15_D3', 'B2_GAIN15_D4', 'B2_GAIN15_D5', 'B2_GAIN15_D6', 'B2_GAIN15_D7', 'B2_GAIN15_D8', 'B2_GAIN15_D9', 'B2_GAIN15_D10', 'B2_GAIN15_D11', 'B2_GAIN15_D12', 'B2_GAIN15_D13', 'B2_GAIN15_D14', 'B2_GAIN15_D15', 'B2_GAIN15_D16', 'B2_GAIN15_D17', 'B2_GAIN15_D18', 'B2_GAIN15_D19', 'B2_GAIN15_D20', 'B2_GAIN15_D21', 
-    
 
-class Block2GewinnTabelle16(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN16_D1', 'B2_GAIN16_D2', 'B2_GAIN16_D3', 'B2_GAIN16_D4', 'B2_GAIN16_D5', 'B2_GAIN16_D6', 'B2_GAIN16_D7', 'B2_GAIN16_D8', 'B2_GAIN16_D9', 'B2_GAIN16_D10', 'B2_GAIN16_D11', 'B2_GAIN16_D12', 'B2_GAIN16_D13', 'B2_GAIN16_D14', 'B2_GAIN16_D15', 'B2_GAIN16_D16', 'B2_GAIN16_D17', 'B2_GAIN16_D18', 'B2_GAIN16_D19', 'B2_GAIN16_D20', 'B2_GAIN16_D21', 
-    
 
-class Block2GewinnTabelle17(Page):
+class Block2Table5(Page):
     form_model = 'player'
-    form_fields = 'B2_GAIN17_D1', 'B2_GAIN17_D2', 'B2_GAIN17_D3', 'B2_GAIN17_D4', 'B2_GAIN17_D5', 'B2_GAIN17_D6', 'B2_GAIN17_D7', 'B2_GAIN17_D8', 'B2_GAIN17_D9', 'B2_GAIN17_D10', 'B2_GAIN17_D11', 'B2_GAIN17_D12', 'B2_GAIN17_D13', 'B2_GAIN17_D14', 'B2_GAIN17_D15', 'B2_GAIN17_D16', 'B2_GAIN17_D17', 'B2_GAIN17_D18', 'B2_GAIN17_D19', 'B2_GAIN17_D20', 'B2_GAIN17_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE5_LOTTERY',
+        'BLOCK2_TABLE5_TYPE',
+        'BLOCK2_TABLE5_ORDER',
+        'BLOCK2_TABLE5_SP_OPTION',
+        'BLOCK2_TABLE5_SP_DECISION'
+    ]
 
-class Block2GewinnTabelle18(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN18_D1', 'B2_GAIN18_D2', 'B2_GAIN18_D3', 'B2_GAIN18_D4', 'B2_GAIN18_D5', 'B2_GAIN18_D6', 'B2_GAIN18_D7', 'B2_GAIN18_D8', 'B2_GAIN18_D9', 'B2_GAIN18_D10', 'B2_GAIN18_D11', 'B2_GAIN18_D12', 'B2_GAIN18_D13', 'B2_GAIN18_D14', 'B2_GAIN18_D15', 'B2_GAIN18_D16', 'B2_GAIN18_D17', 'B2_GAIN18_D18', 'B2_GAIN18_D19', 'B2_GAIN18_D20', 'B2_GAIN18_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=5,
+            LOTTERY=int(self.player.participant.vars['block2'][4]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][4]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][4]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 5: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE5_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE5_SP_DECISION
 
-class Block2GewinnTabelle19(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN19_D1', 'B2_GAIN19_D2', 'B2_GAIN19_D3', 'B2_GAIN19_D4', 'B2_GAIN19_D5', 'B2_GAIN19_D6', 'B2_GAIN19_D7', 'B2_GAIN19_D8', 'B2_GAIN19_D9', 'B2_GAIN19_D10', 'B2_GAIN19_D11', 'B2_GAIN19_D12', 'B2_GAIN19_D13', 'B2_GAIN19_D14', 'B2_GAIN19_D15', 'B2_GAIN19_D16', 'B2_GAIN19_D17', 'B2_GAIN19_D18', 'B2_GAIN19_D19', 'B2_GAIN19_D20', 'B2_GAIN19_D21', 
-    
 
-class Block2GewinnTabelle20(Page):
-    form_model = 'player'
-    form_fields = 'B2_GAIN20_D1', 'B2_GAIN20_D2', 'B2_GAIN20_D3', 'B2_GAIN20_D4', 'B2_GAIN20_D5', 'B2_GAIN20_D6', 'B2_GAIN20_D7', 'B2_GAIN20_D8', 'B2_GAIN20_D9', 'B2_GAIN20_D10', 'B2_GAIN20_D11', 'B2_GAIN20_D12', 'B2_GAIN20_D13', 'B2_GAIN20_D14', 'B2_GAIN20_D15', 'B2_GAIN20_D16', 'B2_GAIN20_D17', 'B2_GAIN20_D18', 'B2_GAIN20_D19', 'B2_GAIN20_D20', 'B2_GAIN20_D21', 
-    
 
-class Block2VerlustTabelle1(Page):
+class Block2Table6(Page):
     form_model = 'player'
-    form_fields = 'B2_LOSS1_D1', 'B2_LOSS1_D2', 'B2_LOSS1_D3', 'B2_LOSS1_D4', 'B2_LOSS1_D5', 'B2_LOSS1_D6', 'B2_LOSS1_D7', 'B2_LOSS1_D8', 'B2_LOSS1_D9', 'B2_LOSS1_D10', 'B2_LOSS1_D11', 'B2_LOSS1_D12', 'B2_LOSS1_D13', 'B2_LOSS1_D14', 'B2_LOSS1_D15', 'B2_LOSS1_D16', 'B2_LOSS1_D17', 'B2_LOSS1_D18', 'B2_LOSS1_D19', 'B2_LOSS1_D20', 'B2_LOSS1_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE6_LOTTERY',
+        'BLOCK2_TABLE6_TYPE',
+        'BLOCK2_TABLE6_ORDER',
+        'BLOCK2_TABLE6_SP_OPTION',
+        'BLOCK2_TABLE6_SP_DECISION'
+    ]
 
-class Block2VerlustTabelle2(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS2_D1', 'B2_LOSS2_D2', 'B2_LOSS2_D3', 'B2_LOSS2_D4', 'B2_LOSS2_D5', 'B2_LOSS2_D6', 'B2_LOSS2_D7', 'B2_LOSS2_D8', 'B2_LOSS2_D9', 'B2_LOSS2_D10', 'B2_LOSS2_D11', 'B2_LOSS2_D12', 'B2_LOSS2_D13', 'B2_LOSS2_D14', 'B2_LOSS2_D15', 'B2_LOSS2_D16', 'B2_LOSS2_D17', 'B2_LOSS2_D18', 'B2_LOSS2_D19', 'B2_LOSS2_D20', 'B2_LOSS2_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=6,
+            LOTTERY=int(self.player.participant.vars['block2'][5]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][5]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][5]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 6: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE6_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE6_SP_DECISION
 
-class Block2VerlustTabelle3(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS3_D1', 'B2_LOSS3_D2', 'B2_LOSS3_D3', 'B2_LOSS3_D4', 'B2_LOSS3_D5', 'B2_LOSS3_D6', 'B2_LOSS3_D7', 'B2_LOSS3_D8', 'B2_LOSS3_D9', 'B2_LOSS3_D10', 'B2_LOSS3_D11', 'B2_LOSS3_D12', 'B2_LOSS3_D13', 'B2_LOSS3_D14', 'B2_LOSS3_D15', 'B2_LOSS3_D16', 'B2_LOSS3_D17', 'B2_LOSS3_D18', 'B2_LOSS3_D19', 'B2_LOSS3_D20', 'B2_LOSS3_D21', 
-    
 
-class Block2VerlustTabelle4(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS4_D1', 'B2_LOSS4_D2', 'B2_LOSS4_D3', 'B2_LOSS4_D4', 'B2_LOSS4_D5', 'B2_LOSS4_D6', 'B2_LOSS4_D7', 'B2_LOSS4_D8', 'B2_LOSS4_D9', 'B2_LOSS4_D10', 'B2_LOSS4_D11', 'B2_LOSS4_D12', 'B2_LOSS4_D13', 'B2_LOSS4_D14', 'B2_LOSS4_D15', 'B2_LOSS4_D16', 'B2_LOSS4_D17', 'B2_LOSS4_D18', 'B2_LOSS4_D19', 'B2_LOSS4_D20', 'B2_LOSS4_D21', 
-    
 
-class Block2VerlustTabelle5(Page):
+class Block2Table7(Page):
     form_model = 'player'
-    form_fields = 'B2_LOSS5_D1', 'B2_LOSS5_D2', 'B2_LOSS5_D3', 'B2_LOSS5_D4', 'B2_LOSS5_D5', 'B2_LOSS5_D6', 'B2_LOSS5_D7', 'B2_LOSS5_D8', 'B2_LOSS5_D9', 'B2_LOSS5_D10', 'B2_LOSS5_D11', 'B2_LOSS5_D12', 'B2_LOSS5_D13', 'B2_LOSS5_D14', 'B2_LOSS5_D15', 'B2_LOSS5_D16', 'B2_LOSS5_D17', 'B2_LOSS5_D18', 'B2_LOSS5_D19', 'B2_LOSS5_D20', 'B2_LOSS5_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE7_LOTTERY',
+        'BLOCK2_TABLE7_TYPE',
+        'BLOCK2_TABLE7_ORDER',
+        'BLOCK2_TABLE7_SP_OPTION',
+        'BLOCK2_TABLE7_SP_DECISION'
+    ]
 
-class Block2VerlustTabelle6(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS6_D1', 'B2_LOSS6_D2', 'B2_LOSS6_D3', 'B2_LOSS6_D4', 'B2_LOSS6_D5', 'B2_LOSS6_D6', 'B2_LOSS6_D7', 'B2_LOSS6_D8', 'B2_LOSS6_D9', 'B2_LOSS6_D10', 'B2_LOSS6_D11', 'B2_LOSS6_D12', 'B2_LOSS6_D13', 'B2_LOSS6_D14', 'B2_LOSS6_D15', 'B2_LOSS6_D16', 'B2_LOSS6_D17', 'B2_LOSS6_D18', 'B2_LOSS6_D19', 'B2_LOSS6_D20', 'B2_LOSS6_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=7,
+            LOTTERY=int(self.player.participant.vars['block2'][6]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][6]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][6]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 7: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE7_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE7_SP_DECISION
 
-class Block2VerlustTabelle7(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS7_D1', 'B2_LOSS7_D2', 'B2_LOSS7_D3', 'B2_LOSS7_D4', 'B2_LOSS7_D5', 'B2_LOSS7_D6', 'B2_LOSS7_D7', 'B2_LOSS7_D8', 'B2_LOSS7_D9', 'B2_LOSS7_D10', 'B2_LOSS7_D11', 'B2_LOSS7_D12', 'B2_LOSS7_D13', 'B2_LOSS7_D14', 'B2_LOSS7_D15', 'B2_LOSS7_D16', 'B2_LOSS7_D17', 'B2_LOSS7_D18', 'B2_LOSS7_D19', 'B2_LOSS7_D20', 'B2_LOSS7_D21', 
-    
 
-class Block2VerlustTabelle8(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS8_D1', 'B2_LOSS8_D2', 'B2_LOSS8_D3', 'B2_LOSS8_D4', 'B2_LOSS8_D5', 'B2_LOSS8_D6', 'B2_LOSS8_D7', 'B2_LOSS8_D8', 'B2_LOSS8_D9', 'B2_LOSS8_D10', 'B2_LOSS8_D11', 'B2_LOSS8_D12', 'B2_LOSS8_D13', 'B2_LOSS8_D14', 'B2_LOSS8_D15', 'B2_LOSS8_D16', 'B2_LOSS8_D17', 'B2_LOSS8_D18', 'B2_LOSS8_D19', 'B2_LOSS8_D20', 'B2_LOSS8_D21', 
-    
 
-class Block2VerlustTabelle9(Page):
+class Block2Table8(Page):
     form_model = 'player'
-    form_fields = 'B2_LOSS9_D1', 'B2_LOSS9_D2', 'B2_LOSS9_D3', 'B2_LOSS9_D4', 'B2_LOSS9_D5', 'B2_LOSS9_D6', 'B2_LOSS9_D7', 'B2_LOSS9_D8', 'B2_LOSS9_D9', 'B2_LOSS9_D10', 'B2_LOSS9_D11', 'B2_LOSS9_D12', 'B2_LOSS9_D13', 'B2_LOSS9_D14', 'B2_LOSS9_D15', 'B2_LOSS9_D16', 'B2_LOSS9_D17', 'B2_LOSS9_D18', 'B2_LOSS9_D19', 'B2_LOSS9_D20', 'B2_LOSS9_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE8_LOTTERY',
+        'BLOCK2_TABLE8_TYPE',
+        'BLOCK2_TABLE8_ORDER',
+        'BLOCK2_TABLE8_SP_OPTION',
+        'BLOCK2_TABLE8_SP_DECISION'
+    ]
 
-class Block2VerlustTabelle10(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS10_D1', 'B2_LOSS10_D2', 'B2_LOSS10_D3', 'B2_LOSS10_D4', 'B2_LOSS10_D5', 'B2_LOSS10_D6', 'B2_LOSS10_D7', 'B2_LOSS10_D8', 'B2_LOSS10_D9', 'B2_LOSS10_D10', 'B2_LOSS10_D11', 'B2_LOSS10_D12', 'B2_LOSS10_D13', 'B2_LOSS10_D14', 'B2_LOSS10_D15', 'B2_LOSS10_D16', 'B2_LOSS10_D17', 'B2_LOSS10_D18', 'B2_LOSS10_D19', 'B2_LOSS10_D20', 'B2_LOSS10_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=8,
+            LOTTERY=int(self.player.participant.vars['block2'][7]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][7]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][7]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 8: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE8_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE8_SP_DECISION
 
-class Block2VerlustTabelle11(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS11_D1', 'B2_LOSS11_D2', 'B2_LOSS11_D3', 'B2_LOSS11_D4', 'B2_LOSS11_D5', 'B2_LOSS11_D6', 'B2_LOSS11_D7', 'B2_LOSS11_D8', 'B2_LOSS11_D9', 'B2_LOSS11_D10', 'B2_LOSS11_D11', 'B2_LOSS11_D12', 'B2_LOSS11_D13', 'B2_LOSS11_D14', 'B2_LOSS11_D15', 'B2_LOSS11_D16', 'B2_LOSS11_D17', 'B2_LOSS11_D18', 'B2_LOSS11_D19', 'B2_LOSS11_D20', 'B2_LOSS11_D21', 
-    
 
-class Block2VerlustTabelle12(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS12_D1', 'B2_LOSS12_D2', 'B2_LOSS12_D3', 'B2_LOSS12_D4', 'B2_LOSS12_D5', 'B2_LOSS12_D6', 'B2_LOSS12_D7', 'B2_LOSS12_D8', 'B2_LOSS12_D9', 'B2_LOSS12_D10', 'B2_LOSS12_D11', 'B2_LOSS12_D12', 'B2_LOSS12_D13', 'B2_LOSS12_D14', 'B2_LOSS12_D15', 'B2_LOSS12_D16', 'B2_LOSS12_D17', 'B2_LOSS12_D18', 'B2_LOSS12_D19', 'B2_LOSS12_D20', 'B2_LOSS12_D21', 
-    
 
-class Block2VerlustTabelle13(Page):
+class Block2Table9(Page):
     form_model = 'player'
-    form_fields = 'B2_LOSS13_D1', 'B2_LOSS13_D2', 'B2_LOSS13_D3', 'B2_LOSS13_D4', 'B2_LOSS13_D5', 'B2_LOSS13_D6', 'B2_LOSS13_D7', 'B2_LOSS13_D8', 'B2_LOSS13_D9', 'B2_LOSS13_D10', 'B2_LOSS13_D11', 'B2_LOSS13_D12', 'B2_LOSS13_D13', 'B2_LOSS13_D14', 'B2_LOSS13_D15', 'B2_LOSS13_D16', 'B2_LOSS13_D17', 'B2_LOSS13_D18', 'B2_LOSS13_D19', 'B2_LOSS13_D20', 'B2_LOSS13_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE9_LOTTERY',
+        'BLOCK2_TABLE9_TYPE',
+        'BLOCK2_TABLE9_ORDER',
+        'BLOCK2_TABLE9_SP_OPTION',
+        'BLOCK2_TABLE9_SP_DECISION'
+    ]
 
-class Block2VerlustTabelle14(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS14_D1', 'B2_LOSS14_D2', 'B2_LOSS14_D3', 'B2_LOSS14_D4', 'B2_LOSS14_D5', 'B2_LOSS14_D6', 'B2_LOSS14_D7', 'B2_LOSS14_D8', 'B2_LOSS14_D9', 'B2_LOSS14_D10', 'B2_LOSS14_D11', 'B2_LOSS14_D12', 'B2_LOSS14_D13', 'B2_LOSS14_D14', 'B2_LOSS14_D15', 'B2_LOSS14_D16', 'B2_LOSS14_D17', 'B2_LOSS14_D18', 'B2_LOSS14_D19', 'B2_LOSS14_D20', 'B2_LOSS14_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=9,
+            LOTTERY=int(self.player.participant.vars['block2'][8]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][8]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][8]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 9: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE9_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE9_SP_DECISION
 
-class Block2VerlustTabelle15(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS15_D1', 'B2_LOSS15_D2', 'B2_LOSS15_D3', 'B2_LOSS15_D4', 'B2_LOSS15_D5', 'B2_LOSS15_D6', 'B2_LOSS15_D7', 'B2_LOSS15_D8', 'B2_LOSS15_D9', 'B2_LOSS15_D10', 'B2_LOSS15_D11', 'B2_LOSS15_D12', 'B2_LOSS15_D13', 'B2_LOSS15_D14', 'B2_LOSS15_D15', 'B2_LOSS15_D16', 'B2_LOSS15_D17', 'B2_LOSS15_D18', 'B2_LOSS15_D19', 'B2_LOSS15_D20', 'B2_LOSS15_D21', 
-    
 
-class Block2VerlustTabelle16(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS16_D1', 'B2_LOSS16_D2', 'B2_LOSS16_D3', 'B2_LOSS16_D4', 'B2_LOSS16_D5', 'B2_LOSS16_D6', 'B2_LOSS16_D7', 'B2_LOSS16_D8', 'B2_LOSS16_D9', 'B2_LOSS16_D10', 'B2_LOSS16_D11', 'B2_LOSS16_D12', 'B2_LOSS16_D13', 'B2_LOSS16_D14', 'B2_LOSS16_D15', 'B2_LOSS16_D16', 'B2_LOSS16_D17', 'B2_LOSS16_D18', 'B2_LOSS16_D19', 'B2_LOSS16_D20', 'B2_LOSS16_D21', 
-    
 
-class Block2VerlustTabelle17(Page):
+class Block2Table10(Page):
     form_model = 'player'
-    form_fields = 'B2_LOSS17_D1', 'B2_LOSS17_D2', 'B2_LOSS17_D3', 'B2_LOSS17_D4', 'B2_LOSS17_D5', 'B2_LOSS17_D6', 'B2_LOSS17_D7', 'B2_LOSS17_D8', 'B2_LOSS17_D9', 'B2_LOSS17_D10', 'B2_LOSS17_D11', 'B2_LOSS17_D12', 'B2_LOSS17_D13', 'B2_LOSS17_D14', 'B2_LOSS17_D15', 'B2_LOSS17_D16', 'B2_LOSS17_D17', 'B2_LOSS17_D18', 'B2_LOSS17_D19', 'B2_LOSS17_D20', 'B2_LOSS17_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE10_LOTTERY',
+        'BLOCK2_TABLE10_TYPE',
+        'BLOCK2_TABLE10_ORDER',
+        'BLOCK2_TABLE10_SP_OPTION',
+        'BLOCK2_TABLE10_SP_DECISION'
+    ]
 
-class Block2VerlustTabelle18(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS18_D1', 'B2_LOSS18_D2', 'B2_LOSS18_D3', 'B2_LOSS18_D4', 'B2_LOSS18_D5', 'B2_LOSS18_D6', 'B2_LOSS18_D7', 'B2_LOSS18_D8', 'B2_LOSS18_D9', 'B2_LOSS18_D10', 'B2_LOSS18_D11', 'B2_LOSS18_D12', 'B2_LOSS18_D13', 'B2_LOSS18_D14', 'B2_LOSS18_D15', 'B2_LOSS18_D16', 'B2_LOSS18_D17', 'B2_LOSS18_D18', 'B2_LOSS18_D19', 'B2_LOSS18_D20', 'B2_LOSS18_D21', 
-    
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=10,
+            LOTTERY=int(self.player.participant.vars['block2'][9]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][9]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][9]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 10: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE10_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE10_SP_DECISION
 
-class Block2VerlustTabelle19(Page):
-    form_model = 'player'
-    form_fields = 'B2_LOSS19_D1', 'B2_LOSS19_D2', 'B2_LOSS19_D3', 'B2_LOSS19_D4', 'B2_LOSS19_D5', 'B2_LOSS19_D6', 'B2_LOSS19_D7', 'B2_LOSS19_D8', 'B2_LOSS19_D9', 'B2_LOSS19_D10', 'B2_LOSS19_D11', 'B2_LOSS19_D12', 'B2_LOSS19_D13', 'B2_LOSS19_D14', 'B2_LOSS19_D15', 'B2_LOSS19_D16', 'B2_LOSS19_D17', 'B2_LOSS19_D18', 'B2_LOSS19_D19', 'B2_LOSS19_D20', 'B2_LOSS19_D21', 
-    
 
-class Block2VerlustTabelle20(Page):
+
+class Block2Table11(Page):
     form_model = 'player'
-    form_fields = 'B2_LOSS20_D1', 'B2_LOSS20_D2', 'B2_LOSS20_D3', 'B2_LOSS20_D4', 'B2_LOSS20_D5', 'B2_LOSS20_D6', 'B2_LOSS20_D7', 'B2_LOSS20_D8', 'B2_LOSS20_D9', 'B2_LOSS20_D10', 'B2_LOSS20_D11', 'B2_LOSS20_D12', 'B2_LOSS20_D13', 'B2_LOSS20_D14', 'B2_LOSS20_D15', 'B2_LOSS20_D16', 'B2_LOSS20_D17', 'B2_LOSS20_D18', 'B2_LOSS20_D19', 'B2_LOSS20_D20', 'B2_LOSS20_D21', 
-    
+    form_fields = [
+        'BLOCK2_TABLE11_LOTTERY',
+        'BLOCK2_TABLE11_TYPE',
+        'BLOCK2_TABLE11_ORDER',
+        'BLOCK2_TABLE11_SP_OPTION',
+        'BLOCK2_TABLE11_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=11,
+            LOTTERY=int(self.player.participant.vars['block2'][10]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][10]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][10]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 11: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE11_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE11_SP_DECISION
+
+
+
+class Block2Table12(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE12_LOTTERY',
+        'BLOCK2_TABLE12_TYPE',
+        'BLOCK2_TABLE12_ORDER',
+        'BLOCK2_TABLE12_SP_OPTION',
+        'BLOCK2_TABLE12_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=12,
+            LOTTERY=int(self.player.participant.vars['block2'][11]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][11]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][11]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 12: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE12_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE12_SP_DECISION
+
+
+
+class Block2Table13(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE13_LOTTERY',
+        'BLOCK2_TABLE13_TYPE',
+        'BLOCK2_TABLE13_ORDER',
+        'BLOCK2_TABLE13_SP_OPTION',
+        'BLOCK2_TABLE13_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=13,
+            LOTTERY=int(self.player.participant.vars['block2'][12]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][12]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][12]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 13: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE13_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE13_SP_DECISION
+
+
+
+class Block2Table14(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE14_LOTTERY',
+        'BLOCK2_TABLE14_TYPE',
+        'BLOCK2_TABLE14_ORDER',
+        'BLOCK2_TABLE14_SP_OPTION',
+        'BLOCK2_TABLE14_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=14,
+            LOTTERY=int(self.player.participant.vars['block2'][13]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][13]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][13]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 14: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE14_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE14_SP_DECISION
+
+
+
+class Block2Table15(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE15_LOTTERY',
+        'BLOCK2_TABLE15_TYPE',
+        'BLOCK2_TABLE15_ORDER',
+        'BLOCK2_TABLE15_SP_OPTION',
+        'BLOCK2_TABLE15_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=15,
+            LOTTERY=int(self.player.participant.vars['block2'][14]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][14]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][14]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 15: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE15_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE15_SP_DECISION
+
+
+
+class Block2Table16(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE16_LOTTERY',
+        'BLOCK2_TABLE16_TYPE',
+        'BLOCK2_TABLE16_ORDER',
+        'BLOCK2_TABLE16_SP_OPTION',
+        'BLOCK2_TABLE16_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=16,
+            LOTTERY=int(self.player.participant.vars['block2'][15]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][15]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][15]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 16: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE16_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE16_SP_DECISION
+
+
+
+class Block2Table17(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE17_LOTTERY',
+        'BLOCK2_TABLE17_TYPE',
+        'BLOCK2_TABLE17_ORDER',
+        'BLOCK2_TABLE17_SP_OPTION',
+        'BLOCK2_TABLE17_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=17,
+            LOTTERY=int(self.player.participant.vars['block2'][16]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][16]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][16]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 17: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE17_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE17_SP_DECISION
+
+
+
+class Block2Table18(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE18_LOTTERY',
+        'BLOCK2_TABLE18_TYPE',
+        'BLOCK2_TABLE18_ORDER',
+        'BLOCK2_TABLE18_SP_OPTION',
+        'BLOCK2_TABLE18_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=18,
+            LOTTERY=int(self.player.participant.vars['block2'][17]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][17]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][17]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 18: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE18_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE18_SP_DECISION
+
+
+
+class Block2Table19(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE19_LOTTERY',
+        'BLOCK2_TABLE19_TYPE',
+        'BLOCK2_TABLE19_ORDER',
+        'BLOCK2_TABLE19_SP_OPTION',
+        'BLOCK2_TABLE19_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=19,
+            LOTTERY=int(self.player.participant.vars['block2'][18]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][18]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][18]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 19: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE19_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE19_SP_DECISION
+
+
+
+class Block2Table20(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE20_LOTTERY',
+        'BLOCK2_TABLE20_TYPE',
+        'BLOCK2_TABLE20_ORDER',
+        'BLOCK2_TABLE20_SP_OPTION',
+        'BLOCK2_TABLE20_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=20,
+            LOTTERY=int(self.player.participant.vars['block2'][19]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][19]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][19]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 20: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE20_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE20_SP_DECISION
+
+
+
+class Block2Table21(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE21_LOTTERY',
+        'BLOCK2_TABLE21_TYPE',
+        'BLOCK2_TABLE21_ORDER',
+        'BLOCK2_TABLE21_SP_OPTION',
+        'BLOCK2_TABLE21_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=21,
+            LOTTERY=int(self.player.participant.vars['block2'][20]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][20]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][20]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 21: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE21_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE21_SP_DECISION
+
+
+
+class Block2Table22(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE22_LOTTERY',
+        'BLOCK2_TABLE22_TYPE',
+        'BLOCK2_TABLE22_ORDER',
+        'BLOCK2_TABLE22_SP_OPTION',
+        'BLOCK2_TABLE22_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=22,
+            LOTTERY=int(self.player.participant.vars['block2'][21]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][21]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][21]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 22: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE22_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE22_SP_DECISION
+
+
+
+class Block2Table23(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE23_LOTTERY',
+        'BLOCK2_TABLE23_TYPE',
+        'BLOCK2_TABLE23_ORDER',
+        'BLOCK2_TABLE23_SP_OPTION',
+        'BLOCK2_TABLE23_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=23,
+            LOTTERY=int(self.player.participant.vars['block2'][22]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][22]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][22]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 23: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE23_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE23_SP_DECISION
+
+
+
+class Block2Table24(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE24_LOTTERY',
+        'BLOCK2_TABLE24_TYPE',
+        'BLOCK2_TABLE24_ORDER',
+        'BLOCK2_TABLE24_SP_OPTION',
+        'BLOCK2_TABLE24_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=24,
+            LOTTERY=int(self.player.participant.vars['block2'][23]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][23]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][23]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 24: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE24_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE24_SP_DECISION
+
+
+
+class Block2Table25(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE25_LOTTERY',
+        'BLOCK2_TABLE25_TYPE',
+        'BLOCK2_TABLE25_ORDER',
+        'BLOCK2_TABLE25_SP_OPTION',
+        'BLOCK2_TABLE25_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=25,
+            LOTTERY=int(self.player.participant.vars['block2'][24]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][24]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][24]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 25: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE25_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE25_SP_DECISION
+
+
+
+class Block2Table26(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE26_LOTTERY',
+        'BLOCK2_TABLE26_TYPE',
+        'BLOCK2_TABLE26_ORDER',
+        'BLOCK2_TABLE26_SP_OPTION',
+        'BLOCK2_TABLE26_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=26,
+            LOTTERY=int(self.player.participant.vars['block2'][25]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][25]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][25]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 26: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE26_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE26_SP_DECISION
+
+
+
+class Block2Table27(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE27_LOTTERY',
+        'BLOCK2_TABLE27_TYPE',
+        'BLOCK2_TABLE27_ORDER',
+        'BLOCK2_TABLE27_SP_OPTION',
+        'BLOCK2_TABLE27_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=27,
+            LOTTERY=int(self.player.participant.vars['block2'][26]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][26]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][26]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 27: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE27_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE27_SP_DECISION
+
+
+
+class Block2Table28(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE28_LOTTERY',
+        'BLOCK2_TABLE28_TYPE',
+        'BLOCK2_TABLE28_ORDER',
+        'BLOCK2_TABLE28_SP_OPTION',
+        'BLOCK2_TABLE28_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=28,
+            LOTTERY=int(self.player.participant.vars['block2'][27]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][27]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][27]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 28: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE28_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE28_SP_DECISION
+
+
+
+class Block2Table29(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE29_LOTTERY',
+        'BLOCK2_TABLE29_TYPE',
+        'BLOCK2_TABLE29_ORDER',
+        'BLOCK2_TABLE29_SP_OPTION',
+        'BLOCK2_TABLE29_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=29,
+            LOTTERY=int(self.player.participant.vars['block2'][28]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][28]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][28]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 29: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE29_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE29_SP_DECISION
+
+
+
+class Block2Table30(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE30_LOTTERY',
+        'BLOCK2_TABLE30_TYPE',
+        'BLOCK2_TABLE30_ORDER',
+        'BLOCK2_TABLE30_SP_OPTION',
+        'BLOCK2_TABLE30_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=30,
+            LOTTERY=int(self.player.participant.vars['block2'][29]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][29]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][29]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 30: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE30_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE30_SP_DECISION
+
+
+
+class Block2Table31(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE31_LOTTERY',
+        'BLOCK2_TABLE31_TYPE',
+        'BLOCK2_TABLE31_ORDER',
+        'BLOCK2_TABLE31_SP_OPTION',
+        'BLOCK2_TABLE31_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=31,
+            LOTTERY=int(self.player.participant.vars['block2'][30]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][30]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][30]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 31: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE31_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE31_SP_DECISION
+
+
+
+class Block2Table32(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE32_LOTTERY',
+        'BLOCK2_TABLE32_TYPE',
+        'BLOCK2_TABLE32_ORDER',
+        'BLOCK2_TABLE32_SP_OPTION',
+        'BLOCK2_TABLE32_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=32,
+            LOTTERY=int(self.player.participant.vars['block2'][31]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][31]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][31]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 32: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE32_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE32_SP_DECISION
+
+
+
+class Block2Table33(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE33_LOTTERY',
+        'BLOCK2_TABLE33_TYPE',
+        'BLOCK2_TABLE33_ORDER',
+        'BLOCK2_TABLE33_SP_OPTION',
+        'BLOCK2_TABLE33_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=33,
+            LOTTERY=int(self.player.participant.vars['block2'][32]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][32]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][32]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 33: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE33_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE33_SP_DECISION
+
+
+
+class Block2Table34(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE34_LOTTERY',
+        'BLOCK2_TABLE34_TYPE',
+        'BLOCK2_TABLE34_ORDER',
+        'BLOCK2_TABLE34_SP_OPTION',
+        'BLOCK2_TABLE34_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=34,
+            LOTTERY=int(self.player.participant.vars['block2'][33]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][33]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][33]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 34: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE34_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE34_SP_DECISION
+
+
+
+class Block2Table35(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE35_LOTTERY',
+        'BLOCK2_TABLE35_TYPE',
+        'BLOCK2_TABLE35_ORDER',
+        'BLOCK2_TABLE35_SP_OPTION',
+        'BLOCK2_TABLE35_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=35,
+            LOTTERY=int(self.player.participant.vars['block2'][34]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][34]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][34]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 35: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE35_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE35_SP_DECISION
+
+
+
+class Block2Table36(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE36_LOTTERY',
+        'BLOCK2_TABLE36_TYPE',
+        'BLOCK2_TABLE36_ORDER',
+        'BLOCK2_TABLE36_SP_OPTION',
+        'BLOCK2_TABLE36_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=36,
+            LOTTERY=int(self.player.participant.vars['block2'][35]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][35]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][35]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 36: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE36_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE36_SP_DECISION
+
+
+
+class Block2Table37(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE37_LOTTERY',
+        'BLOCK2_TABLE37_TYPE',
+        'BLOCK2_TABLE37_ORDER',
+        'BLOCK2_TABLE37_SP_OPTION',
+        'BLOCK2_TABLE37_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=37,
+            LOTTERY=int(self.player.participant.vars['block2'][36]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][36]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][36]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 37: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE37_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE37_SP_DECISION
+
+
+
+class Block2Table38(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE38_LOTTERY',
+        'BLOCK2_TABLE38_TYPE',
+        'BLOCK2_TABLE38_ORDER',
+        'BLOCK2_TABLE38_SP_OPTION',
+        'BLOCK2_TABLE38_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=38,
+            LOTTERY=int(self.player.participant.vars['block2'][37]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][37]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][37]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 38: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE38_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE38_SP_DECISION
+
+
+
+class Block2Table39(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE39_LOTTERY',
+        'BLOCK2_TABLE39_TYPE',
+        'BLOCK2_TABLE39_ORDER',
+        'BLOCK2_TABLE39_SP_OPTION',
+        'BLOCK2_TABLE39_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=39,
+            LOTTERY=int(self.player.participant.vars['block2'][38]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][38]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][38]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 39: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE39_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE39_SP_DECISION
+
+
+
+class Block2Table40(Page):
+    form_model = 'player'
+    form_fields = [
+        'BLOCK2_TABLE40_LOTTERY',
+        'BLOCK2_TABLE40_TYPE',
+        'BLOCK2_TABLE40_ORDER',
+        'BLOCK2_TABLE40_SP_OPTION',
+        'BLOCK2_TABLE40_SP_DECISION'
+    ]
+
+    def js_vars(self):
+        player = self.player
+        return dict(
+            BLOCK_NUMBER=2,
+            TABLE_NUMBER=40,
+            LOTTERY=int(self.player.participant.vars['block2'][39]['NUMBER']),
+            TYPE=self.player.participant.vars['block2'][39]['TYPE'],
+            ORDER=self.player.participant.vars['block2'][39]['ORDER'],
+        )
+        
+    def before_next_page(self):
+        if (self.player.participant.vars['payoff_random_block'] == 2) and self.player.participant.vars['payoff_random_table'] == 40: 
+            self.player.participant.vars['payoff_player_sp_option'] = self.player.BLOCK2_TABLE40_SP_OPTION
+            self.player.participant.vars['payoff_player_sp_decision'] = self.player.BLOCK2_TABLE40_SP_DECISION
+
+
 
 class SetPayoff(Page):
     def vars_for_template(self):
         self.player.setPayoff()    
 
 
-page_sequence = [Block1Intro, Block1GewinnTabelle1, Block1GewinnTabelle2, Block1GewinnTabelle3, Block1GewinnTabelle4, Block1GewinnTabelle5, Block1GewinnTabelle6, Block1GewinnTabelle7, Block1GewinnTabelle8, Block1GewinnTabelle9, Block1GewinnTabelle10, Block1GewinnTabelle11, Block1GewinnTabelle12, Block1GewinnTabelle13, Block1GewinnTabelle14, Block1GewinnTabelle15, Block1GewinnTabelle16, Block1GewinnTabelle17, Block1GewinnTabelle18, Block1GewinnTabelle19, Block1GewinnTabelle20, Block1VerlustTabelle1, Block1VerlustTabelle2, Block1VerlustTabelle3, Block1VerlustTabelle4, Block1VerlustTabelle5, Block1VerlustTabelle6, Block1VerlustTabelle7, Block1VerlustTabelle8, Block1VerlustTabelle9, Block1VerlustTabelle10, Block1VerlustTabelle11, Block1VerlustTabelle12, Block1VerlustTabelle13, Block1VerlustTabelle14, Block1VerlustTabelle15, Block1VerlustTabelle16, Block1VerlustTabelle17, Block1VerlustTabelle18, Block1VerlustTabelle19, Block1VerlustTabelle20, ZwischenteilIntro, Zwischenteil1, Zwischenteil2, Zwischenteil3, Zwischenteil4, Zwischenteil5, Zwischenteil6, Zwischenteil7, Zwischenteil8, Zwischenteil9, Zwischenteil10, Zwischenteil11, Zwischenteil12, Zwischenteil13, Zwischenteil14, Zwischenteil15, Zwischenteil16, Block2Intro, Block2GewinnTabelle1, Block2GewinnTabelle2, Block2GewinnTabelle3, Block2GewinnTabelle4, Block2GewinnTabelle5, Block2GewinnTabelle6, Block2GewinnTabelle7, Block2GewinnTabelle8, Block2GewinnTabelle9, Block2GewinnTabelle10, Block2GewinnTabelle11, Block2GewinnTabelle12, Block2GewinnTabelle13, Block2GewinnTabelle14, Block2GewinnTabelle15, Block2GewinnTabelle16, Block2GewinnTabelle17, Block2GewinnTabelle18, Block2GewinnTabelle19, Block2GewinnTabelle20, Block2VerlustTabelle1, Block2VerlustTabelle2, Block2VerlustTabelle3, Block2VerlustTabelle4, Block2VerlustTabelle5, Block2VerlustTabelle6, Block2VerlustTabelle7, Block2VerlustTabelle8, Block2VerlustTabelle9, Block2VerlustTabelle10, Block2VerlustTabelle11, Block2VerlustTabelle12, Block2VerlustTabelle13, Block2VerlustTabelle14, Block2VerlustTabelle15, Block2VerlustTabelle16, Block2VerlustTabelle17, Block2VerlustTabelle18, Block2VerlustTabelle19, Block2VerlustTabelle20, SetPayoff]
+
+page_sequence = [Block1Intro, Block1Table1, Block1Table2, Block1Table3, Block1Table4, Block1Table5, Block1Table6, Block1Table7, Block1Table8, Block1Table9, Block1Table10, Block1Table11, Block1Table12, Block1Table13, Block1Table14, Block1Table15, Block1Table16, Block1Table17, Block1Table18, Block1Table19, Block1Table20, Block1Table21, Block1Table22, Block1Table23, Block1Table24, Block1Table25, Block1Table26, Block1Table27, Block1Table28, Block1Table29, Block1Table30, Block1Table31, Block1Table32, Block1Table33, Block1Table34, Block1Table35, Block1Table36, Block1Table37, Block1Table38, Block1Table39, Block1Table40, ZwischenteilIntro, Zwischenteil1, Zwischenteil2, Zwischenteil3, Zwischenteil4, Zwischenteil5, Zwischenteil6, Zwischenteil7, Zwischenteil8, Zwischenteil9, Zwischenteil10, Zwischenteil11, Zwischenteil12, Zwischenteil13, Zwischenteil14, Zwischenteil15, Zwischenteil16, Block2Intro, Block2Table1, Block2Table2, Block2Table3, Block2Table4, Block2Table5, Block2Table6, Block2Table7, Block2Table8, Block2Table9, Block2Table10, Block2Table11, Block2Table12, Block2Table13, Block2Table14, Block2Table15, Block2Table16, Block2Table17, Block2Table18, Block2Table19, Block2Table20, Block2Table21, Block2Table22, Block2Table23, Block2Table24, Block2Table25, Block2Table26, Block2Table27, Block2Table28, Block2Table29, Block2Table30, Block2Table31, Block2Table32, Block2Table33, Block2Table34, Block2Table35, Block2Table36, Block2Table37, Block2Table38, Block2Table39, Block2Table40, SetPayoff]    

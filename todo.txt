@@ -1,4 +1,71 @@
 server
 - automatic upload
 - reset db
-- install xlrd
+
+
+variablen
+BLOCK0_TABLE00_LOTTERY = (1-20)
+BLOCK0_TABLE00_TYPE = (0: GAIN, 1: LOSS)
+BLOCK0_TABLE00_ORDER = (0: ASC, 1: DESC)
+BLOCK0_TABLE00_SP_OPTION = (0: A, B: 1)
+BLOCK0_TABLE00_SP_DECISION = (1-21)
+
+
+payoff
+
+LOSS ASC (AAA)
+TYPE=1, ORDER=0
+
+LOSS DESC (BBB)
+TYPE=1, ORDER=1
+
+GAIN ASC (BBB)
+TYPE=0, ORDER=0
+
+GAIN DESC (AAA)
+TYPE=0, ORDER=1
+
+-----------------------------------------
+1. Fall: Top Right Bottom Left
+- TYPE=1, ORDER=0
+- TYPE=0, ORDER=1
+
+2. Fall: Top Left Bottom Right
+- TYPE=0, ORDER=0
+- TYPE=1, ORDER=1
+
+-----------------------------------------
+1. Fall: Top Right Bottom Left
+
+if rd.dec < sp.dec:
+- PLAYER_OPTION = 1
+
+if rd.dec = sp.dec:
+- PLAYER_OPTION = PLAYER_SP_OPTION
+
+if rd.dec > sp.dec:
+- PLAYER_OPTION = 0
+
+
+-----------------------------------------
+2. Fall: Top Left Bottom Right
+
+if rd.dec < sp.dec:
+- PLAYER_OPTION = 0
+
+if rd.dec = sp.dec:
+- PLAYER_OPTION = PLAYER_SP_OPTION
+
+if rd.dec > sp.dec:
+- PLAYER_OPTION = 1
+
+-----------------------------------------
+
+
+
+
+
+
+
+
+
