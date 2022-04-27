@@ -27,7 +27,7 @@ def loadLotteries(url, sheet):
         sheet = 1
     for i in np.arange(0, len(f), 1):
         d['TYPE'].append(sheet)
-        d['NUMBER'].append(i+1)
+        d['NUMBER'].append(int(i+1))
     return d
 
 

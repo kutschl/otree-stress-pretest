@@ -1,5 +1,6 @@
 from ._builtin import Page, WaitPage
 import random as rd
+import numpy as np
 
 
 class Block1Intro(Page):
